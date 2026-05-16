@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://therosaryapi.cf/"
+      }
+      description: "Provides various endpoints to access rosary prayers for different days and occasions in JSON format. No authentication required for usage."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://therosaryapi.cf"
+        }
+      ]
+      title: "The Rosary Api"
+      version: "1.0.0"
+    }
+  }
+}
+
+}

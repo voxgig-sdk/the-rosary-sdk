@@ -1,0 +1,232 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "The Rosary Api",
+    "description": "Provides various endpoints to access rosary prayers for different days and occasions in JSON format. No authentication required for usage.",
+    "version": "1.0.0",
+    "contact": {
+      "url": "https://therosaryapi.cf/"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://therosaryapi.cf",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/today": {
+      "get": {
+        "summary": "Get today's rosary",
+        "description": "Retrieves the rosary prayers for the current day of the week",
+        "operationId": "getTodayRosary",
+        "tags": [
+          "Rosary"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with today's rosary prayers",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RosaryResponse"
+                },
+                "example": {
+                  "day": "Monday",
+                  "mystery": "Joyful Mysteries",
+                  "prayers": [
+                    {
+                      "title": "The Annunciation",
+                      "description": "The Angel Gabriel announces to Mary that she will conceive and bear a son"
+                    },
+                    {
+                      "title": "The Visitation",
+                      "description": "Mary visits her cousin Elizabeth"
+                    },
+                    {
+                      "title": "The Nativity",
+                      "description": "Jesus is born in Bethlehem"
+                    },
+                    {
+                      "title": "The Presentation",
+                      "description": "Mary and Joseph present Jesus at the Temple"
+                    },
+                    {
+                      "title": "The Finding in the Temple",
+                      "description": "Mary and Joseph find the young Jesus in the Temple"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/{day}": {
+      "get": {
+        "summary": "Get rosary for specific day",
+        "description": "Retrieves the rosary prayers for a specific day of the week or mystery type",
+        "operationId": "getRosaryByDay",
+        "tags": [
+          "Rosary"
+        ],
+        "parameters": [
+          {
+            "name": "day",
+            "in": "path",
+            "required": true,
+            "description": "Day of the week (monday, tuesday, wednesday, thursday, friday, saturday, sunday) or mystery type (joyful, sorrowful, glorious, luminous)",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "monday",
+                "tuesday",
+                "wednesday",
+                "thursday",
+                "friday",
+                "saturday",
+                "sunday",
+                "joyful",
+                "sorrowful",
+                "glorious",
+                "luminous"
+              ]
+            },
+            "example": "monday"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with rosary prayers for the specified day",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RosaryResponse"
+                },
+                "example": {
+                  "day": "Monday",
+                  "mystery": "Joyful Mysteries",
+                  "prayers": [
+                    {
+                      "title": "The Annunciation",
+                      "description": "The Angel Gabriel announces to Mary that she will conceive and bear a son"
+                    },
+                    {
+                      "title": "The Visitation",
+                      "description": "Mary visits her cousin Elizabeth"
+                    },
+                    {
+                      "title": "The Nativity",
+                      "description": "Jesus is born in Bethlehem"
+                    },
+                    {
+                      "title": "The Presentation",
+                      "description": "Mary and Joseph present Jesus at the Temple"
+                    },
+                    {
+                      "title": "The Finding in the Temple",
+                      "description": "Mary and Joseph find the young Jesus in the Temple"
+                    }
+                  ]
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Day not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "RosaryResponse": {
+        "type": "object",
+        "properties": {
+          "day": {
+            "type": "string",
+            "description": "The day of the week or occasion",
+            "example": "Monday"
+          },
+          "mystery": {
+            "type": "string",
+            "description": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
+            "example": "Joyful Mysteries"
+          },
+          "prayers": {
+            "type": "array",
+            "description": "List of prayers in the rosary",
+            "items": {
+              "$ref": "#/components/schemas/Prayer"
+            }
+          }
+        }
+      },
+      "Prayer": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "The title of the prayer or mystery",
+            "example": "The Annunciation"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description or meditation for the prayer",
+            "example": "The Angel Gabriel announces to Mary that she will conceive and bear a son"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message",
+            "example": "Resource not found"
+          },
+          "message": {
+            "type": "string",
+            "description": "Detailed error message",
+            "example": "The requested day could not be found"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Rosary",
+      "description": "Endpoints for accessing rosary prayers"
+    }
+  ]
+}

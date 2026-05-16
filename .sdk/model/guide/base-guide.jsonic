@@ -1,0 +1,21 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 2
+  metrics: count: path: 2
+  metrics: count: method: 2
+
+  entity: get_rosary_by_day: {
+    path: "/{day}": {
+      rename: param: "day": *"id"
+      op: list: method: *GET
+    }
+  }
+
+  entity: today: {
+    path: "/today": {
+      op: list: method: *GET
+    }
+  }
+
+}

@@ -1,0 +1,22 @@
+# BasicTodayFlow
+
+main: kit: flow: BasicTodayFlow:
+{
+  entity: "today",
+  kind: "basic",
+  name: "BasicTodayFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "today_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicTodayFlow"
+}
