@@ -25,7 +25,7 @@ class TodayDirectTest extends TestCase
 
 
         [$result, $err] = $client->direct([
-            "path" => "today",
+            "path" => "v1/today",
             "method" => "GET",
             "params" => [],
         ]);

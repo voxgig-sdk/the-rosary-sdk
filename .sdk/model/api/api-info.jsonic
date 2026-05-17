@@ -11,7 +11,7 @@ main: {
       servers: [
         {
           description: "Production server"
-          url: "https://therosaryapi.cf"
+          url: "https://the-rosary-api.vercel.app"
         }
       ]
       title: "The Rosary Api"

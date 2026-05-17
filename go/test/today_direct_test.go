@@ -31,7 +31,7 @@ func TestTodayDirect(t *testing.T) {
 
 
 		result, err := client.Direct(map[string]any{
-			"path":   "today",
+			"path":   "v1/today",
 			"method": "GET",
 			"params": map[string]any{},
 		})

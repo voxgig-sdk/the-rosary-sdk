@@ -40,13 +40,13 @@ client := sdk.TestSDK(nil, nil)
 
 ### Instance Methods
 
-#### `GetRosaryByDay(data map[string]any) TheRosaryEntity`
-
-Create a new `GetRosaryByDay` entity instance. Pass `nil` for no initial data.
-
 #### `Today(data map[string]any) TheRosaryEntity`
 
 Create a new `Today` entity instance. Pass `nil` for no initial data.
+
+#### `V1n(data map[string]any) TheRosaryEntity`
+
+Create a new `V1n` entity instance. Pass `nil` for no initial data.
 
 #### `OptionsMap() map[string]any`
 
@@ -80,53 +80,6 @@ Prepare a fetch definition without sending the request. Accepts the
 same parameters as `Direct()`.
 
 **Returns:** `(map[string]any, error)`
-
-
----
-
-## GetRosaryByDayEntity
-
-```go
-get_rosary_by_day := client.GetRosaryByDay(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-
-### Operations
-
-#### `List(reqmatch, ctrl map[string]any) (any, error)`
-
-List entities matching the given criteria. Returns an array.
-
-```go
-results, err := client.GetRosaryByDay(nil).List(nil, nil)
-```
-
-### Common Methods
-
-#### `Data(args ...any) any`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `Match(args ...any) any`
-
-Get or set the entity match criteria. Works the same as `Data()`.
-
-#### `Make() Entity`
-
-Create a new `GetRosaryByDayEntity` instance with the same client and
-options.
-
-#### `GetName() string`
-
-Return the entity name.
 
 
 ---
@@ -169,6 +122,54 @@ Get or set the entity match criteria. Works the same as `Data()`.
 #### `Make() Entity`
 
 Create a new `TodayEntity` instance with the same client and
+options.
+
+#### `GetName() string`
+
+Return the entity name.
+
+
+---
+
+## V1nEntity
+
+```go
+v1n := client.V1n(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `day` | ``$STRING`` | No |  |
+| `mystery` | ``$STRING`` | No |  |
+| `prayer` | ``$ARRAY`` | No |  |
+
+### Operations
+
+#### `Load(reqmatch, ctrl map[string]any) (any, error)`
+
+Load a single entity matching the given criteria.
+
+```go
+result, err := client.V1n(nil).Load(map[string]any{"id": "v1n_id"}, nil)
+```
+
+### Common Methods
+
+#### `Data(args ...any) any`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `Match(args ...any) any`
+
+Get or set the entity match criteria. Works the same as `Data()`.
+
+#### `Make() Entity`
+
+Create a new `V1nEntity` instance with the same client and
 options.
 
 #### `GetName() string`

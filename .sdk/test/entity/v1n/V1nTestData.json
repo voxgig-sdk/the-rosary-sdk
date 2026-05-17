@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "v1n": {
+      "V1N00": {
+        "day": "s1e",
+        "mystery": "s1f",
+        "prayer": [],
+        "id": "V1N00"
+      },
+      "V1N01": {
+        "day": "s3c",
+        "mystery": "s3d",
+        "prayer": [],
+        "id": "V1N01"
+      },
+      "V1N02": {
+        "day": "s5a",
+        "mystery": "s5b",
+        "prayer": [],
+        "id": "V1N02"
+      }
+    }
+  },
+  "new": {
+    "v1n": {
+      "v1n_ref01": {
+        "day": "s78",
+        "mystery": "s79",
+        "prayer": []
+      }
+    }
+  }
+}

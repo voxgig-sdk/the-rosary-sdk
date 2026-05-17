@@ -6,7 +6,7 @@ import (
 	vs "github.com/voxgig-sdk/the-rosary-sdk/go/utility/struct"
 )
 
-type GetRosaryByDayEntity struct {
+type V1nEntity struct {
 	name    string
 	client  *core.TheRosarySDK
 	utility *core.Utility
@@ -16,7 +16,7 @@ type GetRosaryByDayEntity struct {
 	entctx  *core.Context
 }
 
-func NewGetRosaryByDayEntity(client *core.TheRosarySDK, entopts map[string]any) *GetRosaryByDayEntity {
+func NewV1nEntity(client *core.TheRosarySDK, entopts map[string]any) *V1nEntity {
 	if entopts == nil {
 		entopts = map[string]any{}
 	}
@@ -28,8 +28,8 @@ func NewGetRosaryByDayEntity(client *core.TheRosarySDK, entopts map[string]any) 
 		entopts["active"] = true
 	}
 
-	e := &GetRosaryByDayEntity{
-		name:    "get_rosary_by_day",
+	e := &V1nEntity{
+		name:    "v1n",
 		client:  client,
 		utility: client.GetUtility(),
 		entopts: entopts,
@@ -47,17 +47,17 @@ func NewGetRosaryByDayEntity(client *core.TheRosarySDK, entopts map[string]any) 
 	return e
 }
 
-func (e *GetRosaryByDayEntity) GetName() string { return e.name }
+func (e *V1nEntity) GetName() string { return e.name }
 
-func (e *GetRosaryByDayEntity) Make() core.Entity {
+func (e *V1nEntity) Make() core.Entity {
 	opts := map[string]any{}
 	for k, v := range e.entopts {
 		opts[k] = v
 	}
-	return NewGetRosaryByDayEntity(e.client, opts)
+	return NewV1nEntity(e.client, opts)
 }
 
-func (e *GetRosaryByDayEntity) Data(args ...any) any {
+func (e *V1nEntity) Data(args ...any) any {
 	if len(args) > 0 && args[0] != nil {
 		e.data = core.ToMapAny(vs.Clone(args[0]))
 		if e.data == nil {
@@ -71,7 +71,7 @@ func (e *GetRosaryByDayEntity) Data(args ...any) any {
 	return out
 }
 
-func (e *GetRosaryByDayEntity) Match(args ...any) any {
+func (e *V1nEntity) Match(args ...any) any {
 	if len(args) > 0 && args[0] != nil {
 		e.match = core.ToMapAny(vs.Clone(args[0]))
 		if e.match == nil {
@@ -85,16 +85,11 @@ func (e *GetRosaryByDayEntity) Match(args ...any) any {
 	return out
 }
 
-func (e *GetRosaryByDayEntity) Load(_ map[string]any, _ map[string]any) (any, error) {
-	return core.UnsupportedOp("load", e.name)
-}
 
-
-
-func (e *GetRosaryByDayEntity) List(reqmatch map[string]any, ctrl map[string]any) (any, error) {
+func (e *V1nEntity) Load(reqmatch map[string]any, ctrl map[string]any) (any, error) {
 	utility := e.utility
 	ctx := utility.MakeContext(map[string]any{
-		"opname":   "list",
+		"opname":   "load",
 		"ctrl":     ctrl,
 		"match":    e.match,
 		"data":     e.data,
@@ -106,28 +101,39 @@ func (e *GetRosaryByDayEntity) List(reqmatch map[string]any, ctrl map[string]any
 			if ctx.Result.Resmatch != nil {
 				e.match = ctx.Result.Resmatch
 			}
+			if ctx.Result.Resdata != nil {
+				e.data = core.ToMapAny(vs.Clone(ctx.Result.Resdata))
+				if e.data == nil {
+					e.data = map[string]any{}
+				}
+			}
 		}
 	})
 }
 
 
 
-func (e *GetRosaryByDayEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
+func (e *V1nEntity) List(_ map[string]any, _ map[string]any) (any, error) {
+	return core.UnsupportedOp("list", e.name)
+}
+
+
+func (e *V1nEntity) Create(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("create", e.name)
 }
 
 
-func (e *GetRosaryByDayEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
+func (e *V1nEntity) Update(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("update", e.name)
 }
 
 
-func (e *GetRosaryByDayEntity) Remove(_ map[string]any, _ map[string]any) (any, error) {
+func (e *V1nEntity) Remove(_ map[string]any, _ map[string]any) (any, error) {
 	return core.UnsupportedOp("remove", e.name)
 }
 
 
-func (e *GetRosaryByDayEntity) runOp(ctx *core.Context, postDone func()) (any, error) {
+func (e *V1nEntity) runOp(ctx *core.Context, postDone func()) (any, error) {
 	utility := e.utility
 
 	utility.FeatureHook(ctx, "PrePoint")

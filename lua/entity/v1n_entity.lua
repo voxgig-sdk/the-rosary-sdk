@@ -1,13 +1,13 @@
--- TheRosary SDK GetRosaryByDay entity
+-- TheRosary SDK V1n entity
 
 local vs = require("utility.struct.struct")
 local helpers = require("core.helpers")
 
-local GetRosaryByDayEntity = {}
-GetRosaryByDayEntity.__index = GetRosaryByDayEntity
+local V1nEntity = {}
+V1nEntity.__index = V1nEntity
 
 
-function GetRosaryByDayEntity.new(client, entopts)
+function V1nEntity.new(client, entopts)
   entopts = entopts or {}
   if entopts["active"] == nil then
     entopts["active"] = true
@@ -17,8 +17,8 @@ function GetRosaryByDayEntity.new(client, entopts)
     entopts["active"] = true
   end
 
-  local self = setmetatable({}, GetRosaryByDayEntity)
-  self._name = "get_rosary_by_day"
+  local self = setmetatable({}, V1nEntity)
+  self._name = "v1n"
   self._client = client
   self._utility = client:get_utility()
   self._entopts = entopts
@@ -36,21 +36,21 @@ function GetRosaryByDayEntity.new(client, entopts)
 end
 
 
-function GetRosaryByDayEntity:get_name()
+function V1nEntity:get_name()
   return self._name
 end
 
 
-function GetRosaryByDayEntity:make()
+function V1nEntity:make()
   local opts = {}
   for k, v in pairs(self._entopts) do
     opts[k] = v
   end
-  return GetRosaryByDayEntity.new(self._client, opts)
+  return V1nEntity.new(self._client, opts)
 end
 
 
-function GetRosaryByDayEntity:data_set(args)
+function V1nEntity:data_set(args)
   if args ~= nil then
     self._data = helpers.to_map(vs.clone(args)) or {}
     self._utility.feature_hook(self._entctx, "SetData")
@@ -58,13 +58,13 @@ function GetRosaryByDayEntity:data_set(args)
 end
 
 
-function GetRosaryByDayEntity:data_get()
+function V1nEntity:data_get()
   self._utility.feature_hook(self._entctx, "GetData")
   return vs.clone(self._data)
 end
 
 
-function GetRosaryByDayEntity:match_set(args)
+function V1nEntity:match_set(args)
   if args ~= nil then
     self._match = helpers.to_map(vs.clone(args)) or {}
     self._utility.feature_hook(self._entctx, "SetMatch")
@@ -72,19 +72,17 @@ function GetRosaryByDayEntity:match_set(args)
 end
 
 
-function GetRosaryByDayEntity:match_get()
+function V1nEntity:match_get()
   self._utility.feature_hook(self._entctx, "GetMatch")
   return vs.clone(self._match)
 end
 
 
 
-
-
-function GetRosaryByDayEntity:list(reqmatch, ctrl)
+function V1nEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({
-    opname = "list",
+    opname = "load",
     ctrl = ctrl,
     match = self._match,
     data = self._data,
@@ -95,6 +93,9 @@ function GetRosaryByDayEntity:list(reqmatch, ctrl)
     if ctx.result ~= nil then
       if ctx.result.resmatch ~= nil then
         self._match = ctx.result.resmatch
+      end
+      if ctx.result.resdata ~= nil then
+        self._data = helpers.to_map(vs.clone(ctx.result.resdata)) or {}
       end
     end
   end)
@@ -109,7 +110,9 @@ end
 
 
 
-function GetRosaryByDayEntity:_run_op(ctx, post_done)
+
+
+function V1nEntity:_run_op(ctx, post_done)
   local utility = self._utility
 
   -- #PrePoint-Hook
@@ -164,4 +167,4 @@ function GetRosaryByDayEntity:_run_op(ctx, post_done)
 end
 
 
-return GetRosaryByDayEntity
+return V1nEntity

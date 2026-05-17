@@ -10,12 +10,12 @@
   },
   "servers": [
     {
-      "url": "https://therosaryapi.cf",
+      "url": "https://the-rosary-api.vercel.app",
       "description": "Production server"
     }
   ],
   "paths": {
-    "/today": {
+    "/v1/today": {
       "get": {
         "summary": "Get today's rosary",
         "description": "Retrieves the rosary prayers for the current day of the week",
@@ -73,7 +73,7 @@
         }
       }
     },
-    "/{day}": {
+    "/v1/{day}": {
       "get": {
         "summary": "Get rosary for specific day",
         "description": "Retrieves the rosary prayers for a specific day of the week or mystery type",

@@ -49,18 +49,6 @@ const client = TheRosarySDK.test()
 
 ### Instance Methods
 
-#### `GetRosaryByDay(data?: object)`
-
-Create a new `GetRosaryByDay` entity instance.
-
-**Parameters:**
-
-| Name | Type | Description |
-| --- | --- | --- |
-| `data` | `object` | Initial entity data. |
-
-**Returns:** `GetRosaryByDayEntity` instance.
-
 #### `Today(data?: object)`
 
 Create a new `Today` entity instance.
@@ -72,6 +60,18 @@ Create a new `Today` entity instance.
 | `data` | `object` | Initial entity data. |
 
 **Returns:** `TodayEntity` instance.
+
+#### `V1n(data?: object)`
+
+Create a new `V1n` entity instance.
+
+**Parameters:**
+
+| Name | Type | Description |
+| --- | --- | --- |
+| `data` | `object` | Initial entity data. |
+
+**Returns:** `V1nEntity` instance.
 
 #### `options()`
 
@@ -119,57 +119,6 @@ Alias for `TheRosarySDK.test()`.
 
 ---
 
-## GetRosaryByDayEntity
-
-```ts
-const get_rosary_by_day = client.GetRosaryByDay()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-
-### Operations
-
-#### `list(match: object, ctrl?: object)`
-
-List entities matching the given criteria. Returns an array.
-
-```ts
-const results = await client.GetRosaryByDay().list()
-```
-
-### Common Methods
-
-#### `data(data?: object)`
-
-Get or set the entity data. When called with data, sets the entity's
-internal data and returns the current data. When called without
-arguments, returns a copy of the current data.
-
-#### `match(match?: object)`
-
-Get or set the entity match criteria. Works the same as `data()`.
-
-#### `make()`
-
-Create a new `GetRosaryByDayEntity` instance with the same client and
-options.
-
-#### `client()`
-
-Return the parent `TheRosarySDK` instance.
-
-#### `entopts()`
-
-Return a copy of the entity options.
-
-
----
-
 ## TodayEntity
 
 ```ts
@@ -208,6 +157,58 @@ Get or set the entity match criteria. Works the same as `data()`.
 #### `make()`
 
 Create a new `TodayEntity` instance with the same client and
+options.
+
+#### `client()`
+
+Return the parent `TheRosarySDK` instance.
+
+#### `entopts()`
+
+Return a copy of the entity options.
+
+
+---
+
+## V1nEntity
+
+```ts
+const v1n = client.V1n()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `day` | ``$STRING`` | No |  |
+| `mystery` | ``$STRING`` | No |  |
+| `prayer` | ``$ARRAY`` | No |  |
+
+### Operations
+
+#### `load(match: object, ctrl?: object)`
+
+Load a single entity matching the given criteria.
+
+```ts
+const result = await client.V1n().load({ id: 'v1n_id' })
+```
+
+### Common Methods
+
+#### `data(data?: object)`
+
+Get or set the entity data. When called with data, sets the entity's
+internal data and returns the current data. When called without
+arguments, returns a copy of the current data.
+
+#### `match(match?: object)`
+
+Get or set the entity match criteria. Works the same as `data()`.
+
+#### `make()`
+
+Create a new `V1nEntity` instance with the same client and
 options.
 
 #### `client()`

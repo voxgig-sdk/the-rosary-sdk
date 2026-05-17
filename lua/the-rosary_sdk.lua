@@ -244,14 +244,14 @@ end
 
 
 
-function TheRosarySDK:GetRosaryByDay(data)
-  local EntityMod = require("entity.get_rosary_by_day_entity")
+function TheRosarySDK:Today(data)
+  local EntityMod = require("entity.today_entity")
   return EntityMod.new(self, data)
 end
 
 
-function TheRosarySDK:Today(data)
-  local EntityMod = require("entity.today_entity")
+function TheRosarySDK:V1n(data)
+  local EntityMod = require("entity.v1n_entity")
   return EntityMod.new(self, data)
 end
 

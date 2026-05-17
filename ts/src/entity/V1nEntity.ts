@@ -16,24 +16,23 @@ import type {
 
 
 // TODO: needs Entity superclass
-class GetRosaryByDayEntity extends TheRosaryEntityBase {
+class V1nEntity extends TheRosaryEntityBase {
 
   constructor(client: TheRosarySDK, entopts: any) {
     super(client, entopts)
-    this.name = 'get_rosary_by_day'
-    this.name_ = 'get_rosary_by_day'
-    this.Name = 'GetRosaryByDay'
+    this.name = 'v1n'
+    this.name_ = 'v1n'
+    this.Name = 'V1n'
   }
 
 
-  make(this: GetRosaryByDayEntity) {
-    return new GetRosaryByDayEntity(this._client, this.entopts())
+  make(this: V1nEntity) {
+    return new V1nEntity(this._client, this.entopts())
   }
 
 
 
-
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: any, ctrl?: Control) {
 
     const utility = this._utility
 
@@ -52,7 +51,7 @@ class GetRosaryByDayEntity extends TheRosaryEntityBase {
     let fres: Promise<any> | undefined = undefined
 
     let ctx: Context = makeContext({
-      opname: 'list',
+      opname: 'load',
       ctrl,
       match: this._match,
       data: this._data,
@@ -118,6 +117,10 @@ class GetRosaryByDayEntity extends TheRosaryEntityBase {
         if (null != ctx.result.resmatch) {
           this._match = ctx.result.resmatch
         }
+
+        if (null != ctx.result.resdata) {
+          this._data = ctx.result.resdata
+        }
       }
 
       return done(ctx)
@@ -142,9 +145,10 @@ class GetRosaryByDayEntity extends TheRosaryEntityBase {
 
 
 
+
 }
 
 
 export {
-  GetRosaryByDayEntity
+  V1nEntity
 }

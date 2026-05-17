@@ -1,58 +1,49 @@
 <?php
 declare(strict_types=1);
 
-// GetRosaryByDay direct test
+// V1n direct test
 
 require_once __DIR__ . '/../therosary_sdk.php';
 require_once __DIR__ . '/Runner.php';
 
 use PHPUnit\Framework\TestCase;
 
-class GetRosaryByDayDirectTest extends TestCase
+class V1nDirectTest extends TestCase
 {
-    public function test_direct_list_get_rosary_by_day(): void
+    public function test_direct_load_v1n(): void
     {
-        $setup = get_rosary_by_day_direct_setup([
-            ["id" => "direct01"],
-            ["id" => "direct02"],
-        ]);
-        [$_shouldSkip, $_reason] = Runner::is_control_skipped("direct", "direct-list-get_rosary_by_day", $setup["live"] ? "live" : "unit");
+        $setup = v1n_direct_setup(["id" => "direct01"]);
+        [$_shouldSkip, $_reason] = Runner::is_control_skipped("direct", "direct-load-v1n", $setup["live"] ? "live" : "unit");
         if ($_shouldSkip) {
             $this->markTestSkipped($_reason ?? "skipped via sdk-test-control.json");
             return;
         }
-        if ($setup["live"]) {
-            foreach (["get_rosary_by_day01"] as $_liveKey) {
-                if (!isset($setup["idmap"][$_liveKey]) || $setup["idmap"][$_liveKey] === null) {
-                    $this->markTestSkipped("live test needs $_liveKey via *_ENTID env var (synthetic IDs only)");
-                    return;
-                }
-            }
-        }
         $client = $setup["client"];
 
         $params = [];
+        $query = [];
         if ($setup["live"]) {
-            $params["id"] = $setup["idmap"]["get_rosary_by_day01"];
+            $params["day"] = "monday";
         } else {
-            $params["id"] = "direct01";
+            $params["day"] = "direct01";
         }
 
         [$result, $err] = $client->direct([
-            "path" => "{id}",
+            "path" => "v1/{day}",
             "method" => "GET",
             "params" => $params,
+            "query" => $query,
         ]);
         if ($setup["live"]) {
-            // Live mode is lenient: synthetic IDs frequently 4xx and the
-            // list-response shape varies wildly across public APIs. Skip
-            // rather than fail when the call doesn't return a usable list.
+            // Live mode is lenient: synthetic IDs frequently 4xx. Skip
+            // rather than fail when the load endpoint isn't reachable
+            // with the IDs we can construct from setup.idmap.
             if ($err !== null) {
-                $this->markTestSkipped("list call failed (likely synthetic IDs against live API): " . (string)$err);
+                $this->markTestSkipped("load call failed (likely synthetic IDs against live API): " . (string)$err);
                 return;
             }
             if (empty($result["ok"])) {
-                $this->markTestSkipped("list call not ok (likely synthetic IDs against live API)");
+                $this->markTestSkipped("load call not ok (likely synthetic IDs against live API)");
                 return;
             }
             $status = Helpers::to_int($result["status"]);
@@ -64,8 +55,10 @@ class GetRosaryByDayDirectTest extends TestCase
             $this->assertNull($err);
             $this->assertTrue($result["ok"]);
             $this->assertEquals(200, Helpers::to_int($result["status"]));
-            $this->assertIsArray($result["data"]);
-            $this->assertCount(2, $result["data"]);
+            $this->assertNotNull($result["data"]);
+            if (is_array($result["data"]) && isset($result["data"]["id"])) {
+                $this->assertEquals("direct01", $result["data"]["id"]);
+            }
             $this->assertCount(1, $setup["calls"]);
         }
     }
@@ -73,14 +66,14 @@ class GetRosaryByDayDirectTest extends TestCase
 }
 
 
-function get_rosary_by_day_direct_setup($mockres)
+function v1n_direct_setup($mockres)
 {
     Runner::load_env_local();
 
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID" => [],
+        "THEROSARY_TEST_V_N_ENTID" => [],
         "THEROSARY_TEST_LIVE" => "FALSE",
         "THEROSARY_APIKEY" => "NONE",
     ]);

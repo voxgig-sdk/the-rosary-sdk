@@ -1,4 +1,4 @@
--- GetRosaryByDay direct test
+-- V1n direct test
 
 local json = require("dkjson")
 local vs = require("utility.struct.struct")
@@ -6,49 +6,40 @@ local sdk = require("the-rosary_sdk")
 local helpers = require("core.helpers")
 local runner = require("test.runner")
 
-describe("GetRosaryByDayDirect", function()
-  it("should direct-list-get_rosary_by_day", function()
-    local setup = get_rosary_by_day_direct_setup({
-      { id = "direct01" },
-      { id = "direct02" },
-    })
-    local _should_skip, _reason = runner.is_control_skipped("direct", "direct-list-get_rosary_by_day", setup.live and "live" or "unit")
+describe("V1nDirect", function()
+  it("should direct-load-v1n", function()
+    local setup = v1n_direct_setup({ id = "direct01" })
+    local _should_skip, _reason = runner.is_control_skipped("direct", "direct-load-v1n", setup.live and "live" or "unit")
     if _should_skip then
       pending(_reason or "skipped via sdk-test-control.json")
       return
     end
-    if setup.live then
-      for _, _live_key in ipairs({"get_rosary_by_day01"}) do
-        if setup.idmap[_live_key] == nil then
-          pending("live test needs " .. _live_key .. " via *_ENTID env var (synthetic IDs only)")
-          return
-        end
-      end
-    end
     local client = setup.client
 
     local params = {}
+    local query = {}
     if setup.live then
-      params["id"] = setup.idmap["get_rosary_by_day01"]
+      params["day"] = "monday"
     else
-      params["id"] = "direct01"
+      params["day"] = "direct01"
     end
 
     local result, err = client:direct({
-      path = "{id}",
+      path = "v1/{day}",
       method = "GET",
       params = params,
+      query = query,
     })
     if setup.live then
-      -- Live mode is lenient: synthetic IDs frequently 4xx and the list-
-      -- response shape varies wildly across public APIs. Skip rather than
-      -- fail when the call doesn't return a usable list.
+      -- Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
+      -- than fail when the load endpoint isn't reachable with the IDs we
+      -- can construct from setup.idmap.
       if err ~= nil then
-        pending("list call failed (likely synthetic IDs against live API): " .. tostring(err))
+        pending("load call failed (likely synthetic IDs against live API): " .. tostring(err))
         return
       end
       if not result["ok"] then
-        pending("list call not ok (likely synthetic IDs against live API)")
+        pending("load call not ok (likely synthetic IDs against live API)")
         return
       end
       local status = helpers.to_int(result["status"])
@@ -60,8 +51,10 @@ describe("GetRosaryByDayDirect", function()
       assert.is_nil(err)
       assert.is_true(result["ok"])
       assert.are.equal(200, helpers.to_int(result["status"]))
-      assert.is_table(result["data"])
-      assert.are.equal(2, #result["data"])
+      assert.is_not_nil(result["data"])
+      if type(result["data"]) == "table" then
+        assert.are.equal("direct01", result["data"]["id"])
+      end
       assert.are.equal(1, #setup.calls)
     end
   end)
@@ -69,13 +62,13 @@ describe("GetRosaryByDayDirect", function()
 end)
 
 
-function get_rosary_by_day_direct_setup(mockres)
+function v1n_direct_setup(mockres)
   runner.load_env_local()
 
   local calls = {}
 
   local env = runner.env_override({
-    ["THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID"] = {},
+    ["THEROSARY_TEST_V_N_ENTID"] = {},
     ["THEROSARY_TEST_LIVE"] = "FALSE",
     ["THEROSARY_APIKEY"] = "NONE",
   })

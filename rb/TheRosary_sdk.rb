@@ -199,15 +199,15 @@ class TheRosarySDK
   end
 
 
-  def GetRosaryByDay(data = nil)
-    require_relative 'entity/get_rosary_by_day_entity'
-    GetRosaryByDayEntity.new(self, data)
-  end
-
-
   def Today(data = nil)
     require_relative 'entity/today_entity'
     TodayEntity.new(self, data)
+  end
+
+
+  def V1n(data = nil)
+    require_relative 'entity/v1n_entity'
+    V1nEntity.new(self, data)
   end
 
 

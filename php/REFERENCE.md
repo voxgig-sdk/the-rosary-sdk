@@ -42,13 +42,13 @@ $client = TheRosarySDK::test();
 
 ### Instance Methods
 
-#### `GetRosaryByDay($data = null)`
-
-Create a new `GetRosaryByDayEntity` instance. Pass `null` for no initial data.
-
 #### `Today($data = null)`
 
 Create a new `TodayEntity` instance. Pass `null` for no initial data.
+
+#### `V1n($data = null)`
+
+Create a new `V1nEntity` instance. Pass `null` for no initial data.
 
 #### `optionsMap(): array`
 
@@ -79,59 +79,6 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 #### `prepare(array $fetchargs = []): array`
 
 Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
-
-
----
-
-## GetRosaryByDayEntity
-
-```php
-$get_rosary_by_day = $client->GetRosaryByDay();
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-
-### Operations
-
-#### `list(array $reqmatch, ?array $ctrl = null): array`
-
-List entities matching the given criteria. Returns an array.
-
-```php
-[$results, $err] = $client->GetRosaryByDay()->list([]);
-```
-
-### Common Methods
-
-#### `dataGet(): array`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `dataSet($data): void`
-
-Set the entity data.
-
-#### `matchGet(): array`
-
-Get the entity match criteria.
-
-#### `matchSet($match): void`
-
-Set the entity match criteria.
-
-#### `make(): GetRosaryByDayEntity`
-
-Create a new `GetRosaryByDayEntity` instance with the same client and
-options.
-
-#### `getName(): string`
-
-Return the entity name.
 
 
 ---
@@ -180,6 +127,60 @@ Set the entity match criteria.
 #### `make(): TodayEntity`
 
 Create a new `TodayEntity` instance with the same client and
+options.
+
+#### `getName(): string`
+
+Return the entity name.
+
+
+---
+
+## V1nEntity
+
+```php
+$v1n = $client->V1n();
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `day` | ``$STRING`` | No |  |
+| `mystery` | ``$STRING`` | No |  |
+| `prayer` | ``$ARRAY`` | No |  |
+
+### Operations
+
+#### `load(array $reqmatch, ?array $ctrl = null): array`
+
+Load a single entity matching the given criteria.
+
+```php
+[$result, $err] = $client->V1n()->load(["id" => "v1n_id"]);
+```
+
+### Common Methods
+
+#### `dataGet(): array`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `dataSet($data): void`
+
+Set the entity data.
+
+#### `matchGet(): array`
+
+Get the entity match criteria.
+
+#### `matchSet($match): void`
+
+Set the entity match criteria.
+
+#### `make(): V1nEntity`
+
+Create a new `V1nEntity` instance with the same client and
 options.
 
 #### `getName(): string`

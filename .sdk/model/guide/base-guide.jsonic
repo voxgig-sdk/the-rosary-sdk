@@ -5,16 +5,15 @@ guide: {
   metrics: count: path: 2
   metrics: count: method: 2
 
-  entity: get_rosary_by_day: {
-    path: "/{day}": {
-      rename: param: "day": *"id"
+  entity: today: {
+    path: "/v1/today": {
       op: list: method: *GET
     }
   }
 
-  entity: today: {
-    path: "/today": {
-      op: list: method: *GET
+  entity: v1n: {
+    path: "/v1/{day}": {
+      op: load: method: *GET
     }
   }
 

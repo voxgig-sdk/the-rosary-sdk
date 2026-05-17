@@ -213,14 +213,14 @@ class TheRosarySDK:
         }, None
 
 
-    def GetRosaryByDay(self, data=None):
-        from entity.get_rosary_by_day_entity import GetRosaryByDayEntity
-        return GetRosaryByDayEntity(self, data)
-
-
     def Today(self, data=None):
         from entity.today_entity import TodayEntity
         return TodayEntity(self, data)
+
+
+    def V1n(self, data=None):
+        from entity.v1n_entity import V1nEntity
+        return V1nEntity(self, data)
 
 
 

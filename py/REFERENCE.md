@@ -42,13 +42,13 @@ client = TheRosarySDK.test()
 
 ### Instance Methods
 
-#### `GetRosaryByDay(data=None)`
-
-Create a new `GetRosaryByDayEntity` instance. Pass `None` for no initial data.
-
 #### `Today(data=None)`
 
 Create a new `TodayEntity` instance. Pass `None` for no initial data.
+
+#### `V1n(data=None)`
+
+Create a new `V1nEntity` instance. Pass `None` for no initial data.
 
 #### `options_map() -> dict`
 
@@ -78,58 +78,6 @@ Make a direct HTTP request to any API endpoint. Returns `(result, err)`.
 #### `prepare(fetchargs=None) -> tuple`
 
 Prepare a fetch definition without sending. Returns `(fetchdef, err)`.
-
-
----
-
-## GetRosaryByDayEntity
-
-```python
-get_rosary_by_day = client.GetRosaryByDay()
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl=None) -> tuple`
-
-List entities matching the given criteria. Returns an array.
-
-```python
-results, err = client.GetRosaryByDay().list({})
-```
-
-### Common Methods
-
-#### `data_get() -> dict`
-
-Get the entity data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> dict`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `GetRosaryByDayEntity` instance with the same options.
-
-#### `get_name() -> str`
-
-Return the entity name.
 
 
 ---
@@ -178,6 +126,59 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `TodayEntity` instance with the same options.
+
+#### `get_name() -> str`
+
+Return the entity name.
+
+
+---
+
+## V1nEntity
+
+```python
+v1n = client.V1n()
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `day` | ``$STRING`` | No |  |
+| `mystery` | ``$STRING`` | No |  |
+| `prayer` | ``$ARRAY`` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl=None) -> tuple`
+
+Load a single entity matching the given criteria.
+
+```python
+result, err = client.V1n().load({"id": "v1n_id"})
+```
+
+### Common Methods
+
+#### `data_get() -> dict`
+
+Get the entity data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> dict`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `V1nEntity` instance with the same options.
 
 #### `get_name() -> str`
 

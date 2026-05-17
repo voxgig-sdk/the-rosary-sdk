@@ -86,10 +86,10 @@ func runOp(client *sdk.TheRosarySDK, op string, query *eng.Value, entityAtom eng
 // emits one `case "<name>":` per entity defined in the SDK model.
 func entityFor(client *sdk.TheRosarySDK, name string) (sdk.TheRosaryEntity, error) {
 	switch strings.ToLower(name) {
-	case "get_rosary_by_day":
-		return client.GetRosaryByDay(nil), nil
 	case "today":
 		return client.Today(nil), nil
+	case "v1n":
+		return client.V1n(nil), nil
 
 	}
 	return nil, fmt.Errorf("unknown entity %q", name)

@@ -42,13 +42,13 @@ client = TheRosarySDK.test
 
 ### Instance Methods
 
-#### `GetRosaryByDay(data = nil)`
-
-Create a new `GetRosaryByDay` entity instance. Pass `nil` for no initial data.
-
 #### `Today(data = nil)`
 
 Create a new `Today` entity instance. Pass `nil` for no initial data.
+
+#### `V1n(data = nil)`
+
+Create a new `V1n` entity instance. Pass `nil` for no initial data.
 
 #### `options_map -> Hash`
 
@@ -82,59 +82,6 @@ Prepare a fetch definition without sending the request. Accepts the
 same parameters as `direct()`.
 
 **Returns:** `Hash, err`
-
-
----
-
-## GetRosaryByDayEntity
-
-```ruby
-get_rosary_by_day = client.GetRosaryByDay
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl = nil) -> result, err`
-
-List entities matching the given criteria. Returns an array.
-
-```ruby
-results, err = client.GetRosaryByDay.list(nil)
-```
-
-### Common Methods
-
-#### `data_get -> Hash`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get -> Hash`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make -> Entity`
-
-Create a new `GetRosaryByDayEntity` instance with the same client and
-options.
-
-#### `get_name -> String`
-
-Return the entity name.
 
 
 ---
@@ -183,6 +130,60 @@ Set the entity match criteria.
 #### `make -> Entity`
 
 Create a new `TodayEntity` instance with the same client and
+options.
+
+#### `get_name -> String`
+
+Return the entity name.
+
+
+---
+
+## V1nEntity
+
+```ruby
+v1n = client.V1n
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `day` | ``$STRING`` | No |  |
+| `mystery` | ``$STRING`` | No |  |
+| `prayer` | ``$ARRAY`` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl = nil) -> result, err`
+
+Load a single entity matching the given criteria.
+
+```ruby
+result, err = client.V1n.load({ "id" => "v1n_id" })
+```
+
+### Common Methods
+
+#### `data_get -> Hash`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get -> Hash`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make -> Entity`
+
+Create a new `V1nEntity` instance with the same client and
 options.
 
 #### `get_name -> String`

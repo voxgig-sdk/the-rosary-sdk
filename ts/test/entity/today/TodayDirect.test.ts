@@ -40,7 +40,7 @@ describe('TodayDirect', async () => {
     const query: any = {}
 
     const result: any = await client.direct({
-      path: 'today',
+      path: 'v1/today',
       method: 'GET',
       params,
       query,

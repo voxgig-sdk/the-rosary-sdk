@@ -24,8 +24,9 @@ main: kit: entity: today: {
       points: [
         {
           method: "GET"
-          orig: "/today"
+          orig: "/v1/today"
           parts: [
+            "v1"
             "today"
           ]
           transform: {

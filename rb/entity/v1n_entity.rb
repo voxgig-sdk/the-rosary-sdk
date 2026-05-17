@@ -1,9 +1,9 @@
-# TheRosary SDK GetRosaryByDay entity
+# TheRosary SDK V1n entity
 
 require_relative '../utility/struct/voxgig_struct'
 require_relative '../core/helpers'
 
-class GetRosaryByDayEntity
+class V1nEntity
   def initialize(client, entopts = nil)
     entopts ||= {}
     if entopts["active"].nil?
@@ -14,7 +14,7 @@ class GetRosaryByDayEntity
       entopts["active"] = true
     end
 
-    @_name = "get_rosary_by_day"
+    @_name = "v1n"
     @_client = client
     @_utility = client.get_utility
     @_entopts = entopts
@@ -35,7 +35,7 @@ class GetRosaryByDayEntity
 
   def make
     opts = @_entopts.dup
-    GetRosaryByDayEntity.new(@_client, opts)
+    V1nEntity.new(@_client, opts)
   end
 
   def data_set(args)
@@ -63,12 +63,10 @@ class GetRosaryByDayEntity
   end
 
   
-
-  
-  def list(reqmatch, ctrl = nil)
+  def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
-      "opname" => "list",
+      "opname" => "load",
       "ctrl" => ctrl,
       "match" => @_match,
       "data" => @_data,
@@ -78,11 +76,16 @@ class GetRosaryByDayEntity
     _run_op(ctx) do
       if ctx.result
         @_match = ctx.result.resmatch if ctx.result.resmatch
+        if ctx.result.resdata
+          @_data = TheRosaryHelpers.to_map(VoxgigStruct.clone(ctx.result.resdata)) || {}
+        end
       end
     end
   end
 
 
+
+  
 
   
 

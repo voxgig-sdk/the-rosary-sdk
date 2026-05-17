@@ -40,10 +40,10 @@ func main() {
     })
 ```
 
-### 2. List getrosarybydays
+### 2. List todays
 
 ```go
-    result, err := client.GetRosaryByDay(nil).List(nil, nil)
+    result, err := client.Today(nil).List(nil, nil)
     if err != nil {
         panic(err)
     }
@@ -186,8 +186,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | `GetUtility` | `() *Utility` | Copy of the SDK utility object. |
 | `Prepare` | `(fetchargs map[string]any) (map[string]any, error)` | Build an HTTP request definition without sending. |
 | `Direct` | `(fetchargs map[string]any) (map[string]any, error)` | Build and send an HTTP request. |
-| `GetRosaryByDay` | `(data map[string]any) TheRosaryEntity` | Create a GetRosaryByDay entity instance. |
 | `Today` | `(data map[string]any) TheRosaryEntity` | Create a Today entity instance. |
+| `V1n` | `(data map[string]any) TheRosaryEntity` | Create a V1n entity instance. |
 
 ### Entity interface (TheRosaryEntity)
 
@@ -221,17 +221,6 @@ On error, `"ok"` is `false` and `"err"` contains the error value.
 
 ### Entities
 
-#### GetRosaryByDay
-
-| Field | Description |
-| --- | --- |
-| `"description"` |  |
-| `"title"` |  |
-
-Operations: List.
-
-API path: `/{day}`
-
 #### Today
 
 | Field | Description |
@@ -241,35 +230,23 @@ API path: `/{day}`
 
 Operations: List.
 
-API path: `/today`
+API path: `/v1/today`
+
+#### V1n
+
+| Field | Description |
+| --- | --- |
+| `"day"` |  |
+| `"mystery"` |  |
+| `"prayer"` |  |
+
+Operations: Load.
+
+API path: `/v1/{day}`
 
 
 
 ## Entities
-
-
-### GetRosaryByDay
-
-Create an instance: `get_rosary_by_day := client.GetRosaryByDay(nil)`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `List(match, ctrl)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-
-#### Example: List
-
-```go
-results, err := client.GetRosaryByDay(nil).List(nil, nil)
-```
 
 
 ### Today
@@ -293,6 +270,31 @@ Create an instance: `today := client.Today(nil)`
 
 ```go
 results, err := client.Today(nil).List(nil, nil)
+```
+
+
+### V1n
+
+Create an instance: `v1n := client.V1n(nil)`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `Load(match, ctrl)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `day` | ``$STRING`` |  |
+| `mystery` | ``$STRING`` |  |
+| `prayer` | ``$ARRAY`` |  |
+
+#### Example: Load
+
+```go
+result, err := client.V1n(nil).Load(map[string]any{"id": "v1n_id"}, nil)
 ```
 
 

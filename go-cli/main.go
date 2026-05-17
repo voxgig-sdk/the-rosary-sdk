@@ -20,7 +20,7 @@ import (
 const prompt = "the-rosary"
 
 // entitiesHelp is the space-separated entity list shown by :help.
-const entitiesHelp = "get_rosary_by_day today"
+const entitiesHelp = "today v1n"
 
 func main() {
 	os.Exit(run(os.Args[1:], os.Stdin, os.Stdout, os.Stderr))

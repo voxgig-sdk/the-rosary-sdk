@@ -1,53 +1,44 @@
-# GetRosaryByDay direct test
+# V1n direct test
 
 require "minitest/autorun"
 require "json"
 require_relative "../TheRosary_sdk"
 require_relative "runner"
 
-class GetRosaryByDayDirectTest < Minitest::Test
-  def test_direct_list_get_rosary_by_day
-    setup = get_rosary_by_day_direct_setup([
-      { "id" => "direct01" },
-      { "id" => "direct02" },
-    ])
-    _should_skip, _reason = Runner.is_control_skipped("direct", "direct-list-get_rosary_by_day", setup[:live] ? "live" : "unit")
+class V1nDirectTest < Minitest::Test
+  def test_direct_load_v1n
+    setup = v1n_direct_setup({ "id" => "direct01" })
+    _should_skip, _reason = Runner.is_control_skipped("direct", "direct-load-v1n", setup[:live] ? "live" : "unit")
     if _should_skip
       skip(_reason || "skipped via sdk-test-control.json")
       return
     end
-    if setup[:live]
-      ["get_rosary_by_day01"].each do |_live_key|
-        if setup[:idmap][_live_key].nil?
-          skip "live test needs #{_live_key} via *_ENTID env var (synthetic IDs only)"
-          return
-        end
-      end
-    end
     client = setup[:client]
 
     params = {}
+    query = {}
     if setup[:live]
-      params["id"] = setup[:idmap]["get_rosary_by_day01"]
+      params["day"] = "monday"
     else
-      params["id"] = "direct01"
+      params["day"] = "direct01"
     end
 
     result, err = client.direct({
-      "path" => "{id}",
+      "path" => "v1/{day}",
       "method" => "GET",
       "params" => params,
+      "query" => query,
     })
     if setup[:live]
-      # Live mode is lenient: synthetic IDs frequently 4xx and the list-
-      # response shape varies wildly across public APIs. Skip rather than
-      # fail when the call doesn't return a usable list.
+      # Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
+      # than fail when the load endpoint isn't reachable with the IDs
+      # we can construct from setup.idmap.
       if !err.nil?
-        skip("list call failed (likely synthetic IDs against live API): #{err}")
+        skip("load call failed (likely synthetic IDs against live API): #{err}")
         return
       end
       unless result["ok"]
-        skip("list call not ok (likely synthetic IDs against live API)")
+        skip("load call not ok (likely synthetic IDs against live API)")
         return
       end
       status = Helpers.to_int(result["status"])
@@ -59,8 +50,10 @@ class GetRosaryByDayDirectTest < Minitest::Test
       assert_nil err
       assert result["ok"]
       assert_equal 200, Helpers.to_int(result["status"])
-      assert result["data"].is_a?(Array)
-      assert_equal 2, result["data"].length
+      assert !result["data"].nil?
+      if result["data"].is_a?(Hash)
+        assert_equal "direct01", result["data"]["id"]
+      end
       assert_equal 1, setup[:calls].length
     end
   end
@@ -68,13 +61,13 @@ class GetRosaryByDayDirectTest < Minitest::Test
 end
 
 
-def get_rosary_by_day_direct_setup(mockres)
+def v1n_direct_setup(mockres)
   Runner.load_env_local
 
   calls = []
 
   env = Runner.env_override({
-    "THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID" => {},
+    "THEROSARY_TEST_V_N_ENTID" => {},
     "THEROSARY_TEST_LIVE" => "FALSE",
     "THEROSARY_APIKEY" => "NONE",
   })

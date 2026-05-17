@@ -41,13 +41,13 @@ local client = sdk.test(nil, nil)
 
 ### Instance Methods
 
-#### `GetRosaryByDay(data)`
-
-Create a new `GetRosaryByDay` entity instance. Pass `nil` for no initial data.
-
 #### `Today(data)`
 
 Create a new `Today` entity instance. Pass `nil` for no initial data.
+
+#### `V1n(data)`
+
+Create a new `V1n` entity instance. Pass `nil` for no initial data.
 
 #### `options_map() -> table`
 
@@ -81,59 +81,6 @@ Prepare a fetch definition without sending the request. Accepts the
 same parameters as `direct()`.
 
 **Returns:** `table, err`
-
-
----
-
-## GetRosaryByDayEntity
-
-```lua
-local get_rosary_by_day = client:GetRosaryByDay(nil)
-```
-
-### Fields
-
-| Field | Type | Required | Description |
-| --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
-
-### Operations
-
-#### `list(reqmatch, ctrl) -> any, err`
-
-List entities matching the given criteria. Returns an array.
-
-```lua
-local results, err = client:GetRosaryByDay(nil):list(nil, nil)
-```
-
-### Common Methods
-
-#### `data_get() -> table`
-
-Get the entity data. Returns a copy of the current data.
-
-#### `data_set(data)`
-
-Set the entity data.
-
-#### `match_get() -> table`
-
-Get the entity match criteria.
-
-#### `match_set(match)`
-
-Set the entity match criteria.
-
-#### `make() -> Entity`
-
-Create a new `GetRosaryByDayEntity` instance with the same client and
-options.
-
-#### `get_name() -> string`
-
-Return the entity name.
 
 
 ---
@@ -182,6 +129,60 @@ Set the entity match criteria.
 #### `make() -> Entity`
 
 Create a new `TodayEntity` instance with the same client and
+options.
+
+#### `get_name() -> string`
+
+Return the entity name.
+
+
+---
+
+## V1nEntity
+
+```lua
+local v1n = client:V1n(nil)
+```
+
+### Fields
+
+| Field | Type | Required | Description |
+| --- | --- | --- | --- |
+| `day` | ``$STRING`` | No |  |
+| `mystery` | ``$STRING`` | No |  |
+| `prayer` | ``$ARRAY`` | No |  |
+
+### Operations
+
+#### `load(reqmatch, ctrl) -> any, err`
+
+Load a single entity matching the given criteria.
+
+```lua
+local result, err = client:V1n(nil):load({ id = "v1n_id" }, nil)
+```
+
+### Common Methods
+
+#### `data_get() -> table`
+
+Get the entity data. Returns a copy of the current data.
+
+#### `data_set(data)`
+
+Set the entity data.
+
+#### `match_get() -> table`
+
+Get the entity match criteria.
+
+#### `match_set(match)`
+
+Set the entity match criteria.
+
+#### `make() -> Entity`
+
+Create a new `V1nEntity` instance with the same client and
 options.
 
 #### `get_name() -> string`

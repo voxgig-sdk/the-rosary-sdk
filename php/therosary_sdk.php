@@ -223,17 +223,17 @@ class TheRosarySDK
     }
 
 
-    public function GetRosaryByDay($data = null)
-    {
-        require_once __DIR__ . '/entity/get_rosary_by_day_entity.php';
-        return new GetRosaryByDayEntity($this, $data);
-    }
-
-
     public function Today($data = null)
     {
         require_once __DIR__ . '/entity/today_entity.php';
         return new TodayEntity($this, $data);
+    }
+
+
+    public function V1n($data = null)
+    {
+        require_once __DIR__ . '/entity/v1n_entity.php';
+        return new V1nEntity($this, $data);
     }
 
 

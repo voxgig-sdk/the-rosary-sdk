@@ -22,10 +22,10 @@ const client = new TheRosarySDK({
 })
 ```
 
-### 2. List getrosarybydays
+### 2. List todays
 
 ```ts
-const result = await client.GetRosaryByDay().list()
+const result = await client.Today().list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -175,8 +175,8 @@ new TheRosarySDK(options?: {
 | `utility()` | `Utility` | Deep copy of the SDK utility object. |
 | `prepare(fetchargs?)` | `Promise<FetchDef>` | Build an HTTP request definition without sending it. |
 | `direct(fetchargs?)` | `Promise<DirectResult>` | Build and send an HTTP request. |
-| `GetRosaryByDay(data?)` | `GetRosaryByDayEntity` | Create a GetRosaryByDay entity instance. |
 | `Today(data?)` | `TodayEntity` | Create a Today entity instance. |
+| `V1n(data?)` | `V1nEntity` | Create a V1n entity instance. |
 | `tester(testopts?, sdkopts?)` | `TheRosarySDK` | Create a test-mode client instance. |
 
 #### Static methods
@@ -247,17 +247,6 @@ The `prepare()` method returns:
 
 ### Entities
 
-#### GetRosaryByDay
-
-| Field | Description |
-| --- | --- |
-| `description` |  |
-| `title` |  |
-
-Operations: list.
-
-API path: `/{day}`
-
 #### Today
 
 | Field | Description |
@@ -267,35 +256,23 @@ API path: `/{day}`
 
 Operations: list.
 
-API path: `/today`
+API path: `/v1/today`
+
+#### V1n
+
+| Field | Description |
+| --- | --- |
+| `day` |  |
+| `mystery` |  |
+| `prayer` |  |
+
+Operations: load.
+
+API path: `/v1/{day}`
 
 
 
 ## Entities
-
-
-### GetRosaryByDay
-
-Create an instance: `const get_rosary_by_day = client.GetRosaryByDay()`
-
-#### Operations
-
-| Method | Description |
-| --- | --- |
-| `list(match)` | List entities matching the criteria. |
-
-#### Fields
-
-| Field | Type | Description |
-| --- | --- | --- |
-| `description` | ``$STRING`` |  |
-| `title` | ``$STRING`` |  |
-
-#### Example: List
-
-```ts
-const get_rosary_by_days = await client.GetRosaryByDay().list()
-```
 
 
 ### Today
@@ -319,6 +296,31 @@ Create an instance: `const today = client.Today()`
 
 ```ts
 const todays = await client.Today().list()
+```
+
+
+### V1n
+
+Create an instance: `const v1n = client.V1n()`
+
+#### Operations
+
+| Method | Description |
+| --- | --- |
+| `load(match)` | Load a single entity by match criteria. |
+
+#### Fields
+
+| Field | Type | Description |
+| --- | --- | --- |
+| `day` | ``$STRING`` |  |
+| `mystery` | ``$STRING`` |  |
+| `prayer` | ``$ARRAY`` |  |
+
+#### Example: Load
+
+```ts
+const v1n = await client.V1n().load({ id: 'v1n_id' })
 ```
 
 

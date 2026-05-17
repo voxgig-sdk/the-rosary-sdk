@@ -1,7 +1,7 @@
 // TheRosary Ts SDK
 
-import { GetRosaryByDayEntity } from './entity/GetRosaryByDayEntity'
 import { TodayEntity } from './entity/TodayEntity'
+import { V1nEntity } from './entity/V1nEntity'
 
 
 import { inspect } from 'node:util'
@@ -203,15 +203,15 @@ class TheRosarySDK {
 
 
 
-  GetRosaryByDay(data?: any) {
-    const self = this
-    return new GetRosaryByDayEntity(self,data)
-  }
-
-
   Today(data?: any) {
     const self = this
     return new TodayEntity(self,data)
+  }
+
+
+  V1n(data?: any) {
+    const self = this
+    return new V1nEntity(self,data)
   }
 
 

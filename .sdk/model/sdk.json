@@ -12,7 +12,7 @@
         "servers": [
           {
             "description": "Production server",
-            "url": "https://therosaryapi.cf"
+            "url": "https://the-rosary-api.vercel.app"
           }
         ],
         "title": "The Rosary Api",
@@ -27,73 +27,6 @@
         }
       },
       "entity": {
-        "get_rosary_by_day": {
-          "alias": {
-            "field": {}
-          },
-          "fields": [
-            {
-              "name": "description",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            },
-            {
-              "name": "title",
-              "req": false,
-              "type": "`$STRING`",
-              "active": true
-            }
-          ],
-          "name": "get_rosary_by_day",
-          "op": {
-            "list": {
-              "name": "list",
-              "points": [
-                {
-                  "args": {
-                    "params": [
-                      {
-                        "example": "monday",
-                        "kind": "param",
-                        "name": "id",
-                        "orig": "day",
-                        "reqd": true,
-                        "type": "`$STRING`",
-                        "active": true
-                      }
-                    ]
-                  },
-                  "method": "GET",
-                  "orig": "/{day}",
-                  "parts": [
-                    "{id}"
-                  ],
-                  "rename": {
-                    "param": {
-                      "day": "id"
-                    }
-                  },
-                  "select": {
-                    "exist": [
-                      "id"
-                    ]
-                  },
-                  "transform": {
-                    "req": "`reqdata`",
-                    "res": "`body`"
-                  },
-                  "active": true
-                }
-              ],
-              "input": "data"
-            }
-          },
-          "active": true,
-          "relations": {
-            "ancestors": []
-          }
-        },
         "today": {
           "alias": {
             "field": {}
@@ -119,8 +52,9 @@
               "points": [
                 {
                   "method": "GET",
-                  "orig": "/today",
+                  "orig": "/v1/today",
                   "parts": [
+                    "v1",
                     "today"
                   ],
                   "transform": {
@@ -139,6 +73,79 @@
           "relations": {
             "ancestors": []
           }
+        },
+        "v1n": {
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "name": "day",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "mystery",
+              "req": false,
+              "type": "`$STRING`",
+              "active": true
+            },
+            {
+              "name": "prayer",
+              "req": false,
+              "type": "`$ARRAY`",
+              "active": true
+            }
+          ],
+          "name": "v1n",
+          "op": {
+            "load": {
+              "name": "load",
+              "points": [
+                {
+                  "args": {
+                    "params": [
+                      {
+                        "example": "monday",
+                        "kind": "param",
+                        "name": "day",
+                        "orig": "day",
+                        "reqd": true,
+                        "type": "`$STRING`",
+                        "active": true
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/v1/{day}",
+                  "parts": [
+                    "v1",
+                    "{day}"
+                  ],
+                  "select": {
+                    "exist": [
+                      "day"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  },
+                  "active": true
+                }
+              ],
+              "input": "data"
+            }
+          },
+          "relations": {
+            "ancestors": [
+              [
+                "v1"
+              ]
+            ]
+          },
+          "active": true
         }
       },
       "feature": {
@@ -230,34 +237,6 @@
         }
       },
       "flow": {
-        "BasicGetRosaryByDayFlow": {
-          "entity": "get_rosary_by_day",
-          "kind": "basic",
-          "name": "BasicGetRosaryByDayFlow",
-          "step": [
-            {
-              "match": {
-                "day": "day01"
-              },
-              "op": "list",
-              "valid": [
-                {
-                  "apply": "ItemExists",
-                  "def": {
-                    "ref": "get_rosary_by_day_ref01"
-                  }
-                }
-              ],
-              "active": true,
-              "data": {},
-              "input": {},
-              "spec": []
-            }
-          ],
-          "key$": "BasicGetRosaryByDayFlow",
-          "active": true,
-          "param": {}
-        },
         "BasicTodayFlow": {
           "entity": "today",
           "kind": "basic",
@@ -281,6 +260,38 @@
             }
           ],
           "key$": "BasicTodayFlow",
+          "active": true,
+          "param": {}
+        },
+        "BasicV1nFlow": {
+          "entity": "v1n",
+          "kind": "basic",
+          "name": "BasicV1nFlow",
+          "step": [
+            {
+              "input": {
+                "ref": "v1n_ref01",
+                "srcdatavar": "v1n_ref01_data",
+                "suffix": "_dt0"
+              },
+              "match": {
+                "id": "v1n01"
+              },
+              "op": "load",
+              "valid": [
+                {
+                  "apply": "TextFieldMark",
+                  "def": {
+                    "mark": "Mark01-v1n_ref01"
+                  }
+                }
+              ],
+              "active": true,
+              "data": {},
+              "spec": []
+            }
+          ],
+          "key$": "BasicV1nFlow",
           "active": true,
           "param": {}
         }

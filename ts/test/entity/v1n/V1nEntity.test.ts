@@ -23,7 +23,7 @@ import {
 } from '../../utility'
 
 
-describe('GetRosaryByDayEntity', async () => {
+describe('V1nEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
   // `test.live.delayMs`; only sleeps when THEROSARY_TEST_LIVE=TRUE.
@@ -31,7 +31,7 @@ describe('GetRosaryByDayEntity', async () => {
 
   test('instance', async () => {
     const testsdk = TheRosarySDK.test()
-    const ent = testsdk.GetRosaryByDay()
+    const ent = testsdk.V1n()
     assert(null != ent)
   })
 
@@ -39,8 +39,8 @@ describe('GetRosaryByDayEntity', async () => {
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.THE_ROSARY_TEST_LIVE
-    for (const op of ['list']) {
-      if (maybeSkipControl(t, 'entityOp', 'get_rosary_by_day.' + op, live)) return
+    for (const op of ['load']) {
+      if (maybeSkipControl(t, 'entityOp', 'v1n.' + op, live)) return
     }
 
     const setup = basicSetup()
@@ -48,7 +48,7 @@ describe('GetRosaryByDayEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set THE_ROSARY_TEST_GET_ROSARY_BY_DAY_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set THE_ROSARY_TEST_V_N_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -57,14 +57,11 @@ describe('GetRosaryByDayEntity', async () => {
     const isempty = struct.isempty
     const select = struct.select
 
-    let get_rosary_by_day_ref01_data = Object.values(setup.data.existing.get_rosary_by_day)[0] as any
+    let v1n_ref01_data = Object.values(setup.data.existing.v1n)[0] as any
 
-    // LIST
-    const get_rosary_by_day_ref01_ent = client.GetRosaryByDay()
-    const get_rosary_by_day_ref01_match: any = {}
-    get_rosary_by_day_ref01_match['day'] = setup.idmap['day01']
-
-    const get_rosary_by_day_ref01_list = await get_rosary_by_day_ref01_ent.list(get_rosary_by_day_ref01_match)
+    // LOAD: skipped — no entity id field and load requires path params.
+    // Entity-var is declared here so later flow steps still compile.
+    const v1n_ref01_ent = client.V1n()
 
 
   })
@@ -79,7 +76,7 @@ function basicSetup(extra?: any) {
   // TODO: needs test utility to resolve path
   const entityDataFile =
     Path.resolve(__dirname, 
-      '../../../../.sdk/test/entity/get_rosary_by_day/GetRosaryByDayTestData.json')
+      '../../../../.sdk/test/entity/v1n/V1nTestData.json')
 
   // TODO: file ready util needed?
   const entityDataSource = Fs.readFileSync(entityDataFile).toString('utf8')
@@ -95,7 +92,7 @@ function basicSetup(extra?: any) {
   const transform = struct.transform
 
   let idmap = transform(
-    ['get_rosary_by_day01','get_rosary_by_day02','get_rosary_by_day03'],
+    ['v1n01','v1n02','v1n03','v101','v102','v103'],
     {
       '`$PACK`': ['', {
         '`$KEY`': '`$COPY`',
@@ -107,17 +104,17 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['THE_ROSARY_TEST_GET_ROSARY_BY_DAY_ENTID']
+  const idmapEnvVal = process.env['THE_ROSARY_TEST_V_N_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'THE_ROSARY_TEST_GET_ROSARY_BY_DAY_ENTID': idmap,
+    'THE_ROSARY_TEST_V_N_ENTID': idmap,
     'THE_ROSARY_TEST_LIVE': 'FALSE',
     'THE_ROSARY_TEST_EXPLAIN': 'FALSE',
     'THE_ROSARY_APIKEY': 'NONE',
   })
 
-  idmap = env['THE_ROSARY_TEST_GET_ROSARY_BY_DAY_ENTID']
+  idmap = env['THE_ROSARY_TEST_V_N_ENTID']
 
   const live = 'TRUE' === env.THE_ROSARY_TEST_LIVE
 

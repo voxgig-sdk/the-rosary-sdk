@@ -32,11 +32,11 @@ func init() {
 	core.NewTestFeatureFunc = func() core.Feature {
 		return feature.NewTestFeature()
 	}
-	core.NewGetRosaryByDayEntityFunc = func(client *core.TheRosarySDK, entopts map[string]any) core.TheRosaryEntity {
-		return entity.NewGetRosaryByDayEntity(client, entopts)
-	}
 	core.NewTodayEntityFunc = func(client *core.TheRosarySDK, entopts map[string]any) core.TheRosaryEntity {
 		return entity.NewTodayEntity(client, entopts)
+	}
+	core.NewV1nEntityFunc = func(client *core.TheRosarySDK, entopts map[string]any) core.TheRosaryEntity {
+		return entity.NewV1nEntity(client, entopts)
 	}
 }
 

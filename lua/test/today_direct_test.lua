@@ -21,7 +21,7 @@ describe("TodayDirect", function()
 
 
     local result, err = client:direct({
-      path = "today",
+      path = "v1/today",
       method = "GET",
       params = {},
     })

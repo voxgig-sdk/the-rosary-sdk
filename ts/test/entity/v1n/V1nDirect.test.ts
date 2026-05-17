@@ -16,7 +16,7 @@ import {
 } from '../../utility'
 
 
-describe('GetRosaryByDayDirect', async () => {
+describe('V1nDirect', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
   // `test.live.delayMs`; only sleeps when THEROSARY_TEST_LIVE=TRUE.
@@ -31,45 +31,38 @@ describe('GetRosaryByDayDirect', async () => {
   })
 
 
-  test('direct-list-get_rosary_by_day', async (t: any) => {
-    const setup = directSetup([{ id: 'direct01' }, { id: 'direct02' }])
-    if (maybeSkipControl(t, 'direct', 'direct-list-get_rosary_by_day', setup.live)) return
-    if (skipIfMissingIds(t, setup, ["get_rosary_by_day01"])) return
+  test('direct-load-v1n', async (t: any) => {
+    const setup = directSetup({ id: 'direct01' })
+    if (maybeSkipControl(t, 'direct', 'direct-load-v1n', setup.live)) return
     const { client, calls } = setup
 
     const params: any = {}
     const query: any = {}
     if (setup.live) {
-      params.id = setup.idmap['get_rosary_by_day01']
+      params.day = "monday"
     } else {
-      params.id = 'direct01'
+      params.day = 'direct01'
     }
 
     const result: any = await client.direct({
-      path: '{id}',
+      path: 'v1/{day}',
       method: 'GET',
       params,
       query,
     })
 
     if (setup.live) {
-      // Live mode is lenient: synthetic IDs frequently 4xx and the list-
-      // response shape varies wildly across public APIs. Skip rather than
-      // fail when the call doesn't return a usable list.
+      // Live mode is lenient: synthetic IDs frequently 4xx. Skip rather
+      // than fail when the load endpoint isn't reachable with the IDs we
+      // can construct from setup.idmap.
       if (!result.ok || result.status < 200 || result.status >= 300) {
-        return
-      }
-      const listArr = unwrapListData(result.data)
-      if (!Array.isArray(listArr)) {
         return
       }
     } else {
       assert(result.ok === true)
       assert(result.status === 200)
       assert(null != result.data)
-      const listArr = unwrapListData(result.data)
-      assert(Array.isArray(listArr))
-      assert(listArr!.length === 2)
+      assert(result.data.id === 'direct01')
       assert(calls.length === 1)
       assert(calls[0].init.method === 'GET')
       assert(calls[0].url.includes('direct01'))
@@ -84,7 +77,7 @@ function directSetup(mockres?: any) {
   const calls: any[] = []
 
   const env = envOverride({
-    'THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID': {},
+    'THEROSARY_TEST_V_N_ENTID': {},
     'THEROSARY_TEST_LIVE': 'FALSE',
     'THEROSARY_APIKEY': 'NONE',
   })
@@ -96,7 +89,7 @@ function directSetup(mockres?: any) {
       apikey: env.THEROSARY_APIKEY,
     })
 
-    let idmap: any = env['THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID']
+    let idmap: any = env['THEROSARY_TEST_V_N_ENTID']
     if ('string' === typeof idmap && idmap.startsWith('{')) {
       idmap = JSON.parse(idmap)
     }

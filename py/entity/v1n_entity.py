@@ -1,10 +1,10 @@
-# TheRosary SDK GetRosaryByDay entity
+# TheRosary SDK V1n entity
 
 from utility.voxgig_struct import voxgig_struct as vs
 from core import helpers
 
 
-class GetRosaryByDayEntity:
+class V1nEntity:
 
     def __init__(self, client, entopts=None):
         if entopts is None:
@@ -16,7 +16,7 @@ class GetRosaryByDayEntity:
         else:
             entopts["active"] = True
 
-        self._name = "get_rosary_by_day"
+        self._name = "v1n"
         self._client = client
         self._utility = client.get_utility()
         self._entopts = entopts
@@ -37,7 +37,7 @@ class GetRosaryByDayEntity:
         opts = {}
         for k, v in self._entopts.items():
             opts[k] = v
-        return GetRosaryByDayEntity(self._client, opts)
+        return V1nEntity(self._client, opts)
 
     def data_set(self, args=None):
         if args is not None:
@@ -58,12 +58,10 @@ class GetRosaryByDayEntity:
         return vs.clone(self._match)
 
     
-
-    
-    def list(self, reqmatch, ctrl=None):
+    def load(self, reqmatch, ctrl=None):
         utility = self._utility
         ctx = utility.make_context({
-            "opname": "list",
+            "opname": "load",
             "ctrl": ctrl,
             "match": self._match,
             "data": self._data,
@@ -74,10 +72,14 @@ class GetRosaryByDayEntity:
             if ctx.result is not None:
                 if ctx.result.resmatch is not None:
                     self._match = ctx.result.resmatch
+                if ctx.result.resdata is not None:
+                    self._data = helpers.to_map(vs.clone(ctx.result.resdata)) or {}
 
         return self._run_op(ctx, post_done)
 
 
+
+    
 
     
 

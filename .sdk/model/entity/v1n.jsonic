@@ -1,26 +1,31 @@
-# Entity: get_rosary_by_day
+# Entity: v1n
 
-main: kit: entity: get_rosary_by_day: {
+main: kit: entity: v1n: {
 
   alias: field: {}
 
   fields: [
     {
-      name: "description"
+      name: "day"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "title"
+      name: "mystery"
       req: false
       type: "`$STRING`"
     }
+    {
+      name: "prayer"
+      req: false
+      type: "`$ARRAY`"
+    }
   ]
 
-  name: "get_rosary_by_day"
+  name: "v1n"
   op: {
-    list: {
-      name: "list"
+    load: {
+      name: "load"
       points: [
         {
           args: {
@@ -28,7 +33,7 @@ main: kit: entity: get_rosary_by_day: {
               {
                 example: "monday"
                 kind: "param"
-                name: "id"
+                name: "day"
                 orig: "day"
                 reqd: true
                 type: "`$STRING`"
@@ -36,18 +41,14 @@ main: kit: entity: get_rosary_by_day: {
             ]
           }
           method: "GET"
-          orig: "/{day}"
+          orig: "/v1/{day}"
           parts: [
-            "{id}"
+            "v1"
+            "{day}"
           ]
-          rename: {
-            param: {
-              day: "id"
-            }
-          }
           select: {
             exist: [
-              "id"
+              "day"
             ]
           }
           transform: {
@@ -57,6 +58,14 @@ main: kit: entity: get_rosary_by_day: {
         }
       ]
     }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "v1"
+      ]
+    ]
   }
 
 

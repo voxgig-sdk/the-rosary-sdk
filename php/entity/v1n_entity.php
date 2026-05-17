@@ -1,14 +1,14 @@
 <?php
 declare(strict_types=1);
 
-// TheRosary SDK GetRosaryByDay entity
+// TheRosary SDK V1n entity
 
 require_once __DIR__ . '/../utility/struct/Struct.php';
 require_once __DIR__ . '/../core/Helpers.php';
 
 use Voxgig\Struct\Struct;
 
-class GetRosaryByDayEntity
+class V1nEntity
 {
     private string $_name;
     private $_client;
@@ -29,7 +29,7 @@ class GetRosaryByDayEntity
             $entopts["active"] = true;
         }
 
-        $this->_name = "get_rosary_by_day";
+        $this->_name = "v1n";
         $this->_client = $client;
         $this->_utility = $client->get_utility();
         $this->_entopts = $entopts;
@@ -52,7 +52,7 @@ class GetRosaryByDayEntity
     public function make(): self
     {
         $opts = $this->_entopts;
-        return new GetRosaryByDayEntity($this->_client, $opts);
+        return new V1nEntity($this->_client, $opts);
     }
 
     public function data_set($args): void
@@ -84,13 +84,11 @@ class GetRosaryByDayEntity
     }
 
     
-
-    
-    public function list($reqmatch, $ctrl = null): array
+    public function load($reqmatch, $ctrl = null): array
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
-            "opname" => "list",
+            "opname" => "load",
             "ctrl" => $ctrl,
             "match" => $this->_match,
             "data" => $this->_data,
@@ -102,11 +100,16 @@ class GetRosaryByDayEntity
                 if ($ctx->result->resmatch) {
                     $this->_match = $ctx->result->resmatch;
                 }
+                if ($ctx->result->resdata) {
+                    $this->_data = TheRosaryHelpers::to_map(Struct::clone($ctx->result->resdata)) ?? [];
+                }
             }
         });
     }
 
 
+
+    
 
     
 

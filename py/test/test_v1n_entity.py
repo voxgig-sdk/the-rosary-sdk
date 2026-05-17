@@ -1,4 +1,4 @@
-# GetRosaryByDay entity test
+# V1n entity test
 
 import json
 import os
@@ -14,21 +14,21 @@ _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
 
 
-class TestGetRosaryByDayEntity:
+class TestV1nEntity:
 
     def test_should_create_instance(self):
         testsdk = TheRosarySDK.test(None, None)
-        ent = testsdk.GetRosaryByDay(None)
+        ent = testsdk.V1n(None)
         assert ent is not None
 
     def test_should_run_basic_flow(self):
-        setup = _get_rosary_by_day_basic_setup(None)
+        setup = _v1n_basic_setup(None)
         # Per-op sdk-test-control.json skip — basic test exercises a flow with
         # multiple ops; skipping any one skips the whole flow (steps depend
         # on each other).
         _live = setup.get("live", False)
-        for _op in ["list"]:
-            _skip, _reason = runner.is_control_skipped("entityOp", "get_rosary_by_day." + _op, "live" if _live else "unit")
+        for _op in ["load"]:
+            _skip, _reason = runner.is_control_skipped("entityOp", "v1n." + _op, "live" if _live else "unit")
             if _skip:
                 pytest.skip(_reason or "skipped via sdk-test-control.json")
                 return
@@ -36,32 +36,29 @@ class TestGetRosaryByDayEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID JSON to run live")
+                        "set THEROSARY_TEST_V_N_ENTID JSON to run live")
         client = setup["client"]
 
         # Bootstrap entity data from existing test data.
-        get_rosary_by_day_ref01_data_raw = vs.items(helpers.to_map(
-            vs.getpath(setup["data"], "existing.get_rosary_by_day")))
-        get_rosary_by_day_ref01_data = None
-        if len(get_rosary_by_day_ref01_data_raw) > 0:
-            get_rosary_by_day_ref01_data = helpers.to_map(get_rosary_by_day_ref01_data_raw[0][1])
+        v1n_ref01_data_raw = vs.items(helpers.to_map(
+            vs.getpath(setup["data"], "existing.v1n")))
+        v1n_ref01_data = None
+        if len(v1n_ref01_data_raw) > 0:
+            v1n_ref01_data = helpers.to_map(v1n_ref01_data_raw[0][1])
 
-        # LIST
-        get_rosary_by_day_ref01_ent = client.GetRosaryByDay(None)
-        get_rosary_by_day_ref01_match = {
-            "day": setup["idmap"]["day01"],
-        }
-
-        get_rosary_by_day_ref01_list_result, err = get_rosary_by_day_ref01_ent.list(get_rosary_by_day_ref01_match, None)
+        # LOAD
+        v1n_ref01_ent = client.V1n(None)
+        v1n_ref01_match_dt0 = {}
+        v1n_ref01_data_dt0_loaded, err = v1n_ref01_ent.load(v1n_ref01_match_dt0, None)
         assert err is None
-        assert isinstance(get_rosary_by_day_ref01_list_result, list)
+        assert v1n_ref01_data_dt0_loaded is not None
 
 
 
-def _get_rosary_by_day_basic_setup(extra):
+def _v1n_basic_setup(extra):
     runner.load_env_local()
 
-    entity_data_file = os.path.join(_TEST_DIR, "../../.sdk/test/entity/get_rosary_by_day/GetRosaryByDayTestData.json")
+    entity_data_file = os.path.join(_TEST_DIR, "../../.sdk/test/entity/v1n/V1nTestData.json")
     with open(entity_data_file, "r") as f:
         entity_data_source = f.read()
 
@@ -74,7 +71,7 @@ def _get_rosary_by_day_basic_setup(extra):
 
     # Generate idmap via transform.
     idmap = vs.transform(
-        ["get_rosary_by_day01", "get_rosary_by_day02", "get_rosary_by_day03", "day01"],
+        ["v1n01", "v1n02", "v1n03", "v101", "v102", "v103"],
         {
             "`$PACK`": ["", {
                 "`$KEY`": "`$COPY`",
@@ -87,18 +84,18 @@ def _get_rosary_by_day_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID")
+        "THEROSARY_TEST_V_N_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID": idmap,
+        "THEROSARY_TEST_V_N_ENTID": idmap,
         "THEROSARY_TEST_LIVE": "FALSE",
         "THEROSARY_TEST_EXPLAIN": "FALSE",
         "THEROSARY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("THEROSARY_TEST_GET_ROSARY_BY_DAY_ENTID"))
+        env.get("THEROSARY_TEST_V_N_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 

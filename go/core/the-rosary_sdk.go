@@ -245,13 +245,13 @@ func (sdk *TheRosarySDK) Direct(fetchargs map[string]any) (map[string]any, error
 }
 
 
-func (sdk *TheRosarySDK) GetRosaryByDay(data map[string]any) TheRosaryEntity {
-	return NewGetRosaryByDayEntityFunc(sdk, data)
+func (sdk *TheRosarySDK) Today(data map[string]any) TheRosaryEntity {
+	return NewTodayEntityFunc(sdk, data)
 }
 
 
-func (sdk *TheRosarySDK) Today(data map[string]any) TheRosaryEntity {
-	return NewTodayEntityFunc(sdk, data)
+func (sdk *TheRosarySDK) V1n(data map[string]any) TheRosaryEntity {
+	return NewV1nEntityFunc(sdk, data)
 }
 
 

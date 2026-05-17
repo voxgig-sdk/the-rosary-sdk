@@ -11,8 +11,8 @@ The API exposes 2 entities:
 
 | Entity | Description | API path |
 | --- | --- | --- |
-| **GetRosaryByDay** |  | `/{day}` |
-| **Today** |  | `/today` |
+| **Today** |  | `/v1/today` |
+| **V1n** |  | `/v1/{day}` |
 
 Each entity supports the following operations where available: **load**, **list**, **create**,
 **update**, and **remove**.
@@ -66,8 +66,8 @@ client := sdk.NewTheRosarySDK(map[string]any{
     "apikey": os.Getenv("THE-ROSARY_APIKEY"),
 })
 
-// List all getrosarybydays
-getrosarybydays, err := client.GetRosaryByDay(nil).List(nil, nil)
+// List all todays
+todays, err := client.Today(nil).List(nil, nil)
 ```
 
 ### Lua
@@ -79,8 +79,8 @@ local client = sdk.new({
   apikey = os.getenv("THE-ROSARY_APIKEY"),
 })
 
--- List all getrosarybydays
-local getrosarybydays, err = client:GetRosaryByDay(nil):list(nil, nil)
+-- List all todays
+local todays, err = client:Today(nil):list(nil, nil)
 ```
 
 ### PHP
@@ -93,8 +93,8 @@ $client = new TheRosarySDK([
     "apikey" => getenv("THE-ROSARY_APIKEY"),
 ]);
 
-// List all getrosarybydays
-[$getrosarybydays, $err] = $client->GetRosaryByDay(null)->list(null, null);
+// List all todays
+[$todays, $err] = $client->Today(null)->list(null, null);
 ```
 
 ### Python
@@ -107,8 +107,8 @@ client = TheRosarySDK({
     "apikey": os.environ.get("THE-ROSARY_APIKEY"),
 })
 
-# List all getrosarybydays
-getrosarybydays, err = client.GetRosaryByDay(None).list(None, None)
+# List all todays
+todays, err = client.Today(None).list(None, None)
 ```
 
 ### Ruby
@@ -120,8 +120,8 @@ client = TheRosarySDK.new({
   "apikey" => ENV["THE-ROSARY_APIKEY"],
 })
 
-# List all getrosarybydays
-getrosarybydays, err = client.GetRosaryByDay(nil).list(nil, nil)
+# List all todays
+todays, err = client.Today(nil).list(nil, nil)
 ```
 
 ### TypeScript
@@ -133,8 +133,8 @@ const client = new TheRosarySDK({
   apikey: process.env.THE-ROSARY_APIKEY,
 })
 
-// List all getrosarybydays
-const getrosarybydays = await client.GetRosaryByDay().list()
+// List all todays
+const todays = await client.Today().list()
 ```
 
 
@@ -147,7 +147,7 @@ in-memory mock, so tests run without a network connection.
 
 ```go
 client := sdk.TestSDK(nil, nil)
-result, err := client.GetRosaryByDay(nil).Load(
+result, err := client.Today(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 ```
@@ -156,7 +156,7 @@ result, err := client.GetRosaryByDay(nil).Load(
 
 ```lua
 local client = sdk.test(nil, nil)
-local result, err = client:GetRosaryByDay(nil):load(
+local result, err = client:Today(nil):load(
   { id = "test01" }, nil
 )
 ```
@@ -165,7 +165,7 @@ local result, err = client:GetRosaryByDay(nil):load(
 
 ```php
 $client = TheRosarySDK::test(null, null);
-[$result, $err] = $client->GetRosaryByDay(null)->load(
+[$result, $err] = $client->Today(null)->load(
     ["id" => "test01"], null
 );
 ```
@@ -174,7 +174,7 @@ $client = TheRosarySDK::test(null, null);
 
 ```python
 client = TheRosarySDK.test(None, None)
-result, err = client.GetRosaryByDay(None).load(
+result, err = client.Today(None).load(
     {"id": "test01"}, None
 )
 ```
@@ -183,7 +183,7 @@ result, err = client.GetRosaryByDay(None).load(
 
 ```ruby
 client = TheRosarySDK.test(nil, nil)
-result, err = client.GetRosaryByDay(nil).load(
+result, err = client.Today(nil).load(
   { "id" => "test01" }, nil
 )
 ```
@@ -192,7 +192,7 @@ result, err = client.GetRosaryByDay(nil).load(
 
 ```ts
 const client = TheRosarySDK.test()
-const result = await client.GetRosaryByDay().load({ id: 'test01' })
+const result = await client.Today().load({ id: 'test01' })
 // result.ok === true, result.data contains mock data
 ```
 
