@@ -3,7 +3,7 @@ package core
 import (
 	"fmt"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/the-rosary-sdk/go/utility/struct"
 )
 
 type TheRosarySDK struct {

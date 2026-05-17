@@ -3,7 +3,7 @@ package sdktest
 import (
 	"testing"
 
-	sdk "github.com/voxgig-sdk/the-rosary-sdk"
+	sdk "github.com/voxgig-sdk/the-rosary-sdk/go"
 )
 
 func TestExists(t *testing.T) {

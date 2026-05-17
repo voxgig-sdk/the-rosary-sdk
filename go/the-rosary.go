@@ -1,10 +1,10 @@
 package voxgigtherosarysdk
 
 import (
-	"github.com/voxgig-sdk/the-rosary-sdk/core"
-	"github.com/voxgig-sdk/the-rosary-sdk/entity"
-	"github.com/voxgig-sdk/the-rosary-sdk/feature"
-	_ "github.com/voxgig-sdk/the-rosary-sdk/utility"
+	"github.com/voxgig-sdk/the-rosary-sdk/go/core"
+	"github.com/voxgig-sdk/the-rosary-sdk/go/entity"
+	"github.com/voxgig-sdk/the-rosary-sdk/go/feature"
+	_ "github.com/voxgig-sdk/the-rosary-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

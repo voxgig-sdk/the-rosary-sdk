@@ -1,9 +1,9 @@
 package entity
 
 import (
-	"github.com/voxgig-sdk/the-rosary-sdk/core"
+	"github.com/voxgig-sdk/the-rosary-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/the-rosary-sdk/go/utility/struct"
 )
 
 type TodayEntity struct {

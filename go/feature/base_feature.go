@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/the-rosary-sdk/core"
+	"github.com/voxgig-sdk/the-rosary-sdk/go/core"
 )
 
 type BaseFeature struct {

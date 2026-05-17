@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/the-rosary-sdk"
-	"github.com/voxgig-sdk/the-rosary-sdk/core"
+	sdk "github.com/voxgig-sdk/the-rosary-sdk/go"
+	"github.com/voxgig-sdk/the-rosary-sdk/go/core"
 )
 
 func TestTodayDirect(t *testing.T) {

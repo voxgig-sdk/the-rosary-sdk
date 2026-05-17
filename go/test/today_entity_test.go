@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/the-rosary-sdk"
-	"github.com/voxgig-sdk/the-rosary-sdk/core"
+	sdk "github.com/voxgig-sdk/the-rosary-sdk/go"
+	"github.com/voxgig-sdk/the-rosary-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/the-rosary-sdk/go/utility/struct"
 )
 
 func TestTodayEntity(t *testing.T) {
