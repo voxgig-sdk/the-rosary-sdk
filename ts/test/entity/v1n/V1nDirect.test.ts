@@ -79,14 +79,12 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'THEROSARY_TEST_V_N_ENTID': {},
     'THEROSARY_TEST_LIVE': 'FALSE',
-    'THEROSARY_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.THEROSARY_TEST_LIVE
 
   if (live) {
     const client = new TheRosarySDK({
-      apikey: env.THEROSARY_APIKEY,
     })
 
     let idmap: any = env['THEROSARY_TEST_V_N_ENTID']

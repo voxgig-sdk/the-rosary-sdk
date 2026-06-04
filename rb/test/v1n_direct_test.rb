@@ -69,14 +69,12 @@ def v1n_direct_setup(mockres)
   env = Runner.env_override({
     "THEROSARY_TEST_V_N_ENTID" => {},
     "THEROSARY_TEST_LIVE" => "FALSE",
-    "THEROSARY_APIKEY" => "NONE",
   })
 
   live = env["THEROSARY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
-      "apikey" => env["THEROSARY_APIKEY"],
     }
     client = TheRosarySDK.new(merged_opts)
     return {

@@ -15,9 +15,6 @@ module TheRosaryConfig
       },
       "options" => {
         "base" => "https://the-rosary-api.vercel.app",
-        "auth" => {
-          "prefix" => "Bearer",
-        },
         "headers" => {
           "content-type" => "application/json",
         },

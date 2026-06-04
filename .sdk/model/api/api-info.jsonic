@@ -16,8 +16,31 @@ main: {
       ]
       title: "The Rosary Api"
       version: "1.0.0"
+      tagline: "Fetch Catholic rosary prayers in JSON by day, mystery, novena, or arbitrary date"
+      homepage: "https://therosaryapi.cf/"
+      docs_url: "https://therosaryapi.cf/"
+      license_short: "Free for non-commercial use; attribution optional"
+      license_md: `- Maintainer states the API is a personal goodwill project, not built to make money.
+- Non-commercial use only; attribution is optional.
+- No formal open-source licence is published on the project page.
+- Please avoid abusive request patterns out of courtesy to the maintainer.`
+      about_md: `[The Rosary Api](https://therosaryapi.cf/) is a small JSON service that returns the text (and, for some endpoints, audio links) of Catholic rosary prayers. It is run as a personal project by Eric Kouassi and described by the maintainer as a goodwill effort to help people pray the rosary online.
+
+What you get from the API:
+
+- Today / yesterday / tomorrow's rosary (\`/v1/today\`, \`/v1/yesterday\`, \`/v1/tomorrow\`).
+- The rosary for a specific weekday (\`/v1/monday\` … \`/v1/sunday\`).
+- The rosary for an arbitrary date via \`/v1/date/:MMDDYY\`.
+- The four sets of mysteries: \`/v1/joyful\`, \`/v1/glorious\`, \`/v1/sorrowful\`, \`/v1/luminous\`.
+- A random rosary (\`/v1/random\`) and a listing endpoint (\`/v1/list\`).
+- Novena prayers via \`/v1/novena\`, \`/v1/novena/:MMDDYY\`, and \`/v1/54daynovena\`.
+
+Operational notes: no authentication is required, CORS is enabled, and both HTTP and HTTPS are supported. The maintainer states there are no usage limits as long as the service is not abused. The community catalogue page reports ~100% uptime and sub-300 ms typical response times.`
+      entity_desc: {
+        today: "Day-relative rosary prayers — endpoints like `/v1/today`, `/v1/yesterday`, `/v1/tomorrow`, and the weekday paths `/v1/monday` … `/v1/sunday`."
+        v1n: "Versioned (v1) prayer collections keyed by name or date — the mystery sets (`/v1/joyful`, `/v1/glorious`, `/v1/sorrowful`, `/v1/luminous`), `/v1/random`, `/v1/list`, dated lookups (`/v1/date/:MMDDYY`), and the novena endpoints (`/v1/novena`, `/v1/novena/:MMDDYY`, `/v1/54daynovena`)."
+      }
+      auth: false
     }
   }
-}
-
 }

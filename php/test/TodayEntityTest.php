@@ -86,7 +86,6 @@ function today_basic_setup($extra)
         "THEROSARY_TEST_TODAY_ENTID" => $idmap,
         "THEROSARY_TEST_LIVE" => "FALSE",
         "THEROSARY_TEST_EXPLAIN" => "FALSE",
-        "THEROSARY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +97,6 @@ function today_basic_setup($extra)
     if ($env["THEROSARY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["THEROSARY_APIKEY"],
             ],
             $extra ?? [],
         ]);
