@@ -10,13 +10,13 @@ The Ruby SDK for the TheRosary API — an entity-oriented client using idiomatic
 
 ## Install
 ```bash
-gem install the-rosary-sdk
+gem install voxgig-sdk-the-rosary
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "the-rosary-sdk"
+gem "voxgig-sdk-the-rosary"
 ```
 
 Then run:

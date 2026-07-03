@@ -10,7 +10,7 @@ The Lua SDK for the TheRosary API — an entity-oriented client using Lua conven
 
 ## Install
 ```bash
-luarocks install the-rosary-sdk
+luarocks install voxgig-sdk-the-rosary
 ```
 
 If the module is not yet published, add the source directory to

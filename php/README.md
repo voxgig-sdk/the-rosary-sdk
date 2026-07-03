@@ -10,7 +10,7 @@ The PHP SDK for the TheRosary API — an entity-oriented client using PHP conven
 
 ## Install
 ```bash
-composer require voxgig/the-rosary-sdk
+composer require voxgig-sdk/the-rosary
 ```
 
 

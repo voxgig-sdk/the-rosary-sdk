@@ -10,7 +10,7 @@ The TypeScript SDK for the TheRosary API — a type-safe, entity-oriented client
 
 ## Install
 ```bash
-npm install the-rosary
+npm install @voxgig-sdk/the-rosary
 ```
 ## Tutorial: your first API call
 

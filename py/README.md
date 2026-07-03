@@ -10,7 +10,7 @@ The Python SDK for the TheRosary API — an entity-oriented client following Pyt
 
 ## Install
 ```bash
-pip install the-rosary-sdk
+pip install voxgig-sdk-the-rosary
 ```
 
 Or install from source:
