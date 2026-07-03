@@ -93,12 +93,14 @@ func todayDirectSetup(mockres any) *todayDirectSetupResult {
 	env := envOverride(map[string]any{
 		"THEROSARY_TEST_TODAY_ENTID": map[string]any{},
 		"THEROSARY_TEST_LIVE":    "FALSE",
+		"THEROSARY_APIKEY":       "NONE",
 	})
 
 	live := env["THEROSARY_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["THEROSARY_APIKEY"],
 		}
 		client := sdk.NewTheRosarySDK(mergedOpts)
 

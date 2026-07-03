@@ -91,6 +91,7 @@ function v1n_basic_setup(extra)
     ["THEROSARY_TEST_V_N_ENTID"] = idmap,
     ["THEROSARY_TEST_LIVE"] = "FALSE",
     ["THEROSARY_TEST_EXPLAIN"] = "FALSE",
+    ["THEROSARY_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function v1n_basic_setup(extra)
   if env["THEROSARY_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["THEROSARY_APIKEY"],
       },
       extra or {},
     })

@@ -15,6 +15,9 @@ module TheRosaryConfig
       },
       "options" => {
         "base" => "https://the-rosary-api.vercel.app",
+        "auth" => {
+          "prefix" => "Bearer",
+        },
         "headers" => {
           "content-type" => "application/json",
         },
@@ -27,43 +30,43 @@ module TheRosaryConfig
         "today" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "description",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "title",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 1,
             },
           ],
           "name" => "today",
           "op" => {
             "list" => {
+              "input" => "data",
               "name" => "list",
               "points" => [
                 {
+                  "active" => true,
+                  "args" => {},
                   "method" => "GET",
                   "orig" => "/v1/today",
                   "parts" => [
                     "v1",
                     "today",
                   ],
+                  "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
-                  "args" => {},
-                  "select" => {},
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "list",
             },
           },
@@ -74,43 +77,45 @@ module TheRosaryConfig
         "v1n" => {
           "fields" => [
             {
+              "active" => true,
               "name" => "day",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 0,
             },
             {
+              "active" => true,
               "name" => "mystery",
               "req" => false,
               "type" => "`$STRING`",
-              "active" => true,
               "index$" => 1,
             },
             {
+              "active" => true,
               "name" => "prayer",
               "req" => false,
               "type" => "`$ARRAY`",
-              "active" => true,
               "index$" => 2,
             },
           ],
           "name" => "v1n",
           "op" => {
             "load" => {
+              "input" => "data",
               "name" => "load",
               "points" => [
                 {
+                  "active" => true,
                   "args" => {
                     "params" => [
                       {
+                        "active" => true,
                         "example" => "monday",
                         "kind" => "param",
                         "name" => "day",
                         "orig" => "day",
                         "reqd" => true,
                         "type" => "`$STRING`",
-                        "active" => true,
                       },
                     ],
                   },
@@ -129,11 +134,9 @@ module TheRosaryConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
-                  "active" => true,
                   "index$" => 0,
                 },
               ],
-              "input" => "data",
               "key$" => "load",
             },
           },

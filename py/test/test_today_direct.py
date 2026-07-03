@@ -61,12 +61,14 @@ def _today_direct_setup(mockres):
     env = runner.env_override({
         "THEROSARY_TEST_TODAY_ENTID": {},
         "THEROSARY_TEST_LIVE": "FALSE",
+        "THEROSARY_APIKEY": "NONE",
     })
 
     live = env.get("THEROSARY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
+            "apikey": env.get("THEROSARY_APIKEY"),
         }
         client = TheRosarySDK(merged_opts)
         return {

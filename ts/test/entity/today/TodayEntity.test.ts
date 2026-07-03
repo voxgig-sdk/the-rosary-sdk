@@ -113,6 +113,7 @@ function basicSetup(extra?: any) {
     'THE_ROSARY_TEST_TODAY_ENTID': idmap,
     'THE_ROSARY_TEST_LIVE': 'FALSE',
     'THE_ROSARY_TEST_EXPLAIN': 'FALSE',
+    'THE_ROSARY_APIKEY': 'NONE',
   })
 
   idmap = env['THE_ROSARY_TEST_TODAY_ENTID']
@@ -122,6 +123,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new TheRosarySDK(merge([
       {
+        apikey: env.THE_ROSARY_APIKEY,
       },
       extra
     ]))
