@@ -55,6 +55,9 @@ class TodayEntity
         return new TodayEntity($this->_client, $opts);
     }
 
+    /**
+     * @param Today|array $args Today data (assoc-array) to store.
+     */
     public function data_set($args): void
     {
         if ($args) {
@@ -63,12 +66,18 @@ class TodayEntity
         }
     }
 
+    /**
+     * @return Today|array The current Today data as an assoc-array.
+     */
     public function data_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetData");
         return Struct::clone($this->_data);
     }
 
+    /**
+     * @param array $args Match filter (any subset of Today fields).
+     */
     public function match_set($args): void
     {
         if ($args) {
@@ -77,6 +86,9 @@ class TodayEntity
         }
     }
 
+    /**
+     * @return array The current match filter (any subset of Today fields).
+     */
     public function match_get()
     {
         ($this->_utility->feature_hook)($this->_entctx, "GetMatch");
@@ -86,7 +98,16 @@ class TodayEntity
     
 
     
-    public function list($reqmatch, $ctrl = null): array
+    /**
+     * List Today items matching the given filter.
+     *
+     * @param TodayListMatch|array|null $reqmatch Match filter (any subset
+     *   of Today fields) as an assoc-array; TodayListMatch names the shape.
+     * @param mixed $ctrl Optional per-call control overrides.
+     * @return Today[]|array A list of Today items as assoc-arrays at
+     *   the SDK boundary; throws TheRosaryError on failure (item-5 convention).
+     */
+    public function list(?array $reqmatch = null, $ctrl = null): mixed
     {
         $utility = $this->_utility;
         $ctx = ($utility->make_context)([
@@ -114,7 +135,7 @@ class TodayEntity
 
     
 
-    private function _run_op($ctx, callable $post_done): array
+    private function _run_op($ctx, callable $post_done): mixed
     {
         $utility = $this->_utility;
 

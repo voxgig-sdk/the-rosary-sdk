@@ -3,6 +3,8 @@
 import { TodayEntity } from './entity/TodayEntity'
 import { V1nEntity } from './entity/V1nEntity'
 
+export type * from './TheRosaryTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -203,12 +205,28 @@ class TheRosarySDK {
 
 
 
+  _today?: TodayEntity
+
+  // Idiomatic facade: `client.today.list()` / `client.today.load({ id })`.
+  get today(): TodayEntity {
+    return (this._today ??= new TodayEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.today` instead. */
   Today(data?: any) {
     const self = this
     return new TodayEntity(self,data)
   }
 
 
+  _v1n?: V1nEntity
+
+  // Idiomatic facade: `client.v1n.list()` / `client.v1n.load({ id })`.
+  get v1n(): V1nEntity {
+    return (this._v1n ??= new V1nEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.v1n` instead. */
   V1n(data?: any) {
     const self = this
     return new V1nEntity(self,data)

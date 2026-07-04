@@ -45,6 +45,7 @@ class TodayEntity
     end
   end
 
+  # @return [Today, Hash] the current Today data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,6 +58,7 @@ class TodayEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Today fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
@@ -65,6 +67,11 @@ class TodayEntity
   
 
   
+  # List Today items matching the given filter.
+  #
+  # @param reqmatch [TodayListMatch, Hash, nil] match filter (any subset of Today fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Array<Today>, Array] the matching Today items; raises TheRosaryError on failure
   def list(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

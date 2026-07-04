@@ -117,7 +117,6 @@ func v1nBasicSetup(extra map[string]any) *entityTestSetup {
 		"THEROSARY_TEST_V_N_ENTID": idmap,
 		"THEROSARY_TEST_LIVE":      "FALSE",
 		"THEROSARY_TEST_EXPLAIN":   "FALSE",
-		"THEROSARY_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["THEROSARY_TEST_V_N_ENTID"])
@@ -128,7 +127,6 @@ func v1nBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["THEROSARY_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
-				"apikey": env["THEROSARY_APIKEY"],
 			},
 			extra,
 		})

@@ -45,6 +45,7 @@ class V1nEntity
     end
   end
 
+  # @return [V1n, Hash] the current V1n data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class V1nEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of V1n fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single V1n.
+  #
+  # @param reqmatch [V1nLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [V1n, Hash] the loaded V1n; raises TheRosaryError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

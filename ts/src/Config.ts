@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://the-rosary-api.vercel.app',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -147,7 +143,8 @@ class Config {
                     "name": "day",
                     "orig": "day",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

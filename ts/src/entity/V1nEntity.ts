@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  V1n,
+  V1nLoadMatch,
+} from '../TheRosaryTypes'
 
 // TODO: needs Entity superclass
-class V1nEntity extends TheRosaryEntityBase {
+class V1nEntity extends TheRosaryEntityBase<V1n> {
 
   constructor(client: TheRosarySDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class V1nEntity extends TheRosaryEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: V1nLoadMatch, ctrl?: Control): Promise<V1n> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class V1nEntity extends TheRosaryEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<V1n> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

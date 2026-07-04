@@ -49,8 +49,7 @@ class TestV1nEntity:
         # LOAD
         v1n_ref01_ent = client.V1n(None)
         v1n_ref01_match_dt0 = {}
-        v1n_ref01_data_dt0_loaded, err = v1n_ref01_ent.load(v1n_ref01_match_dt0, None)
-        assert err is None
+        v1n_ref01_data_dt0_loaded = v1n_ref01_ent.load(v1n_ref01_match_dt0, None)
         assert v1n_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _v1n_basic_setup(extra):
         "THEROSARY_TEST_V_N_ENTID": idmap,
         "THEROSARY_TEST_LIVE": "FALSE",
         "THEROSARY_TEST_EXPLAIN": "FALSE",
-        "THEROSARY_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _v1n_basic_setup(extra):
     if env.get("THEROSARY_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("THEROSARY_APIKEY"),
             },
             extra or {},
         ])

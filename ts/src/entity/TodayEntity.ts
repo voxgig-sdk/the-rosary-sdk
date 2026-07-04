@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Today,
+  TodayListMatch,
+} from '../TheRosaryTypes'
 
 // TODO: needs Entity superclass
-class TodayEntity extends TheRosaryEntityBase {
+class TodayEntity extends TheRosaryEntityBase<Today> {
 
   constructor(client: TheRosarySDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class TodayEntity extends TheRosaryEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: TodayListMatch, ctrl?: Control): Promise<Today[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class TodayEntity extends TheRosaryEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Today[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

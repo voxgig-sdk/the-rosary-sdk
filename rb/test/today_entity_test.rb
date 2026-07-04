@@ -43,8 +43,7 @@ class TodayEntityTest < Minitest::Test
     today_ref01_ent = client.Today(nil)
     today_ref01_match = {}
 
-    today_ref01_list_result, err = today_ref01_ent.list(today_ref01_match, nil)
-    assert_nil err
+    today_ref01_list_result = today_ref01_ent.list(today_ref01_match, nil)
     assert today_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def today_basic_setup(extra)
     "THEROSARY_TEST_TODAY_ENTID" => idmap,
     "THEROSARY_TEST_LIVE" => "FALSE",
     "THEROSARY_TEST_EXPLAIN" => "FALSE",
-    "THEROSARY_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def today_basic_setup(extra)
   if env["THEROSARY_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["THEROSARY_APIKEY"],
       },
       extra || {},
     ])

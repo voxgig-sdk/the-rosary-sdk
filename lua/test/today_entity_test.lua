@@ -92,7 +92,6 @@ function today_basic_setup(extra)
     ["THEROSARY_TEST_TODAY_ENTID"] = idmap,
     ["THEROSARY_TEST_LIVE"] = "FALSE",
     ["THEROSARY_TEST_EXPLAIN"] = "FALSE",
-    ["THEROSARY_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -104,7 +103,6 @@ function today_basic_setup(extra)
   if env["THEROSARY_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
-        apikey = env["THEROSARY_APIKEY"],
       },
       extra or {},
     })

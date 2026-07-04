@@ -49,8 +49,7 @@ class V1nEntityTest extends TestCase
         // LOAD
         $v1n_ref01_ent = $client->V1n(null);
         $v1n_ref01_match_dt0 = [];
-        [$v1n_ref01_data_dt0_loaded, $err] = $v1n_ref01_ent->load($v1n_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $v1n_ref01_data_dt0_loaded = $v1n_ref01_ent->load($v1n_ref01_match_dt0, null);
         $this->assertNotNull($v1n_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function v1n_basic_setup($extra)
         "THEROSARY_TEST_V_N_ENTID" => $idmap,
         "THEROSARY_TEST_LIVE" => "FALSE",
         "THEROSARY_TEST_EXPLAIN" => "FALSE",
-        "THEROSARY_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function v1n_basic_setup($extra)
     if ($env["THEROSARY_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["THEROSARY_APIKEY"],
             ],
             $extra ?? [],
         ]);

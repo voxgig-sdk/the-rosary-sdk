@@ -9,9 +9,12 @@ The TypeScript SDK for the TheRosary API — a type-safe, entity-oriented client
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/the-rosary
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/the-rosary-sdk/releases](https://github.com/voxgig-sdk/the-rosary-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TheRosarySDK } from 'the-rosary'
+import { TheRosarySDK } from '@voxgig-sdk/the-rosary'
 
-const client = new TheRosarySDK({
-  apikey: process.env.THE-ROSARY_APIKEY,
-})
+const client = new TheRosarySDK()
 ```
 
 ### 2. List todays
 
 ```ts
-const result = await client.Today().list()
+const result = await client.today.list()
 
 if (result.ok) {
   for (const item of result.data) {
@@ -81,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = TheRosarySDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.today.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -89,7 +90,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new TheRosarySDK({ apikey: '...' })
+const client = new TheRosarySDK()
 const testClient = client.tester()
 ```
 
@@ -98,7 +99,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.today
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -125,7 +126,6 @@ const logger = {
 }
 
 const client = new TheRosarySDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -135,8 +135,7 @@ const client = new TheRosarySDK({
 Create a `.env.local` file at the project root:
 
 ```
-THE-ROSARY_TEST_LIVE=TRUE
-THE-ROSARY_APIKEY=<your-key>
+THE_ROSARY_TEST_LIVE=TRUE
 ```
 
 Then run:
@@ -154,7 +153,6 @@ cd ts && npm test
 
 ```ts
 new TheRosarySDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -165,7 +163,6 @@ new TheRosarySDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -282,7 +279,7 @@ API path: `/v1/{day}`
 
 ### Today
 
-Create an instance: `const today = client.Today()`
+Create an instance: `const today = client.today`
 
 #### Operations
 
@@ -300,13 +297,13 @@ Create an instance: `const today = client.Today()`
 #### Example: List
 
 ```ts
-const todays = await client.Today().list()
+const todays = await client.today.list()
 ```
 
 
 ### V1n
 
-Create an instance: `const v1n = client.V1n()`
+Create an instance: `const v1n = client.v1n`
 
 #### Operations
 
@@ -325,7 +322,7 @@ Create an instance: `const v1n = client.V1n()`
 #### Example: Load
 
 ```ts
-const v1n = await client.V1n().load({ id: 'v1n_id' })
+const v1n = await client.v1n.load({ id: 'v1n_id' })
 ```
 
 
@@ -386,7 +383,7 @@ the-rosary/
 Import the SDK from the package root:
 
 ```ts
-import { TheRosarySDK } from 'the-rosary'
+import { TheRosarySDK } from '@voxgig-sdk/the-rosary'
 ```
 
 ### Entity state
@@ -396,11 +393,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const today = client.today
+await today.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// today.data() now returns the loaded today data
+// today.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

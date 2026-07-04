@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch TodayListMatch
+---@param ctrl? table
+---@return Today[]
+---@return string? err
 function TodayEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -244,12 +244,38 @@ end
 
 
 
+-- Idiomatic facade: client:today():list() / client:today():load({ id = ... })
+function TheRosarySDK:today(data)
+  local EntityMod = require("entity.today_entity")
+  if data == nil then
+    if self._today == nil then
+      self._today = EntityMod.new(self, nil)
+    end
+    return self._today
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:today() instead.
 function TheRosarySDK:Today(data)
   local EntityMod = require("entity.today_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:v1n():list() / client:v1n():load({ id = ... })
+function TheRosarySDK:v1n(data)
+  local EntityMod = require("entity.v1n_entity")
+  if data == nil then
+    if self._v1n == nil then
+      self._v1n = EntityMod.new(self, nil)
+    end
+    return self._v1n
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:v1n() instead.
 function TheRosarySDK:V1n(data)
   local EntityMod = require("entity.v1n_entity")
   return EntityMod.new(self, data)

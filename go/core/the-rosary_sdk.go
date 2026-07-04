@@ -245,11 +245,17 @@ func (sdk *TheRosarySDK) Direct(fetchargs map[string]any) (map[string]any, error
 }
 
 
+// Today returns a Today entity bound to this client.
+// Idiomatic usage: client.Today(nil).List(nil, nil) or
+// client.Today(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TheRosarySDK) Today(data map[string]any) TheRosaryEntity {
 	return NewTodayEntityFunc(sdk, data)
 }
 
 
+// V1n returns a V1n entity bound to this client.
+// Idiomatic usage: client.V1n(nil).List(nil, nil) or
+// client.V1n(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *TheRosarySDK) V1n(data map[string]any) TheRosaryEntity {
 	return NewV1nEntityFunc(sdk, data)
 }
