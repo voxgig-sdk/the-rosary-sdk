@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:today():list() / client:today():load({ id = ... })
-function TheRosarySDK:today(data)
+-- Idiomatic facade: client:Today():list() / client:Today():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TheRosarySDK:Today(data)
   local EntityMod = require("entity.today_entity")
   if data == nil then
     if self._today == nil then
@@ -256,15 +257,10 @@ function TheRosarySDK:today(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:today() instead.
-function TheRosarySDK:Today(data)
-  local EntityMod = require("entity.today_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:v1n():list() / client:v1n():load({ id = ... })
-function TheRosarySDK:v1n(data)
+-- Idiomatic facade: client:V1n():list() / client:V1n():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function TheRosarySDK:V1n(data)
   local EntityMod = require("entity.v1n_entity")
   if data == nil then
     if self._v1n == nil then
@@ -272,12 +268,6 @@ function TheRosarySDK:v1n(data)
     end
     return self._v1n
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:v1n() instead.
-function TheRosarySDK:V1n(data)
-  local EntityMod = require("entity.v1n_entity")
   return EntityMod.new(self, data)
 end
 

@@ -28,16 +28,14 @@ require_relative "TheRosary_sdk"
 client = TheRosarySDK.new
 ```
 
-### 2. List todays
+### 2. List today records
 
 ```ruby
 begin
-  result = client.today.list
-  if result.is_a?(Array)
-    result.each do |item|
-      d = item.data_get
-      puts "#{d["id"]} #{d["name"]}"
-    end
+  # list returns an Array of Today records — iterate directly.
+  todays = client.Today.list
+  todays.each do |item|
+    puts "#{item["id"]} #{item["name"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -85,13 +83,17 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```ruby
-client = TheRosarySDK.test
+client = TheRosarySDK.test({
+  "entity" => { "today" => { "test01" => { "id" => "test01" } } },
+})
 
-result = client.today.load({ "id" => "test01" })
-# result contains mock response data
+# load returns the bare mock record (raises on error).
+today = client.Today.load({ "id" => "test01" })
+puts today
 ```
 
 ### Use a custom fetch function
@@ -237,7 +239,7 @@ API path: `/v1/{day}`
 
 ### Today
 
-Create an instance: `const today = client.today`
+Create an instance: `today = client.Today`
 
 #### Operations
 
@@ -254,14 +256,15 @@ Create an instance: `const today = client.today`
 
 #### Example: List
 
-```ts
-const todays = await client.today.list()
+```ruby
+# list returns an Array of Today records (raises on error).
+todays = client.Today.list
 ```
 
 
 ### V1n
 
-Create an instance: `const v1n = client.v1n`
+Create an instance: `v1n = client.V1n`
 
 #### Operations
 
@@ -279,8 +282,9 @@ Create an instance: `const v1n = client.v1n`
 
 #### Example: Load
 
-```ts
-const v1n = await client.v1n.load({ id: 'v1n_id' })
+```ruby
+# load returns the bare V1n record (raises on error).
+v1n = client.V1n.load({ "id" => "v1n_id" })
 ```
 
 
@@ -355,7 +359,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-today = client.today
+today = client.Today
 today.load({ "id" => "example_id" })
 
 # today.data_get now returns the loaded today data

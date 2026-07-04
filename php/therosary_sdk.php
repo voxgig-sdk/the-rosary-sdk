@@ -233,10 +233,10 @@ class TheRosarySDK
 
     private $_today = null;
 
-    // Idiomatic facade: $client->today()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Today() (PHP method
-    // names are case-insensitive).
-    public function today($data = null)
+    // Canonical facade: $client->Today()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->today()
+    // resolves here too.
+    public function Today($data = null)
     {
         require_once __DIR__ . '/entity/today_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class TheRosarySDK
 
     private $_v1n = null;
 
-    // Idiomatic facade: $client->v1n()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias V1n() (PHP method
-    // names are case-insensitive).
-    public function v1n($data = null)
+    // Canonical facade: $client->V1n()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->v1n()
+    // resolves here too.
+    public function V1n($data = null)
     {
         require_once __DIR__ . '/entity/v1n_entity.php';
         if ($data === null) {

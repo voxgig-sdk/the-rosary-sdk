@@ -121,7 +121,7 @@ Alias for `TheRosarySDK.test()`.
 ## TodayEntity
 
 ```ts
-const today = client.today
+const today = client.Today()
 ```
 
 ### Fields
@@ -138,7 +138,7 @@ const today = client.today
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.today.list()
+const results = await client.Today().list()
 ```
 
 ### Common Methods
@@ -172,7 +172,7 @@ Return a copy of the entity options.
 ## V1nEntity
 
 ```ts
-const v1n = client.v1n
+const v1n = client.V1n()
 ```
 
 ### Fields
@@ -190,7 +190,7 @@ const v1n = client.v1n
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.v1n.load({ id: 'v1n_id' })
+const result = await client.V1n().load({ id: 'v1n_id' })
 ```
 
 ### Common Methods

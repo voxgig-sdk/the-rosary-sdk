@@ -84,7 +84,7 @@ Prepare a fetch definition without sending. Returns the `fetchdef` and raises on
 ## TodayEntity
 
 ```python
-today = client.today
+today = client.Today()
 ```
 
 ### Fields
@@ -101,7 +101,9 @@ today = client.today
 List entities matching the given criteria. Returns a list and raises on error.
 
 ```python
-results = client.today.list({})
+results = client.Today().list({})
+for today in results:
+    print(today)
 ```
 
 ### Common Methods
@@ -136,7 +138,7 @@ Return the entity name.
 ## V1nEntity
 
 ```python
-v1n = client.v1n
+v1n = client.V1n()
 ```
 
 ### Fields
@@ -154,7 +156,7 @@ v1n = client.v1n
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.v1n.load({"id": "v1n_id"})
+result = client.V1n().load({"id": "v1n_id"})
 ```
 
 ### Common Methods

@@ -90,7 +90,7 @@ same parameters as `direct()`. Raises on error.
 ## TodayEntity
 
 ```ruby
-today = client.today
+today = client.Today
 ```
 
 ### Fields
@@ -107,7 +107,7 @@ today = client.today
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.today.list(nil)
+results = client.Today.list(nil)
 ```
 
 ### Common Methods
@@ -143,7 +143,7 @@ Return the entity name.
 ## V1nEntity
 
 ```ruby
-v1n = client.v1n
+v1n = client.V1n
 ```
 
 ### Fields
@@ -161,7 +161,7 @@ v1n = client.v1n
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.v1n.load({ "id" => "v1n_id" })
+result = client.V1n.load({ "id" => "v1n_id" })
 ```
 
 ### Common Methods

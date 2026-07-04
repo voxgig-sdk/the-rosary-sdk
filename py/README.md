@@ -31,14 +31,16 @@ from therosary_sdk import TheRosarySDK
 client = TheRosarySDK()
 ```
 
-### 2. List todays
+### 2. List today records
+
+`list()` returns a `list` of records (each a `dict`) and raises on
+error — iterate it directly.
 
 ```python
 try:
-    result = client.today.list()
-    for item in result:
-        d = item.data_get()
-        print(d["id"], d["name"])
+    todays = client.Today().list({})
+    for today in todays:
+        print(today)
 except Exception as err:
     print(f"list failed: {err}")
 ```
@@ -86,8 +88,9 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TheRosarySDK.test()
 
-result = client.today.load({"id": "test01"})
-# result contains mock response data
+# Entity ops return the bare record and raise on error.
+today = client.Today().load({"id": "test01"})
+# today contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -234,7 +237,7 @@ API path: `/v1/{day}`
 
 ### Today
 
-Create an instance: `const today = client.today`
+Create an instance: `today = client.Today()`
 
 #### Operations
 
@@ -251,14 +254,14 @@ Create an instance: `const today = client.today`
 
 #### Example: List
 
-```ts
-const todays = await client.today.list()
+```python
+todays = client.Today().list({})
 ```
 
 
 ### V1n
 
-Create an instance: `const v1n = client.v1n`
+Create an instance: `v1n = client.V1n()`
 
 #### Operations
 
@@ -276,8 +279,8 @@ Create an instance: `const v1n = client.v1n`
 
 #### Example: Load
 
-```ts
-const v1n = await client.v1n.load({ id: 'v1n_id' })
+```python
+v1n = client.V1n().load({"id": "v1n_id"})
 ```
 
 
@@ -351,7 +354,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-today = client.today
+today = client.Today()
 today.load({"id": "example_id"})
 
 # today.data_get() now returns the loaded today data

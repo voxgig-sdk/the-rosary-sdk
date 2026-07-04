@@ -87,7 +87,7 @@ same parameters as `direct()`.
 ## TodayEntity
 
 ```lua
-local today = client:today(nil)
+local today = client:Today(nil)
 ```
 
 ### Fields
@@ -104,7 +104,7 @@ local today = client:today(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:today():list()
+local results, err = client:Today():list()
 ```
 
 ### Common Methods
@@ -140,7 +140,7 @@ Return the entity name.
 ## V1nEntity
 
 ```lua
-local v1n = client:v1n(nil)
+local v1n = client:V1n(nil)
 ```
 
 ### Fields
@@ -158,7 +158,7 @@ local v1n = client:v1n(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:v1n():load({ id = "v1n_id" })
+local result, err = client:V1n():load({ id = "v1n_id" })
 ```
 
 ### Common Methods

@@ -4,33 +4,33 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class Today:
-    description: Optional[str] = None
-    title: Optional[str] = None
+class Today(TypedDict, total=False):
+    description: str
+    title: str
 
 
-@dataclass
-class TodayListMatch:
-    description: Optional[str] = None
-    title: Optional[str] = None
+class TodayListMatch(TypedDict, total=False):
+    description: str
+    title: str
 
 
-@dataclass
-class V1n:
-    day: Optional[str] = None
-    mystery: Optional[str] = None
-    prayer: Optional[list] = None
-
-
-@dataclass
-class V1nLoadMatch:
+class V1n(TypedDict, total=False):
     day: str
+    mystery: str
+    prayer: list
 
+
+class V1nLoadMatch(TypedDict):
+    day: str

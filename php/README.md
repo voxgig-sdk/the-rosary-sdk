@@ -29,18 +29,16 @@ require_once 'therosary_sdk.php';
 $client = new TheRosarySDK();
 ```
 
-### 2. List todays
+### 2. List today records
 
 ```php
 try {
-    $result = $client->today()->list();
-    if (is_array($result)) {
-        foreach ($result as $item) {
-            $d = $item->data_get();
-            echo $d["id"] . " " . $d["name"] . "\n";
-        }
+    // list() returns an array of Today records — iterate directly.
+    $todays = $client->Today()->list();
+    foreach ($todays as $item) {
+        echo $item["id"] . " " . $item["name"] . "\n";
     }
-} catch (\Exception $err) {
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -86,13 +84,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = TheRosarySDK::test();
+$client = TheRosarySDK::test([
+    "entity" => ["today" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->today()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$today = $client->Today()->load(["id" => "test01"]);
+print_r($today);
 ```
 
 ### Use a custom fetch function
@@ -242,7 +244,7 @@ API path: `/v1/{day}`
 
 ### Today
 
-Create an instance: `const today = client.today`
+Create an instance: `$today = $client->Today();`
 
 #### Operations
 
@@ -259,14 +261,15 @@ Create an instance: `const today = client.today`
 
 #### Example: List
 
-```ts
-const todays = await client.today.list()
+```php
+// list() returns an array of Today records (throws on error).
+$todays = $client->Today()->list();
 ```
 
 
 ### V1n
 
-Create an instance: `const v1n = client.v1n`
+Create an instance: `$v1n = $client->V1n();`
 
 #### Operations
 
@@ -284,8 +287,9 @@ Create an instance: `const v1n = client.v1n`
 
 #### Example: Load
 
-```ts
-const v1n = await client.v1n.load({ id: 'v1n_id' })
+```php
+// load() returns the bare V1n record (throws on error).
+$v1n = $client->V1n()->load(["id" => "v1n_id"]);
 ```
 
 
@@ -360,7 +364,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$today = $client->today();
+$today = $client->Today();
 $today->load(["id" => "example_id"]);
 
 // $today->dataGet() now returns the loaded today data

@@ -26,9 +26,11 @@ import { TheRosarySDK } from '@voxgig-sdk/the-rosary'
 
 const client = new TheRosarySDK()
 
-// List all todays
-const todays = await client.today.list()
-console.log(todays.data)
+// List all todays (returns Today[])
+const todays = await client.Today().list()
+for (const today of todays) {
+  console.log(today)
+}
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -84,9 +86,10 @@ from therosary_sdk import TheRosarySDK
 
 client = TheRosarySDK()
 
-# List all todays
-todays = client.today.list()
-print(todays)
+# List all todays (returns a list, raises on error)
+todays = client.Today().list({})
+for today in todays:
+    print(today)
 ```
 
 ### PHP
@@ -97,8 +100,8 @@ require_once 'therosary_sdk.php';
 
 $client = new TheRosarySDK();
 
-// List all todays (throws on error)
-$todays = $client->today()->list();
+// List all todays (returns an array; throws on error)
+$todays = $client->Today()->list();
 print_r($todays);
 ```
 
@@ -121,8 +124,8 @@ require_relative "TheRosary_sdk"
 
 client = TheRosarySDK.new
 
-# List all todays
-todays = client.today.list
+# List all todays (returns an Array; raises on error)
+todays = client.Today.list
 puts todays
 ```
 
@@ -134,7 +137,7 @@ local sdk = require("the-rosary_sdk")
 local client = sdk.new()
 
 -- List all todays
-local todays, err = client:today():list()
+local todays, err = client:Today():list()
 print(todays)
 ```
 
@@ -147,22 +150,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = TheRosarySDK.test()
-const result = await client.today.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const today = await client.Today().load({ id: 'test01' })
+// today is a bare Today populated with mock data
+console.log(today)
 ```
 
 ### Python
 
 ```python
 client = TheRosarySDK.test()
-result = client.today.load({"id": "test01"})
+today = client.Today().load({"id": "test01"})
+print(today)
 ```
 
 ### PHP
 
 ```php
-$client = TheRosarySDK::test();
-$result = $client->today()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = TheRosarySDK::test([
+    "entity" => ["today" => ["test01" => ["id" => "test01"]]],
+]);
+$today = $client->Today()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -177,15 +185,18 @@ result, err := client.Today(nil).Load(
 ### Ruby
 
 ```ruby
-client = TheRosarySDK.test
-result = client.today.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = TheRosarySDK.test({
+  "entity" => { "today" => { "test01" => { "id" => "test01" } } },
+})
+today = client.Today.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:today():load({ id = "test01" })
+local result, err = client:Today():load({ id = "test01" })
 ```
 
 ## How it works
@@ -233,6 +244,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

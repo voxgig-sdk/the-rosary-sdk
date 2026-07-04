@@ -208,26 +208,14 @@ class TheRosarySDK
   end
 
 
-  # Idiomatic facade: client.today.list / client.today.load({ "id" => ... })
-  def today
-    require_relative 'entity/today_entity'
-    @today ||= TodayEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.today instead.
+  # Canonical facade: client.Today.list / client.Today.load({ "id" => ... })
   def Today(data = nil)
     require_relative 'entity/today_entity'
     TodayEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.v1n.list / client.v1n.load({ "id" => ... })
-  def v1n
-    require_relative 'entity/v1n_entity'
-    @v1n ||= V1nEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.v1n instead.
+  # Canonical facade: client.V1n.list / client.V1n.load({ "id" => ... })
   def V1n(data = nil)
     require_relative 'entity/v1n_entity'
     V1nEntity.new(self, data)

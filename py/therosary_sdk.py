@@ -220,41 +220,21 @@ class TheRosarySDK:
         }
 
 
-    @property
-    def today(self):
-        """Idiomatic facade: client.today.list() / client.today.load({"id": ...})."""
-        from entity.today_entity import TodayEntity
-        cached = getattr(self, "_today", None)
-        if cached is None:
-            cached = TodayEntity(self, None)
-            self._today = cached
-        return cached
-
-    def Today(self, data=None):
-        # Deprecated: use client.today instead.
+    def Today(self, data=None) -> "TodayEntity":
+        """Entity factory: client.Today().list({}) / client.Today().load({"id": ...})."""
         from entity.today_entity import TodayEntity
         return TodayEntity(self, data)
 
 
-    @property
-    def v1n(self):
-        """Idiomatic facade: client.v1n.list() / client.v1n.load({"id": ...})."""
-        from entity.v1n_entity import V1nEntity
-        cached = getattr(self, "_v1n", None)
-        if cached is None:
-            cached = V1nEntity(self, None)
-            self._v1n = cached
-        return cached
-
-    def V1n(self, data=None):
-        # Deprecated: use client.v1n instead.
+    def V1n(self, data=None) -> "V1nEntity":
+        """Entity factory: client.V1n().list({}) / client.V1n().load({"id": ...})."""
         from entity.v1n_entity import V1nEntity
         return V1nEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "TheRosarySDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -274,3 +254,10 @@ class TheRosarySDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.today_entity import TodayEntity
+    from entity.v1n_entity import V1nEntity
