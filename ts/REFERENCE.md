@@ -128,8 +128,8 @@ const today = client.Today()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -179,9 +179,9 @@ const v1n = client.V1n()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | ``$STRING`` | No |  |
-| `mystery` | ``$STRING`` | No |  |
-| `prayer` | ``$ARRAY`` | No |  |
+| `day` | `string` | No |  |
+| `mystery` | `string` | No |  |
+| `prayer` | `any[]` | No |  |
 
 ### Operations
 
@@ -190,7 +190,7 @@ const v1n = client.V1n()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.V1n().load({ id: 'v1n_id' })
+const result = await client.V1n().load()
 ```
 
 ### Common Methods

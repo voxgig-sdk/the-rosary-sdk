@@ -8,7 +8,7 @@ Complete API reference for the TheRosary Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'the-rosary_sdk'
+require_relative 'TheRosary_sdk'
 
 client = TheRosarySDK.new(options)
 ```
@@ -97,17 +97,17 @@ today = client.Today
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `String` | No |  |
+| `title` | `String` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.Today.list(nil)
+results = client.Today.list
 ```
 
 ### Common Methods
@@ -150,9 +150,9 @@ v1n = client.V1n
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | ``$STRING`` | No |  |
-| `mystery` | ``$STRING`` | No |  |
-| `prayer` | ``$ARRAY`` | No |  |
+| `day` | `String` | No |  |
+| `mystery` | `String` | No |  |
+| `prayer` | `Array` | No |  |
 
 ### Operations
 
@@ -161,7 +161,7 @@ v1n = client.V1n
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.V1n.load({ "id" => "v1n_id" })
+result = client.V1n.load()
 ```
 
 ### Common Methods

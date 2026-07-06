@@ -8,7 +8,7 @@ Complete API reference for the TheRosary Python SDK.
 ### Constructor
 
 ```python
-from the-rosary_sdk import TheRosarySDK
+from therosary_sdk import TheRosarySDK
 
 client = TheRosarySDK(options)
 ```
@@ -91,17 +91,17 @@ today = client.Today()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `str` | No |  |
+| `title` | `str` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.Today().list({})
+results = client.Today().list()
 for today in results:
     print(today)
 ```
@@ -145,9 +145,9 @@ v1n = client.V1n()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | ``$STRING`` | No |  |
-| `mystery` | ``$STRING`` | No |  |
-| `prayer` | ``$ARRAY`` | No |  |
+| `day` | `str` | No |  |
+| `mystery` | `str` | No |  |
+| `prayer` | `list` | No |  |
 
 ### Operations
 
@@ -156,7 +156,7 @@ v1n = client.V1n()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.V1n().load({"id": "v1n_id"})
+result = client.V1n().load()
 ```
 
 ### Common Methods

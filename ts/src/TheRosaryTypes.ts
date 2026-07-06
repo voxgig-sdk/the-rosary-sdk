@@ -10,7 +10,10 @@ export interface Today {
   title?: string
 }
 
-export type TodayListMatch = Partial<Today>
+export interface TodayListMatch {
+  description?: string
+  title?: string
+}
 
 export interface V1n {
   day?: string

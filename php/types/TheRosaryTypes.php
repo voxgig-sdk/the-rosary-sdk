@@ -19,7 +19,7 @@ class Today
     public ?string $title = null;
 }
 
-/** Match filter for Today#list (any subset of Today fields). */
+/** Request payload for Today#list. */
 class TodayListMatch
 {
     public ?string $description = null;

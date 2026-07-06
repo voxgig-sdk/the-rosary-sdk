@@ -14,8 +14,7 @@ type Today struct {
 	Title *string `json:"title,omitempty"`
 }
 
-// TodayListMatch mirrors the today fields as an all-optional match
-// filter (Go analog of Partial<Today>).
+// TodayListMatch is the typed request payload for Today.ListTyped.
 type TodayListMatch struct {
 	Description *string `json:"description,omitempty"`
 	Title *string `json:"title,omitempty"`

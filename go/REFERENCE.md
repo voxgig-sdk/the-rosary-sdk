@@ -101,8 +101,8 @@ today := client.Today(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -148,9 +148,9 @@ v1n := client.V1n(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | ``$STRING`` | No |  |
-| `mystery` | ``$STRING`` | No |  |
-| `prayer` | ``$ARRAY`` | No |  |
+| `day` | `string` | No |  |
+| `mystery` | `string` | No |  |
+| `prayer` | `[]any` | No |  |
 
 ### Operations
 
@@ -159,7 +159,7 @@ v1n := client.V1n(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.V1n(nil).Load(map[string]any{"id": "v1n_id"}, nil)
+result, err := client.V1n(nil).Load(nil, nil)
 ```
 
 ### Common Methods

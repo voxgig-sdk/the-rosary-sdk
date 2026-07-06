@@ -67,10 +67,12 @@ class V1nEntity
   
   # Load a single V1n.
   #
-  # @param reqmatch [V1nLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param reqmatch [V1nLoadMatch, Hash, nil] match criteria (id/query fields);
+  #   optional — an entity with no id-like key loads with no match (nil is treated
+  #   as an empty match, so client.V1n.load works with no args).
   # @param ctrl [Object, nil] optional per-call control
   # @return [V1n, Hash] the loaded V1n; raises TheRosaryError on failure
-  def load(reqmatch, ctrl = nil)
+  def load(reqmatch = nil, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({
       "opname" => "load",

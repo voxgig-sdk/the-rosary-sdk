@@ -221,13 +221,13 @@ class TheRosarySDK:
 
 
     def Today(self, data=None) -> "TodayEntity":
-        """Entity factory: client.Today().list({}) / client.Today().load({"id": ...})."""
+        """Entity factory: client.Today().list() / client.Today().load({"id": ...})."""
         from entity.today_entity import TodayEntity
         return TodayEntity(self, data)
 
 
     def V1n(self, data=None) -> "V1nEntity":
-        """Entity factory: client.V1n().list({}) / client.V1n().load({"id": ...})."""
+        """Entity factory: client.V1n().list() / client.V1n().load({"id": ...})."""
         from entity.v1n_entity import V1nEntity
         return V1nEntity(self, data)
 

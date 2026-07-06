@@ -21,7 +21,7 @@ Today = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Today#list (any subset of Today fields).
+# Request payload for Today#list.
 #
 # @!attribute [rw] description
 #   @return [String, nil]

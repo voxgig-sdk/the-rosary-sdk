@@ -94,8 +94,8 @@ local today = client:Today(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | ``$STRING`` | No |  |
-| `title` | ``$STRING`` | No |  |
+| `description` | `string` | No |  |
+| `title` | `string` | No |  |
 
 ### Operations
 
@@ -147,9 +147,9 @@ local v1n = client:V1n(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | ``$STRING`` | No |  |
-| `mystery` | ``$STRING`` | No |  |
-| `prayer` | ``$ARRAY`` | No |  |
+| `day` | `string` | No |  |
+| `mystery` | `string` | No |  |
+| `prayer` | `table` | No |  |
 
 ### Operations
 
@@ -158,7 +158,7 @@ local v1n = client:V1n(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:V1n():load({ id = "v1n_id" })
+local result, err = client:V1n():load()
 ```
 
 ### Common Methods

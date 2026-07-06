@@ -17,8 +17,6 @@ go build -o the-rosary-cli ./...
 ```sh
 # One-shot: arguments form a single AQL expression
 ./the-rosary-cli list today
-./the-rosary-cli load 1 today
-./the-rosary-cli load '{id:1}' today
 
 # REPL
 ./the-rosary-cli
@@ -30,7 +28,6 @@ go build -o the-rosary-cli ./...
 |----------|----------------------------------------------|----------------------------|
 | `list`   | `[entity]` · `[query entity]`                | List records               |
 | `load`   | `[entity]` · `[query entity]`                | Load a single record       |
-| `update` | `[entity]` · `[query entity]`                | Update a record            |
 
 `query` is either a Map (`{id:1}`) or a Scalar (`1`, treated as `{id:1}`).
 `entity` is one of the SDK's entity names (auto-quoted as an atom).

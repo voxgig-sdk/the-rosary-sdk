@@ -11,6 +11,8 @@
 ---@field title? string
 
 ---@class TodayListMatch
+---@field description? string
+---@field title? string
 
 ---@class V1n
 ---@field day? string
