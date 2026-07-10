@@ -50,6 +50,19 @@ except Exception as err:
     print(f"list failed: {err}")
 ```
 
+### 3. Load a v1n
+
+V1n is nested under day, so provide the `day`.
+`load()` returns the bare record (a `dict`) and raises on error.
+
+```python
+try:
+    v1n = client.V1n().load({"day": "example_day"})
+    print(v1n)
+except Exception as err:
+    print(f"load failed: {err}")
+```
+
 
 ## Error handling
 
@@ -313,7 +326,7 @@ Create an instance: `v1n = client.V1n()`
 #### Example: Load
 
 ```python
-v1n = client.V1n().load()
+v1n = client.V1n().load({"day": "day"})
 ```
 
 

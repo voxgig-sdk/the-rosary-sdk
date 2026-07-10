@@ -45,6 +45,20 @@ try {
 }
 ```
 
+### 3. Load a v1n
+
+V1n is nested under day, so provide the `day`.
+
+```php
+try {
+    // load() returns the bare V1n record (throws on error).
+    $v1n = $client->V1n()->load(["day" => "example_day"]);
+    print_r($v1n);
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
 
 ## Error handling
 
@@ -319,7 +333,7 @@ Create an instance: `$v1n = $client->V1n();`
 
 ```php
 // load() returns the bare V1n record (throws on error).
-$v1n = $client->V1n()->load();
+$v1n = $client->V1n()->load(["day" => "day"]);
 ```
 
 

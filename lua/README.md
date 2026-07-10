@@ -47,6 +47,16 @@ for _, item in ipairs(todays) do
 end
 ```
 
+### 3. Load a v1n
+
+V1n is nested under day, so provide the `day`.
+
+```lua
+local v1n, err = client:V1n():load({ day = "example_day" })
+if err then error(err) end
+print(v1n)
+```
+
 
 ## Error handling
 
@@ -303,7 +313,7 @@ Create an instance: `local v1n = client:V1n(nil)`
 #### Example: Load
 
 ```lua
-local v1n, err = client:V1n():load()
+local v1n, err = client:V1n():load({ day = "day" })
 ```
 
 

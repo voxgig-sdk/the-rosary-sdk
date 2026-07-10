@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -302,14 +299,17 @@
           "url": "https://therosaryapi.cf/"
         },
         "description": "Provides various endpoints to access rosary prayers for different days and occasions in JSON format. No authentication required for usage.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://the-rosary-api.vercel.app"
           }
         ],
+        "summary": "Provides various endpoints to access rosary prayers for different days and occasions in JSON format.",
         "title": "The Rosary Api",
-        "version": "1.0.0"
+        "version": "1.0.0",
+        "website": "https://the-rosary-api.vercel.app"
       },
       "option": {},
       "target": {
@@ -362,6 +362,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -412,6 +415,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

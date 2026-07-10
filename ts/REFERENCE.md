@@ -190,7 +190,7 @@ const v1n = client.V1n()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.V1n().load()
+const result = await client.V1n().load({ day: 'day' })
 ```
 
 ### Common Methods

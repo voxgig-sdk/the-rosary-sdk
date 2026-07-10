@@ -158,7 +158,7 @@ local v1n = client:V1n(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:V1n():load()
+local result, err = client:V1n():load({ day = "day" })
 ```
 
 ### Common Methods

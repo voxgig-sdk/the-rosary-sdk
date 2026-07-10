@@ -160,7 +160,7 @@ $v1n = $client->V1n();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->V1n()->load();
+$result = $client->V1n()->load(["day" => "day"]);
 ```
 
 ### Common Methods

@@ -336,7 +336,7 @@ Create an instance: `v1n := client.V1n(nil)`
 #### Example: Load
 
 ```go
-v1n, err := client.V1n(nil).Load(nil, nil)
+v1n, err := client.V1n(nil).Load(map[string]any{"day": "day"}, nil)
 if err != nil {
     panic(err)
 }

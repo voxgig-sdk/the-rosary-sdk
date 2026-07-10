@@ -95,6 +95,7 @@ same parameters as `Direct()`.
 
 ```go
 today := client.Today(nil)
+fmt.Println(today.GetName()) // "today"
 ```
 
 ### Fields
@@ -112,6 +113,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.Today(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods
@@ -142,6 +147,7 @@ Return the entity name.
 
 ```go
 v1n := client.V1n(nil)
+fmt.Println(v1n.GetName()) // "v1n"
 ```
 
 ### Fields
@@ -159,7 +165,11 @@ v1n := client.V1n(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.V1n(nil).Load(nil, nil)
+result, err := client.V1n(nil).Load(map[string]any{"day": "day"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods

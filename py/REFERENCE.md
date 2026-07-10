@@ -156,7 +156,7 @@ v1n = client.V1n()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.V1n().load()
+result = client.V1n().load({"day": "day"})
 ```
 
 ### Common Methods

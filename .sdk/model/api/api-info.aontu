@@ -15,9 +15,9 @@ main: {
           url: "https://the-rosary-api.vercel.app"
         }
       ]
+      summary: "Provides various endpoints to access rosary prayers for different days and occasions in JSON format."
       title: "The Rosary Api"
       version: "1.0.0"
+      website: "https://the-rosary-api.vercel.app"
     }
   }
-}
-
