@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- TheRosary SDK exists test
 
 local sdk = require("the-rosary_sdk")
 
