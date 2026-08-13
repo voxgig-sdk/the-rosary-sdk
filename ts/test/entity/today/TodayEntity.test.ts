@@ -26,8 +26,8 @@ import {
 describe('TodayEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when THEROSARY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('THEROSARY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when THE_ROSARY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('THE_ROSARY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = TheRosarySDK.test()
@@ -63,7 +63,7 @@ describe('TodayEntity', async () => {
     const today_ref01_ent = client.Today()
     const today_ref01_match: any = {}
 
-    const today_ref01_list = await today_ref01_ent.list(today_ref01_match)
+    const today_ref01_list = (await today_ref01_ent.list(today_ref01_match)).map((e: any) => e.data())
 
 
   })

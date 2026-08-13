@@ -35,7 +35,9 @@ const client = new TheRosarySDK()
 
 ### 2. List today records
 
-`list()` resolves to an array of Today objects — iterate it directly:
+`list()` resolves to an array of Today ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const todays = await client.Today().list()
@@ -136,7 +138,8 @@ Create a mock client for unit testing — no server required:
 const client = TheRosarySDK.test()
 
 const today = await client.Today().list()
-// today is a bare entity populated with mock response data
+// today is the entity, populated with mock response data
+// — call today.data() for the record itself
 console.log(today)
 ```
 
@@ -316,7 +319,7 @@ API path: `/v1/today`
 | --- | --- |
 | `day` |  |
 | `mystery` |  |
-| `prayer` |  |
+| `prayers` |  |
 
 Operations: load.
 
@@ -367,7 +370,7 @@ Create an instance: `const v1n = client.V1n()`
 | --- | --- | --- |
 | `day` | `string` |  |
 | `mystery` | `string` |  |
-| `prayer` | `any[]` |  |
+| `prayers` | `any[]` |  |
 
 #### Example: Load
 

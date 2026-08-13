@@ -26,8 +26,8 @@ import {
 describe('V1nEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when THEROSARY_TEST_LIVE=TRUE.
-  afterEach(liveDelay('THEROSARY_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when THE_ROSARY_TEST_LIVE=TRUE.
+  afterEach(liveDelay('THE_ROSARY_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = TheRosarySDK.test()
@@ -48,7 +48,7 @@ describe('V1nEntity', async () => {
     // fixture (entity TestData.json). Those don't exist on the live API.
     // Skip live runs unless the user provided a real ENTID env override.
     if (setup.syntheticOnly) {
-      t.skip('live entity test uses synthetic IDs from fixture — set THE_ROSARY_TEST_V_N_ENTID JSON to run live')
+      t.skip('live entity test uses synthetic IDs from fixture — set THE_ROSARY_TEST_V1N_ENTID JSON to run live')
       return
     }
     const client = setup.client
@@ -104,16 +104,16 @@ function basicSetup(extra?: any) {
   // basic flow consumes synthetic IDs from the fixture file; without an
   // override those synthetic IDs reach the live API and 4xx. Surface this
   // to the test so it can skip rather than fail.
-  const idmapEnvVal = process.env['THE_ROSARY_TEST_V_N_ENTID']
+  const idmapEnvVal = process.env['THE_ROSARY_TEST_V1N_ENTID']
   const idmapOverridden = null != idmapEnvVal && idmapEnvVal.trim().startsWith('{')
 
   const env = envOverride({
-    'THE_ROSARY_TEST_V_N_ENTID': idmap,
+    'THE_ROSARY_TEST_V1N_ENTID': idmap,
     'THE_ROSARY_TEST_LIVE': 'FALSE',
     'THE_ROSARY_TEST_EXPLAIN': 'FALSE',
   })
 
-  idmap = env['THE_ROSARY_TEST_V_N_ENTID']
+  idmap = env['THE_ROSARY_TEST_V1N_ENTID']
 
   const live = 'TRUE' === env.THE_ROSARY_TEST_LIVE
 

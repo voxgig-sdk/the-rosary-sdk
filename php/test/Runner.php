@@ -43,8 +43,8 @@ class TheRosaryTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('THEROSARY_TEST_LIVE');
-        $override = self::getenv('THEROSARY_TEST_OVERRIDE');
+        $live = self::getenv('THE_ROSARY_TEST_LIVE');
+        $override = self::getenv('THE_ROSARY_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class TheRosaryTestRunner
             }
         }
 
-        $explain = self::getenv('THEROSARY_TEST_EXPLAIN');
+        $explain = self::getenv('THE_ROSARY_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['THEROSARY_TEST_EXPLAIN'] = $explain;
+            $m['THE_ROSARY_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

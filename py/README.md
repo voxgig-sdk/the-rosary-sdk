@@ -53,7 +53,7 @@ except Exception as err:
 ### 3. Load a v1n
 
 V1n is nested under day, so provide the `day`.
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -137,7 +137,8 @@ Create a mock client for unit testing — no server required:
 ```python
 client = TheRosarySDK.test()
 
-# Entity ops return the bare record and raise on error.
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
 today = client.Today().list()
 # today contains the mock response record
 ```
@@ -235,7 +236,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -270,7 +271,7 @@ API path: `/v1/today`
 | --- | --- |
 | `day` |  |
 | `mystery` |  |
-| `prayer` |  |
+| `prayers` |  |
 
 Operations: Load.
 
@@ -321,7 +322,7 @@ Create an instance: `v1n = client.V1n()`
 | --- | --- | --- |
 | `day` | `str` |  |
 | `mystery` | `str` |  |
-| `prayer` | `list` |  |
+| `prayers` | `list` |  |
 
 #### Example: Load
 

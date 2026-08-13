@@ -147,7 +147,7 @@ v1n = client.V1n()
 | --- | --- | --- | --- |
 | `day` | `str` | No |  |
 | `mystery` | `str` | No |  |
-| `prayer` | `list` | No |  |
+| `prayers` | `list` | No |  |
 
 ### Operations
 

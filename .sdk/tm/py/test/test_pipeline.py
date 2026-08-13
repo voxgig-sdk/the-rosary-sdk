@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import TheRosarySDK
-from core.error import TheRosaryError
-from core.result import TheRosaryResult
-from core.response import TheRosaryResponse
-from core.spec import TheRosarySpec
-from feature.base_feature import TheRosaryBaseFeature
+from projectname_sdk.core.error import TheRosaryError
+from projectname_sdk.core.result import TheRosaryResult
+from projectname_sdk.core.response import TheRosaryResponse
+from projectname_sdk.core.spec import TheRosarySpec
+from projectname_sdk.feature.base_feature import TheRosaryBaseFeature
 
 
 def _client():

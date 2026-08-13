@@ -38,9 +38,18 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = TheRosarySDK.test()
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = TheRosarySDK.test({
+  entity: {
+    today: {
+      test01: { id: 'test01' },
+    },
+  },
+})
 const todays = await client.Today().list()
-// todays is an array of bare Today records populated with mock data
+// todays is an array of Today entities, populated with mock data
+// — call todays[0].data() for the record itself
 console.log(todays)
 ```
 
@@ -110,7 +119,7 @@ import { TheRosarySDK } from '@voxgig-sdk/the-rosary'
 
 const client = new TheRosarySDK()
 
-// List all todays (returns Today[])
+// List all todays (returns TodayEntity[] — .data() for the record)
 const todays = await client.Today().list()
 for (const today of todays) {
   console.log(today)
@@ -359,6 +368,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://therosaryapi.cf/](https://therosaryapi.cf/)
 

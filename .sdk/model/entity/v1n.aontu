@@ -16,7 +16,7 @@ main: kit: entity: v1n: {
       type: "`$STRING`"
     }
     {
-      name: "prayer"
+      name: "prayers"
       req: false
       type: "`$ARRAY`"
     }

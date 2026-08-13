@@ -149,7 +149,7 @@ local v1n = client:V1n(nil)
 | --- | --- | --- | --- |
 | `day` | `string` | No |  |
 | `mystery` | `string` | No |  |
-| `prayer` | `table` | No |  |
+| `prayers` | `table` | No |  |
 
 ### Operations
 

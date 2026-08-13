@@ -60,11 +60,11 @@ def today_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "THEROSARY_TEST_TODAY_ENTID" => {},
-    "THEROSARY_TEST_LIVE" => "FALSE",
+    "THE_ROSARY_TEST_TODAY_ENTID" => {},
+    "THE_ROSARY_TEST_LIVE" => "FALSE",
   })
 
-  live = env["THEROSARY_TEST_LIVE"] == "TRUE"
+  live = env["THE_ROSARY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

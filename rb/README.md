@@ -50,7 +50,7 @@ V1n is nested under day, so provide the `day`.
 
 ```ruby
 begin
-  # load returns the bare V1n record (raises on error).
+  # load returns the ENTITY — call data_get for the V1n record (raises on error).
   v1n = client.V1n.load({ "day" => "example_day" })
   puts v1n
 rescue => err
@@ -133,7 +133,8 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = TheRosarySDK.test
 
-# Entity ops return the bare mock record (raises on error).
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
 today = client.Today.list()
 puts today
 ```
@@ -265,7 +266,7 @@ API path: `/v1/today`
 | --- | --- |
 | `day` |  |
 | `mystery` |  |
-| `prayer` |  |
+| `prayers` |  |
 
 Operations: Load.
 
@@ -317,12 +318,12 @@ Create an instance: `v1n = client.V1n`
 | --- | --- | --- |
 | `day` | `String` |  |
 | `mystery` | `String` |  |
-| `prayer` | `Array` |  |
+| `prayers` | `Array` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare V1n record (raises on error).
+# load returns the ENTITY — call data_get for the V1n record (raises on error).
 v1n = client.V1n.load({ "day" => "day" })
 ```
 

@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ TheRosaryUtility.registrar = ->(u) {
   u.prepare_params = TheRosaryUtilities::PrepareParams
   u.prepare_path = TheRosaryUtilities::PreparePath
   u.prepare_query = TheRosaryUtilities::PrepareQuery
+  u.graphql_body = TheRosaryUtilities::GraphqlBody
+  u.graphql_errors = TheRosaryUtilities::GraphqlErrors
   u.result_basic = TheRosaryUtilities::ResultBasic
   u.result_body = TheRosaryUtilities::ResultBody
   u.result_headers = TheRosaryUtilities::ResultHeaders

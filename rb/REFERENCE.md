@@ -152,7 +152,7 @@ v1n = client.V1n
 | --- | --- | --- | --- |
 | `day` | `String` | No |  |
 | `mystery` | `String` | No |  |
-| `prayer` | `Array` | No |  |
+| `prayers` | `Array` | No |  |
 
 ### Operations
 

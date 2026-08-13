@@ -49,6 +49,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/today",
                 ["parts"] = {
@@ -58,7 +59,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.prayers`",
                 },
                 ["index$"] = 0,
               },
@@ -88,7 +89,7 @@ local function make_config()
           },
           {
             ["active"] = true,
-            ["name"] = "prayer",
+            ["name"] = "prayers",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 2,
@@ -116,6 +117,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/v1/{day}",
                 ["parts"] = {

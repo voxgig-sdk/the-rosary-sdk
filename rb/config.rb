@@ -50,6 +50,7 @@ module TheRosaryConfig
                 {
                   "active" => true,
                   "args" => {},
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/today",
                   "parts" => [
@@ -59,7 +60,7 @@ module TheRosaryConfig
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
-                    "res" => "`body`",
+                    "res" => "`body.prayers`",
                   },
                   "index$" => 0,
                 },
@@ -89,7 +90,7 @@ module TheRosaryConfig
             },
             {
               "active" => true,
-              "name" => "prayer",
+              "name" => "prayers",
               "req" => false,
               "type" => "`$ARRAY`",
               "index$" => 2,
@@ -117,6 +118,7 @@ module TheRosaryConfig
                       },
                     ],
                   },
+                  "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/{day}",
                   "parts" => [

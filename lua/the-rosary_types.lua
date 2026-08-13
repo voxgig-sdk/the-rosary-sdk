@@ -17,7 +17,7 @@
 ---@class V1n
 ---@field day? string
 ---@field mystery? string
----@field prayer? table
+---@field prayers? table
 
 ---@class V1nLoadMatch
 ---@field day string

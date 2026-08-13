@@ -151,7 +151,7 @@ $v1n = $client->V1n();
 | --- | --- | --- | --- |
 | `day` | `string` | No |  |
 | `mystery` | `string` | No |  |
-| `prayer` | `array` | No |  |
+| `prayers` | `array` | No |  |
 
 ### Operations
 

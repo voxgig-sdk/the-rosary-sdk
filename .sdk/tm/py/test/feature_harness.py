@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import TheRosaryControl
-from core.error import TheRosaryError
-from core.result import TheRosaryResult
-from core.spec import TheRosarySpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import TheRosaryControl
+from projectname_sdk.core.error import TheRosaryError
+from projectname_sdk.core.result import TheRosaryResult
+from projectname_sdk.core.spec import TheRosarySpec
 
 
 # True when this SDK was generated with the named feature.

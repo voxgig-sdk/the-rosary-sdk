@@ -8,6 +8,7 @@ guide: {
   entity: today: {
     path: "/v1/today": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.prayers`")|top
     }
   }
 

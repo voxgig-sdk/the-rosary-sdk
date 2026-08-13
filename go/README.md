@@ -276,7 +276,7 @@ API path: `/v1/today`
 | --- | --- |
 | `"day"` |  |
 | `"mystery"` |  |
-| `"prayer"` |  |
+| `"prayers"` |  |
 
 Operations: Load.
 
@@ -331,7 +331,7 @@ Create an instance: `v1n := client.V1n(nil)`
 | --- | --- | --- |
 | `day` | `string` |  |
 | `mystery` | `string` |  |
-| `prayer` | `[]any` |  |
+| `prayers` | `[]any` |  |
 
 #### Example: Load
 

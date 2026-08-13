@@ -4,19 +4,19 @@
       "V1N00": {
         "day": "s1e",
         "mystery": "s1f",
-        "prayer": [],
+        "prayers": [],
         "id": "V1N00"
       },
       "V1N01": {
         "day": "s3c",
         "mystery": "s3d",
-        "prayer": [],
+        "prayers": [],
         "id": "V1N01"
       },
       "V1N02": {
         "day": "s5a",
         "mystery": "s5b",
-        "prayer": [],
+        "prayers": [],
         "id": "V1N02"
       }
     }
@@ -26,7 +26,7 @@
       "v1n_ref01": {
         "day": "s78",
         "mystery": "s79",
-        "prayer": []
+        "prayers": []
       }
     }
   }

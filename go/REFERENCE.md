@@ -156,7 +156,7 @@ fmt.Println(v1n.GetName()) // "v1n"
 | --- | --- | --- | --- |
 | `day` | `string` | No |  |
 | `mystery` | `string` | No |  |
-| `prayer` | `[]any` | No |  |
+| `prayers` | `[]any` | No |  |
 
 ### Operations
 

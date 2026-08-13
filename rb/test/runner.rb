@@ -23,8 +23,8 @@ module TheRosaryTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("THEROSARY_TEST_LIVE")
-    override = getenv("THEROSARY_TEST_OVERRIDE")
+    live = getenv("THE_ROSARY_TEST_LIVE")
+    override = getenv("THE_ROSARY_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module TheRosaryTestRunner
       end
     end
 
-    explain = getenv("THEROSARY_TEST_EXPLAIN")
-    m["THEROSARY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("THE_ROSARY_TEST_EXPLAIN")
+    m["THE_ROSARY_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

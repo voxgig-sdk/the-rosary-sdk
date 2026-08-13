@@ -21,7 +21,7 @@ class Config {
 
 
   main = {
-    name: 'ProjectName',
+    name: 'TheRosary',
   }
 
 
@@ -81,6 +81,7 @@ class Config {
             {
               "active": true,
               "args": {},
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/today",
               "parts": [
@@ -90,7 +91,7 @@ class Config {
               "select": {},
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.prayers`"
               },
               "index$": 0
             }
@@ -120,7 +121,7 @@ class Config {
         },
         {
           "active": true,
-          "name": "prayer",
+          "name": "prayers",
           "req": false,
           "type": "`$ARRAY`",
           "index$": 2
@@ -148,6 +149,7 @@ class Config {
                   }
                 ]
               },
+              "kind": "http",
               "method": "GET",
               "orig": "/v1/{day}",
               "parts": [

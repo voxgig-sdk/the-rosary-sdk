@@ -31,7 +31,7 @@ main: kit: entity: today: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.prayers`"
           }
         }
       ]

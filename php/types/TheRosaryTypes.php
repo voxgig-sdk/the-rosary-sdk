@@ -31,7 +31,7 @@ class V1n
 {
     public ?string $day = null;
     public ?string $mystery = null;
-    public ?array $prayer = null;
+    public ?array $prayers = null;
 }
 
 /** Request payload for V1n#load. */

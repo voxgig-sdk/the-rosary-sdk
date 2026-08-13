@@ -67,11 +67,11 @@ def v1n_direct_setup(mockres)
   calls = []
 
   env = Runner.env_override({
-    "THEROSARY_TEST_V_N_ENTID" => {},
-    "THEROSARY_TEST_LIVE" => "FALSE",
+    "THE_ROSARY_TEST_V1N_ENTID" => {},
+    "THE_ROSARY_TEST_LIVE" => "FALSE",
   })
 
-  live = env["THEROSARY_TEST_LIVE"] == "TRUE"
+  live = env["THE_ROSARY_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {

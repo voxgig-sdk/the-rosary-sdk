@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from therosary_sdk.utility.voxgig_struct import voxgig_struct as vs
 from therosary_sdk import TheRosarySDK
-from core import helpers
+from therosary_sdk.core import helpers
 from test import runner
 
 
@@ -63,11 +63,11 @@ def _v1n_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "THEROSARY_TEST_V_N_ENTID": {},
-        "THEROSARY_TEST_LIVE": "FALSE",
+        "THE_ROSARY_TEST_V1N_ENTID": {},
+        "THE_ROSARY_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("THEROSARY_TEST_LIVE") == "TRUE"
+    live = env.get("THE_ROSARY_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

@@ -68,11 +68,11 @@ function v1n_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["THEROSARY_TEST_V_N_ENTID"] = {},
-    ["THEROSARY_TEST_LIVE"] = "FALSE",
+    ["THE_ROSARY_TEST_V1N_ENTID"] = {},
+    ["THE_ROSARY_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["THEROSARY_TEST_LIVE"] == "TRUE"
+  local live = env["THE_ROSARY_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

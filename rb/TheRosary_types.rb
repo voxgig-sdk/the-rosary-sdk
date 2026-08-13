@@ -42,12 +42,12 @@ TodayListMatch = Struct.new(
 # @!attribute [rw] mystery
 #   @return [String, nil]
 #
-# @!attribute [rw] prayer
+# @!attribute [rw] prayers
 #   @return [Array, nil]
 V1n = Struct.new(
   :day,
   :mystery,
-  :prayer,
+  :prayers,
   keyword_init: true
 )
 

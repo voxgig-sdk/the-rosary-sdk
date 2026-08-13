@@ -231,9 +231,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local today, err = client:Today():load()
+    local v1n, err = client:V1n():load()
     if err then error(err) end
-    -- today is the loaded record
+    -- v1n is the loaded record
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -257,7 +257,7 @@ API path: `/v1/today`
 | --- | --- |
 | `day` |  |
 | `mystery` |  |
-| `prayer` |  |
+| `prayers` |  |
 
 Operations: Load.
 
@@ -308,7 +308,7 @@ Create an instance: `local v1n = client:V1n(nil)`
 | --- | --- | --- |
 | `day` | `string` |  |
 | `mystery` | `string` |  |
-| `prayer` | `table` |  |
+| `prayers` | `table` |  |
 
 #### Example: Load
 

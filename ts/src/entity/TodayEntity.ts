@@ -37,7 +37,7 @@ class TodayEntity extends TheRosaryEntityBase<Today> {
 
 
 
-  async list(this: any, reqmatch?: TodayListMatch, ctrl?: Control): Promise<Today[]> {
+  async list(this: any, reqmatch?: TodayListMatch, ctrl?: Control): Promise<TodayEntity[]> {
 
     const utility = this._utility
 

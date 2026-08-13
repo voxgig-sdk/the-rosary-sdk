@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# TheRosary SDK exists test
 
 import pytest
 from therosary_sdk import TheRosarySDK

@@ -18,7 +18,7 @@ export interface TodayListMatch {
 export interface V1n {
   day?: string
   mystery?: string
-  prayer?: any[]
+  prayers?: any[]
 }
 
 export interface V1nLoadMatch {

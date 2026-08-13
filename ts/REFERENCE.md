@@ -181,7 +181,7 @@ const v1n = client.V1n()
 | --- | --- | --- | --- |
 | `day` | `string` | No |  |
 | `mystery` | `string` | No |  |
-| `prayer` | `any[]` | No |  |
+| `prayers` | `any[]` | No |  |
 
 ### Operations
 

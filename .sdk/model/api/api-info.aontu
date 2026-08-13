@@ -21,3 +21,5 @@ main: {
       website: "https://the-rosary-api.vercel.app"
     }
   }
+}
+
