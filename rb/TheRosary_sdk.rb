@@ -28,7 +28,7 @@ class TheRosarySDK
     utility = TheRosaryUtility.new
     @_utility = utility
 
-    config = TheRosaryConfig.make_config
+    config = TheRosaryConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

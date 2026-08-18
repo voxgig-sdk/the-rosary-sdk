@@ -15,7 +15,7 @@ require_relative "../TheRosary_sdk"
 module TheRosaryFeatureHarness
   # True when this SDK was generated with the named feature.
   def self.has_feature?(name)
-    f = TheRosaryConfig.make_config["feature"]
+    f = TheRosaryConfig.shared_config["feature"]
     f.is_a?(Hash) && !f[name].nil?
   end
 

@@ -40,7 +40,7 @@ class TheRosarySDK
         $utility = new TheRosaryUtility();
         $this->_utility = $utility;
 
-        $config = TheRosaryConfig::make_config();
+        $config = TheRosaryConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,
