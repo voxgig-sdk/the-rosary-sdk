@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -306,8 +306,8 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `title` |  |
+| `description` | Description or meditation for the prayer |
+| `title` | The title of the prayer or mystery |
 
 Operations: list.
 
@@ -317,9 +317,9 @@ API path: `/v1/today`
 
 | Field | Description |
 | --- | --- |
-| `day` |  |
-| `mystery` |  |
-| `prayers` |  |
+| `day` | The day of the week or occasion |
+| `mystery` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | List of prayers in the rosary |
 
 Operations: load.
 
@@ -344,8 +344,8 @@ Create an instance: `const today = client.Today()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Description or meditation for the prayer |
+| `title` | `string` | The title of the prayer or mystery |
 
 #### Example: List
 
@@ -368,9 +368,9 @@ Create an instance: `const v1n = client.V1n()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `day` | `string` |  |
-| `mystery` | `string` |  |
-| `prayers` | `any[]` |  |
+| `day` | `string` | The day of the week or occasion |
+| `mystery` | `string` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `any[]` | List of prayers in the rosary |
 
 #### Example: Load
 

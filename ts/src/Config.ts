@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'TheRosary',
+        slug: "the-rosary",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -59,10 +70,12 @@ class Config {
       "fields": [
         {
           "name": "description",
+          "short": "Description or meditation for the prayer",
           "type": "`$STRING`"
         },
         {
           "name": "title",
+          "short": "The title of the prayer or mystery",
           "type": "`$STRING`"
         }
       ],
@@ -98,14 +111,17 @@ class Config {
       "fields": [
         {
           "name": "day",
+          "short": "The day of the week or occasion",
           "type": "`$STRING`"
         },
         {
           "name": "mystery",
+          "short": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
           "type": "`$STRING`"
         },
         {
           "name": "prayers",
+          "short": "List of prayers in the rosary",
           "type": "`$ARRAY`"
         }
       ],

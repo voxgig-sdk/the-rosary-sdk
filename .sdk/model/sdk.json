@@ -36,12 +36,14 @@
               "active": true,
               "name": "description",
               "req": false,
+              "short": "Description or meditation for the prayer",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "title",
               "req": false,
+              "short": "The title of the prayer or mystery",
               "type": "`$STRING`"
             }
           ],
@@ -84,18 +86,21 @@
               "active": true,
               "name": "day",
               "req": false,
+              "short": "The day of the week or occasion",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "mystery",
               "req": false,
+              "short": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "prayers",
               "req": false,
+              "short": "List of prayers in the rosary",
               "type": "`$ARRAY`"
             }
           ],

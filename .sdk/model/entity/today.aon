@@ -8,11 +8,13 @@ main: kit: entity: today: {
     {
       name: "description"
       req: false
+      short: "Description or meditation for the prayer"
       type: "`$STRING`"
     }
     {
       name: "title"
       req: false
+      short: "The title of the prayer or mystery"
       type: "`$STRING`"
     }
   ]

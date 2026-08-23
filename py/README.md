@@ -258,8 +258,8 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `title` |  |
+| `description` | Description or meditation for the prayer |
+| `title` | The title of the prayer or mystery |
 
 Operations: List.
 
@@ -269,9 +269,9 @@ API path: `/v1/today`
 
 | Field | Description |
 | --- | --- |
-| `day` |  |
-| `mystery` |  |
-| `prayers` |  |
+| `day` | The day of the week or occasion |
+| `mystery` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | List of prayers in the rosary |
 
 Operations: Load.
 
@@ -296,8 +296,8 @@ Create an instance: `today = client.Today()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `str` |  |
-| `title` | `str` |  |
+| `description` | `str` | Description or meditation for the prayer |
+| `title` | `str` | The title of the prayer or mystery |
 
 #### Example: List
 
@@ -320,9 +320,9 @@ Create an instance: `v1n = client.V1n()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `day` | `str` |  |
-| `mystery` | `str` |  |
-| `prayers` | `list` |  |
+| `day` | `str` | The day of the week or occasion |
+| `mystery` | `str` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `list` | List of prayers in the rosary |
 
 #### Example: Load
 

@@ -97,8 +97,8 @@ today = client.Today
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `String` | No |  |
-| `title` | `String` | No |  |
+| `description` | `String` | No | Description or meditation for the prayer |
+| `title` | `String` | No | The title of the prayer or mystery |
 
 ### Operations
 
@@ -150,9 +150,9 @@ v1n = client.V1n
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | `String` | No |  |
-| `mystery` | `String` | No |  |
-| `prayers` | `Array` | No |  |
+| `day` | `String` | No | The day of the week or occasion |
+| `mystery` | `String` | No | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `Array` | No | List of prayers in the rosary |
 
 ### Operations
 

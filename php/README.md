@@ -263,8 +263,8 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `title` |  |
+| `description` | Description or meditation for the prayer |
+| `title` | The title of the prayer or mystery |
 
 Operations: List.
 
@@ -274,9 +274,9 @@ API path: `/v1/today`
 
 | Field | Description |
 | --- | --- |
-| `day` |  |
-| `mystery` |  |
-| `prayers` |  |
+| `day` | The day of the week or occasion |
+| `mystery` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | List of prayers in the rosary |
 
 Operations: Load.
 
@@ -301,8 +301,8 @@ Create an instance: `$today = $client->Today();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Description or meditation for the prayer |
+| `title` | `string` | The title of the prayer or mystery |
 
 #### Example: List
 
@@ -326,9 +326,9 @@ Create an instance: `$v1n = $client->V1n();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `day` | `string` |  |
-| `mystery` | `string` |  |
-| `prayers` | `array` |  |
+| `day` | `string` | The day of the week or occasion |
+| `mystery` | `string` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `array` | List of prayers in the rosary |
 
 #### Example: Load
 

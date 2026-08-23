@@ -244,8 +244,8 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `title` |  |
+| `description` | Description or meditation for the prayer |
+| `title` | The title of the prayer or mystery |
 
 Operations: List.
 
@@ -255,9 +255,9 @@ API path: `/v1/today`
 
 | Field | Description |
 | --- | --- |
-| `day` |  |
-| `mystery` |  |
-| `prayers` |  |
+| `day` | The day of the week or occasion |
+| `mystery` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | List of prayers in the rosary |
 
 Operations: Load.
 
@@ -282,8 +282,8 @@ Create an instance: `local today = client:Today(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Description or meditation for the prayer |
+| `title` | `string` | The title of the prayer or mystery |
 
 #### Example: List
 
@@ -306,9 +306,9 @@ Create an instance: `local v1n = client:V1n(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `day` | `string` |  |
-| `mystery` | `string` |  |
-| `prayers` | `table` |  |
+| `day` | `string` | The day of the week or occasion |
+| `mystery` | `string` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `table` | List of prayers in the rosary |
 
 #### Example: Load
 

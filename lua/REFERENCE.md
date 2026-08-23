@@ -94,8 +94,8 @@ local today = client:Today(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `title` | `string` | No |  |
+| `description` | `string` | No | Description or meditation for the prayer |
+| `title` | `string` | No | The title of the prayer or mystery |
 
 ### Operations
 
@@ -147,9 +147,9 @@ local v1n = client:V1n(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | `string` | No |  |
-| `mystery` | `string` | No |  |
-| `prayers` | `table` | No |  |
+| `day` | `string` | No | The day of the week or occasion |
+| `mystery` | `string` | No | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `table` | No | List of prayers in the rosary |
 
 ### Operations
 

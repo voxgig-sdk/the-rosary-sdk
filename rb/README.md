@@ -253,8 +253,8 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `description` |  |
-| `title` |  |
+| `description` | Description or meditation for the prayer |
+| `title` | The title of the prayer or mystery |
 
 Operations: List.
 
@@ -264,9 +264,9 @@ API path: `/v1/today`
 
 | Field | Description |
 | --- | --- |
-| `day` |  |
-| `mystery` |  |
-| `prayers` |  |
+| `day` | The day of the week or occasion |
+| `mystery` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | List of prayers in the rosary |
 
 Operations: Load.
 
@@ -291,8 +291,8 @@ Create an instance: `today = client.Today`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `String` |  |
-| `title` | `String` |  |
+| `description` | `String` | Description or meditation for the prayer |
+| `title` | `String` | The title of the prayer or mystery |
 
 #### Example: List
 
@@ -316,9 +316,9 @@ Create an instance: `v1n = client.V1n`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `day` | `String` |  |
-| `mystery` | `String` |  |
-| `prayers` | `Array` |  |
+| `day` | `String` | The day of the week or occasion |
+| `mystery` | `String` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `Array` | List of prayers in the rosary |
 
 #### Example: Load
 

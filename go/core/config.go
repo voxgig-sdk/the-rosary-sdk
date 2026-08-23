@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "TheRosary",
+			"slug": "the-rosary",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -34,10 +37,12 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
+						"short": "Description or meditation for the prayer",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "title",
+						"short": "The title of the prayer or mystery",
 						"type": "`$STRING`",
 					},
 				},
@@ -73,14 +78,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "day",
+						"short": "The day of the week or occasion",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "mystery",
+						"short": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "prayers",
+						"short": "List of prayers in the rosary",
 						"type": "`$ARRAY`",
 					},
 				},

@@ -91,8 +91,8 @@ today = client.Today()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `str` | No |  |
-| `title` | `str` | No |  |
+| `description` | `str` | No | Description or meditation for the prayer |
+| `title` | `str` | No | The title of the prayer or mystery |
 
 ### Operations
 
@@ -145,9 +145,9 @@ v1n = client.V1n()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | `str` | No |  |
-| `mystery` | `str` | No |  |
-| `prayers` | `list` | No |  |
+| `day` | `str` | No | The day of the week or occasion |
+| `mystery` | `str` | No | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `list` | No | List of prayers in the rosary |
 
 ### Operations
 

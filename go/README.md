@@ -6,7 +6,7 @@ The Golang SDK for the TheRosary API — an entity-oriented client using standar
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.Today(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -263,8 +263,8 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"description"` |  |
-| `"title"` |  |
+| `"description"` | Description or meditation for the prayer |
+| `"title"` | The title of the prayer or mystery |
 
 Operations: List.
 
@@ -274,9 +274,9 @@ API path: `/v1/today`
 
 | Field | Description |
 | --- | --- |
-| `"day"` |  |
-| `"mystery"` |  |
-| `"prayers"` |  |
+| `"day"` | The day of the week or occasion |
+| `"mystery"` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `"prayers"` | List of prayers in the rosary |
 
 Operations: Load.
 
@@ -301,8 +301,8 @@ Create an instance: `today := client.Today(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `description` | `string` |  |
-| `title` | `string` |  |
+| `description` | `string` | Description or meditation for the prayer |
+| `title` | `string` | The title of the prayer or mystery |
 
 #### Example: List
 
@@ -329,9 +329,9 @@ Create an instance: `v1n := client.V1n(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `day` | `string` |  |
-| `mystery` | `string` |  |
-| `prayers` | `[]any` |  |
+| `day` | `string` | The day of the week or occasion |
+| `mystery` | `string` | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `[]any` | List of prayers in the rosary |
 
 #### Example: Load
 

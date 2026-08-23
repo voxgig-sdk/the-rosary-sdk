@@ -102,8 +102,8 @@ fmt.Println(today.GetName()) // "today"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `description` | `string` | No |  |
-| `title` | `string` | No |  |
+| `description` | `string` | No | Description or meditation for the prayer |
+| `title` | `string` | No | The title of the prayer or mystery |
 
 ### Operations
 
@@ -154,9 +154,9 @@ fmt.Println(v1n.GetName()) // "v1n"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `day` | `string` | No |  |
-| `mystery` | `string` | No |  |
-| `prayers` | `[]any` | No |  |
+| `day` | `string` | No | The day of the week or occasion |
+| `mystery` | `string` | No | The type of mystery (Joyful, Sorrowful, Glorious, or Luminous) |
+| `prayers` | `[]any` | No | List of prayers in the rosary |
 
 ### Operations
 

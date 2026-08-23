@@ -8,16 +8,19 @@ main: kit: entity: v1n: {
     {
       name: "day"
       req: false
+      short: "The day of the week or occasion"
       type: "`$STRING`"
     }
     {
       name: "mystery"
       req: false
+      short: "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)"
       type: "`$STRING`"
     }
     {
       name: "prayers"
       req: false
+      short: "List of prayers in the rosary"
       type: "`$ARRAY`"
     }
   ]

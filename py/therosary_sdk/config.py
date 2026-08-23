@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "TheRosary",
+            "slug": "the-rosary",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -51,10 +54,12 @@ def make_config():
         "fields": [
           {
             "name": "description",
+            "short": "Description or meditation for the prayer",
             "type": "`$STRING`",
           },
           {
             "name": "title",
+            "short": "The title of the prayer or mystery",
             "type": "`$STRING`",
           },
         ],
@@ -90,14 +95,17 @@ def make_config():
         "fields": [
           {
             "name": "day",
+            "short": "The day of the week or occasion",
             "type": "`$STRING`",
           },
           {
             "name": "mystery",
+            "short": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
             "type": "`$STRING`",
           },
           {
             "name": "prayers",
+            "short": "List of prayers in the rosary",
             "type": "`$ARRAY`",
           },
         ],
