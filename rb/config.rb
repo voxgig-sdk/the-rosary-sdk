@@ -28,6 +28,7 @@ module TheRosaryConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
