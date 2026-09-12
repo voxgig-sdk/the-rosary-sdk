@@ -1,6 +1,14 @@
 # TheRosary SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -75,15 +83,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/today",
-                "parts": [
-                  "v1",
-                  "today",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "lit": "today",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.prayers`",
                 },
+                "parts": [
+                  "v1",
+                  "today",
+                ],
               },
             ],
           },
@@ -132,9 +148,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/v1/{day}",
-                "parts": [
-                  "v1",
-                  "{day}",
+                "segments": [
+                  {
+                    "lit": "v1",
+                  },
+                  {
+                    "var": "day",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -145,6 +165,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "v1",
+                  "{day}",
+                ],
               },
             ],
           },

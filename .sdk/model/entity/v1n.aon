@@ -45,9 +45,13 @@ main: kit: entity: v1n: {
           }
           method: "GET"
           orig: "/v1/{day}"
-          parts: [
-            "v1"
-            "{day}"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              var: "day"
+            }
           ]
           select: {
             exist: [

@@ -66,15 +66,23 @@ module TheRosaryConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/today",
-                  "parts" => [
-                    "v1",
-                    "today",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "lit" => "today",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.prayers`",
                   },
+                  "parts" => [
+                    "v1",
+                    "today",
+                  ],
                 },
               ],
             },
@@ -123,9 +131,13 @@ module TheRosaryConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/{day}",
-                  "parts" => [
-                    "v1",
-                    "{day}",
+                  "segments" => [
+                    {
+                      "lit" => "v1",
+                    },
+                    {
+                      "var" => "day",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -136,6 +148,10 @@ module TheRosaryConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "v1",
+                    "{day}",
+                  ],
                 },
               ],
             },

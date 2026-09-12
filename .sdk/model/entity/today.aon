@@ -27,9 +27,13 @@ main: kit: entity: today: {
         {
           method: "GET"
           orig: "/v1/today"
-          parts: [
-            "v1"
-            "today"
+          segments: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "today"
+            }
           ]
           transform: {
             req: "`reqdata`"
