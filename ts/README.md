@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { TheRosarySDK } from '@voxgig-sdk/the-rosary'
+import { TheRosarySDK } from '@voxgig-sdk/the-rosary-sdk'
 
 const client = new TheRosarySDK()
 ```
@@ -461,7 +461,7 @@ the-rosary/
 Import the SDK from the package root:
 
 ```ts
-import { TheRosarySDK } from '@voxgig-sdk/the-rosary'
+import { TheRosarySDK } from '@voxgig-sdk/the-rosary-sdk'
 ```
 
 ### Entity state

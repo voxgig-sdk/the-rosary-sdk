@@ -105,7 +105,7 @@ local results, err = client:Today():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
+| TypeScript | `@voxgig-sdk/the-rosary-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
 | Python | `voxgig-sdk-the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
 | PHP | `voxgig-sdk/the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/the-rosary-sdk/go` | `go get github.com/voxgig-sdk/the-rosary-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Today():list()
 ### TypeScript
 
 ```ts
-import { TheRosarySDK } from '@voxgig-sdk/the-rosary'
+import { TheRosarySDK } from '@voxgig-sdk/the-rosary-sdk'
 
 const client = new TheRosarySDK()
 

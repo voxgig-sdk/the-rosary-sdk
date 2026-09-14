@@ -1,5 +1,5 @@
 {
-  "name": "@voxgig-sdk/the-rosary",
+  "name": "@voxgig-sdk/the-rosary-sdk",
   "version": "0.0.1",
   "description": "Unofficial generated TypeScript SDK for the The Rosary public API. Not affiliated with or endorsed by the upstream API provider.",
   "keywords": [
