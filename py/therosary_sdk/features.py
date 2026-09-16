@@ -1,12 +1,18 @@
 # TheRosary SDK feature factory
 
 from therosary_sdk.feature.base_feature import TheRosaryBaseFeature
+from therosary_sdk.feature.ratelimit_feature import TheRosaryRatelimitFeature
+from therosary_sdk.feature.retry_feature import TheRosaryRetryFeature
 from therosary_sdk.feature.test_feature import TheRosaryTestFeature
+from therosary_sdk.feature.timeout_feature import TheRosaryTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: TheRosaryBaseFeature(),
+    "ratelimit": lambda: TheRosaryRatelimitFeature(),
+    "retry": lambda: TheRosaryRetryFeature(),
     "test": lambda: TheRosaryTestFeature(),
+    "timeout": lambda: TheRosaryTimeoutFeature(),
 }
 
 

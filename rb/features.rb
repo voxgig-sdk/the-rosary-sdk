@@ -1,7 +1,10 @@
 # TheRosary SDK feature factory
 
 require_relative 'feature/base_feature'
+require_relative 'feature/ratelimit_feature'
+require_relative 'feature/retry_feature'
 require_relative 'feature/test_feature'
+require_relative 'feature/timeout_feature'
 
 
 module TheRosaryFeatures
@@ -9,8 +12,14 @@ module TheRosaryFeatures
     case name
     when "base"
       TheRosaryBaseFeature.new
+    when "ratelimit"
+      TheRosaryRatelimitFeature.new
+    when "retry"
+      TheRosaryRetryFeature.new
     when "test"
       TheRosaryTestFeature.new
+    when "timeout"
+      TheRosaryTimeoutFeature.new
     else
       TheRosaryBaseFeature.new
     end
