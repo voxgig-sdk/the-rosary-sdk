@@ -127,12 +127,12 @@ class Config {
 
     entity: {
       
-      today: {
-      },
-
-      v1n: {
-      },
-
+        today: {
+        },
+  
+        v1n: {
+        },
+  
     }
   }
 

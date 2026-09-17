@@ -105,12 +105,12 @@ local results, err = client:Today():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/the-rosary-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
-| Python | `voxgig-sdk-the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
-| PHP | `voxgig-sdk/the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
+| TypeScript | `@voxgig-sdk/the-rosary-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/tags) |
+| Python | `voxgig-sdk-the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/tags) |
+| PHP | `voxgig-sdk/the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/the-rosary-sdk/go` | `go get github.com/voxgig-sdk/the-rosary-sdk/go@latest` |
-| Ruby | `voxgig-sdk-the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
-| Lua | `voxgig-sdk-the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/releases) |
+| Ruby | `voxgig-sdk-the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/tags) |
+| Lua | `voxgig-sdk-the-rosary` | publish pending — [install from git tag](https://github.com/voxgig-sdk/the-rosary-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/the-rosary-sdk/go-cli` | `go install github.com/voxgig-sdk/the-rosary-sdk/go-cli/cmd/the-rosary@latest` |
 | Go MCP server | `github.com/voxgig-sdk/the-rosary-sdk/go-mcp` | `go get github.com/voxgig-sdk/the-rosary-sdk/go-mcp@latest` |
 

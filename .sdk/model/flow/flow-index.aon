@@ -1,4 +1,4 @@
 # Flows
 
-@"BasicTodayFlow.aon"
-@"BasicV1nFlow.aon"
+@"./BasicTodayFlow.aon"
+@"./BasicV1nFlow.aon"
