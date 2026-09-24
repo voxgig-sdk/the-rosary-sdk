@@ -1,7 +1,7 @@
 // Typed models for the TheRosary SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,8 +14,6 @@ import (
 
 // Today is the typed data model for the today entity.
 type Today struct {
-	Description *string `json:"description,omitempty"`
-	Title *string `json:"title,omitempty"`
 }
 
 // TodayListMatch is the typed request payload for Today.ListTyped.
@@ -26,9 +24,6 @@ type TodayListMatch struct {
 
 // V1n is the typed data model for the v1n entity.
 type V1n struct {
-	Day *string `json:"day,omitempty"`
-	Mystery *string `json:"mystery,omitempty"`
-	Prayers *[]any `json:"prayers,omitempty"`
 }
 
 // V1nLoadMatch is the typed request payload for V1n.LoadTyped.

@@ -47,22 +47,6 @@ for (const today of todays) {
 }
 ```
 
-### 3. Load a v1n
-
-V1n is nested under day, so provide the `day`.
-`load()` returns the entity directly and throws on failure:
-
-```ts
-try {
-  const v1n = await client.V1n().load({
-    day: 'example_day',
-  })
-  console.log(v1n)
-} catch (err) {
-  console.error('load failed:', err)
-}
-```
-
 
 ## Error handling
 

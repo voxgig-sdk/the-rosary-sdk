@@ -11,19 +11,12 @@ const FEATURE_CLASS = {
     test: TestFeature_1.TestFeature,
     timeout: TimeoutFeature_1.TimeoutFeature,
 };
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS = {};
 exports.FEATURE_PLUGINS = FEATURE_PLUGINS;
 class Config {
     makeFeature(fn) {
         const fc = FEATURE_CLASS[fn];
         const fi = new fc();
-        // TODO: errors etc
         return fi;
     }
     // False for a feature added at runtime via options.extend (station's
@@ -115,13 +108,15 @@ class Config {
             "fields": [
                 {
                     "name": "description",
-                    "short": "Description or meditation for the prayer",
-                    "type": "`$STRING`"
+                    "title": "Description",
+                    "type": "`$STRING`",
+                    "short": "Description or meditation for the prayer"
                 },
                 {
                     "name": "title",
-                    "short": "The title of the prayer or mystery",
-                    "type": "`$STRING`"
+                    "title": "Title",
+                    "type": "`$STRING`",
+                    "short": "The title of the prayer or mystery"
                 }
             ],
             "name": "today",
@@ -131,7 +126,6 @@ class Config {
                     "name": "list",
                     "points": [
                         {
-                            "args": {},
                             "kind": "http",
                             "method": "GET",
                             "orig": "/v1/today",
@@ -143,15 +137,17 @@ class Config {
                                     "lit": "today"
                                 }
                             ],
-                            "select": {},
+                            "parts": [
+                                "v1",
+                                "today"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body.prayers`"
                             },
-                            "parts": [
-                                "v1",
-                                "today"
-                            ]
+                            "args": {},
+                            "select": {}
                         }
                     ]
                 }
@@ -164,18 +160,21 @@ class Config {
             "fields": [
                 {
                     "name": "day",
-                    "short": "The day of the week or occasion",
-                    "type": "`$STRING`"
+                    "title": "Day",
+                    "type": "`$STRING`",
+                    "short": "The day of the week or occasion"
                 },
                 {
                     "name": "mystery",
-                    "short": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
-                    "type": "`$STRING`"
+                    "title": "Mystery",
+                    "type": "`$STRING`",
+                    "short": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)"
                 },
                 {
                     "name": "prayers",
-                    "short": "List of prayers in the rosary",
-                    "type": "`$ARRAY`"
+                    "title": "Prayers",
+                    "type": "`$ARRAY`",
+                    "short": "List of prayers in the rosary"
                 }
             ],
             "name": "v1n",
@@ -185,18 +184,6 @@ class Config {
                     "name": "load",
                     "points": [
                         {
-                            "args": {
-                                "params": [
-                                    {
-                                        "example": "monday",
-                                        "kind": "param",
-                                        "name": "day",
-                                        "orig": "day",
-                                        "reqd": true,
-                                        "type": "`$STRING`"
-                                    }
-                                ]
-                            },
                             "kind": "http",
                             "method": "GET",
                             "orig": "/v1/{day}",
@@ -208,29 +195,38 @@ class Config {
                                     "var": "day"
                                 }
                             ],
-                            "select": {
-                                "exist": [
-                                    "day"
-                                ]
-                            },
+                            "parts": [
+                                "v1",
+                                "{day}"
+                            ],
+                            "rename": {},
                             "transform": {
                                 "req": "`reqdata`",
                                 "res": "`body`"
                             },
-                            "parts": [
-                                "v1",
-                                "{day}"
-                            ]
+                            "args": {
+                                "params": [
+                                    {
+                                        "name": "day",
+                                        "orig": "day",
+                                        "type": "`$STRING`",
+                                        "kind": "param",
+                                        "reqd": true,
+                                        "example": "monday"
+                                    }
+                                ]
+                            },
+                            "select": {
+                                "exist": [
+                                    "day"
+                                ]
+                            }
                         }
                     ]
                 }
             },
             "relations": {
-                "ancestors": [
-                    [
-                        "v1"
-                    ]
-                ]
+                "ancestors": []
             }
         }
     };

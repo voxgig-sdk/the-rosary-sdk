@@ -92,13 +92,15 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "description",
-						"short": "Description or meditation for the prayer",
+						"title": "Description",
 						"type": "`$STRING`",
+						"short": "Description or meditation for the prayer",
 					},
 					map[string]any{
 						"name": "title",
-						"short": "The title of the prayer or mystery",
+						"title": "Title",
 						"type": "`$STRING`",
+						"short": "The title of the prayer or mystery",
 					},
 				},
 				"name": "today",
@@ -108,7 +110,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/today",
@@ -120,15 +121,17 @@ func MakeConfig() map[string]any {
 										"lit": "today",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.prayers`",
-								},
 								"parts": []any{
 									"v1",
 									"today",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.prayers`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -141,18 +144,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "day",
-						"short": "The day of the week or occasion",
+						"title": "Day",
 						"type": "`$STRING`",
+						"short": "The day of the week or occasion",
 					},
 					map[string]any{
 						"name": "mystery",
-						"short": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
+						"title": "Mystery",
 						"type": "`$STRING`",
+						"short": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
 					},
 					map[string]any{
 						"name": "prayers",
-						"short": "List of prayers in the rosary",
+						"title": "Prayers",
 						"type": "`$ARRAY`",
+						"short": "List of prayers in the rosary",
 					},
 				},
 				"name": "v1n",
@@ -162,18 +168,6 @@ func MakeConfig() map[string]any {
 						"name": "load",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"params": []any{
-										map[string]any{
-											"example": "monday",
-											"kind": "param",
-											"name": "day",
-											"orig": "day",
-											"reqd": true,
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/v1/{day}",
@@ -185,29 +179,38 @@ func MakeConfig() map[string]any {
 										"var": "day",
 									},
 								},
-								"select": map[string]any{
-									"exist": []any{
-										"day",
-									},
+								"parts": []any{
+									"v1",
+									"{day}",
 								},
+								"rename": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"parts": []any{
-									"v1",
-									"{day}",
+								"args": map[string]any{
+									"params": []any{
+										map[string]any{
+											"name": "day",
+											"orig": "day",
+											"type": "`$STRING`",
+											"kind": "param",
+											"reqd": true,
+											"example": "monday",
+										},
+									},
+								},
+								"select": map[string]any{
+									"exist": []any{
+										"day",
+									},
 								},
 							},
 						},
 					},
 				},
 				"relations": map[string]any{
-					"ancestors": []any{
-						[]any{
-							"v1",
-						},
-					},
+					"ancestors": []any{},
 				},
 			},
 		},

@@ -19,7 +19,6 @@ import type {
   TodayListMatch,
 } from '../TheRosaryTypes'
 
-// TODO: needs Entity superclass
 class TodayEntity extends TheRosaryEntityBase<Today> {
 
   constructor(client: TheRosarySDK, entopts: any) {

@@ -100,13 +100,15 @@ module TheRosaryConfig
           "fields" => [
             {
               "name" => "description",
-              "short" => "Description or meditation for the prayer",
+              "title" => "Description",
               "type" => "`$STRING`",
+              "short" => "Description or meditation for the prayer",
             },
             {
               "name" => "title",
-              "short" => "The title of the prayer or mystery",
+              "title" => "Title",
               "type" => "`$STRING`",
+              "short" => "The title of the prayer or mystery",
             },
           ],
           "name" => "today",
@@ -116,7 +118,6 @@ module TheRosaryConfig
               "name" => "list",
               "points" => [
                 {
-                  "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/today",
@@ -128,15 +129,17 @@ module TheRosaryConfig
                       "lit" => "today",
                     },
                   ],
-                  "select" => {},
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body.prayers`",
-                  },
                   "parts" => [
                     "v1",
                     "today",
                   ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body.prayers`",
+                  },
+                  "args" => {},
+                  "select" => {},
                 },
               ],
             },
@@ -149,18 +152,21 @@ module TheRosaryConfig
           "fields" => [
             {
               "name" => "day",
-              "short" => "The day of the week or occasion",
+              "title" => "Day",
               "type" => "`$STRING`",
+              "short" => "The day of the week or occasion",
             },
             {
               "name" => "mystery",
-              "short" => "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
+              "title" => "Mystery",
               "type" => "`$STRING`",
+              "short" => "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)",
             },
             {
               "name" => "prayers",
-              "short" => "List of prayers in the rosary",
+              "title" => "Prayers",
               "type" => "`$ARRAY`",
+              "short" => "List of prayers in the rosary",
             },
           ],
           "name" => "v1n",
@@ -170,18 +176,6 @@ module TheRosaryConfig
               "name" => "load",
               "points" => [
                 {
-                  "args" => {
-                    "params" => [
-                      {
-                        "example" => "monday",
-                        "kind" => "param",
-                        "name" => "day",
-                        "orig" => "day",
-                        "reqd" => true,
-                        "type" => "`$STRING`",
-                      },
-                    ],
-                  },
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/v1/{day}",
@@ -193,29 +187,38 @@ module TheRosaryConfig
                       "var" => "day",
                     },
                   ],
+                  "parts" => [
+                    "v1",
+                    "{day}",
+                  ],
+                  "rename" => {},
+                  "transform" => {
+                    "req" => "`reqdata`",
+                    "res" => "`body`",
+                  },
+                  "args" => {
+                    "params" => [
+                      {
+                        "name" => "day",
+                        "orig" => "day",
+                        "type" => "`$STRING`",
+                        "kind" => "param",
+                        "reqd" => true,
+                        "example" => "monday",
+                      },
+                    ],
+                  },
                   "select" => {
                     "exist" => [
                       "day",
                     ],
                   },
-                  "transform" => {
-                    "req" => "`reqdata`",
-                    "res" => "`body`",
-                  },
-                  "parts" => [
-                    "v1",
-                    "{day}",
-                  ],
                 },
               ],
             },
           },
           "relations" => {
-            "ancestors" => [
-              [
-                "v1",
-              ],
-            ],
+            "ancestors" => [],
           },
         },
       },

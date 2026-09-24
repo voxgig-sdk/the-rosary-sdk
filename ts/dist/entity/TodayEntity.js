@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.TodayEntity = void 0;
 const TheRosaryEntityBase_1 = require("../TheRosaryEntityBase");
-// TODO: needs Entity superclass
 class TodayEntity extends TheRosaryEntityBase_1.TheRosaryEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

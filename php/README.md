@@ -46,20 +46,6 @@ try {
 }
 ```
 
-### 3. Load a v1n
-
-V1n is nested under day, so provide the `day`.
-
-```php
-try {
-    // load() returns the ENTITY — call data_get() for the V1n record (throws on error).
-    $v1n = $client->V1n()->load(["day" => "example_day"]);
-    print_r($v1n->data_get());
-} catch (\Throwable $err) {
-    echo "Error: " . $err->getMessage();
-}
-```
-
 
 ## Error handling
 

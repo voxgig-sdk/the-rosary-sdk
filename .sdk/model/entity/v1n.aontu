@@ -1,0 +1,80 @@
+# Entity: v1n
+
+main: kit: entity: v1n: {
+
+  alias: field: {}
+
+  fields: {
+    day: {
+      h: "Day"
+      n: "day"
+      r: false
+      sh: "The day of the week or occasion"
+      t: "`$STRING`"
+    }
+    mystery: {
+      h: "Mystery"
+      n: "mystery"
+      r: false
+      sh: "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)"
+      t: "`$STRING`"
+    }
+    prayers: {
+      h: "Prayers"
+      n: "prayers"
+      r: false
+      sh: "List of prayers in the rosary"
+      t: "`$ARRAY`"
+    }
+  }
+
+  name: "v1n"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          co: {
+            id: "GET /v1/{day}"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            params: [
+              {
+                ex: "monday"
+                k: "param"
+                n: "day"
+                or: "day"
+                r: true
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/v1/{day}"
+          q: {
+            exist: [
+              "day"
+            ]
+          }
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              var: "day"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

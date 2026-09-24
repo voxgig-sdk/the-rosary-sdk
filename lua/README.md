@@ -43,18 +43,8 @@ local todays, err = client:Today():list()
 if err then error(err) end
 
 for _, item in ipairs(todays) do
-  print(item["description"])
+  print(item)
 end
-```
-
-### 3. Load a v1n
-
-V1n is nested under day, so provide the `day`.
-
-```lua
-local v1n, err = client:V1n():load({ day = "example_day" })
-if err then error(err) end
-print(v1n)
 ```
 
 

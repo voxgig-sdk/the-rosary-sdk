@@ -70,7 +70,7 @@ function v1n_basic_setup($extra)
 
     // Generate idmap.
     $idmap = [];
-    foreach (["v1n01", "v1n02", "v1n03", "v101", "v102", "v103"] as $k) {
+    foreach (["v1n01", "v1n02", "v1n03"] as $k) {
         $idmap[$k] = strtoupper($k);
     }
 

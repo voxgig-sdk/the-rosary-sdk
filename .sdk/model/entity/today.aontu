@@ -1,0 +1,56 @@
+# Entity: today
+
+main: kit: entity: today: {
+
+  alias: field: {}
+
+  fields: {
+    description: {
+      h: "Description"
+      n: "description"
+      r: false
+      sh: "Description or meditation for the prayer"
+      t: "`$STRING`"
+    }
+    title: {
+      h: "Title"
+      n: "title"
+      r: false
+      sh: "The title of the prayer or mystery"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "today"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /v1/today"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/v1/today"
+          s: [
+            {
+              lit: "v1"
+            }
+            {
+              lit: "today"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.prayers`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

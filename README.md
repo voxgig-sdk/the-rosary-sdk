@@ -14,7 +14,7 @@ Metadata kindly supplied by [www.freepublicapis.com](https://www.freepublicapis.
 
 > TypeScript, Python, PHP, Golang, Ruby, Lua SDKs, a CLI with an interactive REPL, and an MCP server for AI agents — all generated from one OpenAPI spec by [@voxgig/sdkgen](https://github.com/voxgig/sdkgen).
 
-> **Features:** `ratelimit`, `retry`, `test`, `timeout` — opt-in,
+> **Features:** `undefined`, `undefined`, `undefined`, `undefined` — opt-in,
 > inactive until switched on, and configured per client. See the Features
 > section of any SDK README below for what each one does.
 
@@ -128,12 +128,6 @@ const todays = await client.Today().list()
 for (const today of todays) {
   console.log(today)
 }
-
-// Load a specific v1n (returns a V1n)
-const v1n = await client.V1n().load({
-  day: 'example_day',
-})
-console.log(v1n)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -221,15 +215,6 @@ if err != nil {
     panic(err)
 }
 fmt.Println(todays)
-
-// Load a specific v1n
-v1n, err := client.V1n(nil).Load(
-    map[string]any{"day": "example_day"}, nil,
-)
-if err != nil {
-    panic(err)
-}
-fmt.Println(v1n)
 ```
 
 ### Ruby

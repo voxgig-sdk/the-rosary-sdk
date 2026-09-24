@@ -44,20 +44,6 @@ rescue => err
 end
 ```
 
-### 3. Load a v1n
-
-V1n is nested under day, so provide the `day`.
-
-```ruby
-begin
-  # load returns the ENTITY — call data_get for the V1n record (raises on error).
-  v1n = client.V1n.load({ "day" => "example_day" })
-  puts v1n
-rescue => err
-  warn "load failed: #{err}"
-end
-```
-
 
 ## Error handling
 
