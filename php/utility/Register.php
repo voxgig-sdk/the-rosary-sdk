@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 TheRosaryUtility::setRegistrar(function (TheRosaryUtility $u): void {
     $u->clean = [TheRosaryClean::class, 'call'];
+    $u->clean_add = [TheRosaryClean::class, 'add'];
+    $u->clean_explain = [TheRosaryDone::class, 'clean_explain'];
     $u->done = [TheRosaryDone::class, 'call'];
     $u->make_error = [TheRosaryMakeError::class, 'call'];
     $u->feature_add = [TheRosaryFeatureAdd::class, 'call'];

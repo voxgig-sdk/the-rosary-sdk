@@ -1,6 +1,9 @@
 package entity
 
 import (
+	"encoding/json"
+	"fmt"
+
 	"github.com/voxgig-sdk/the-rosary-sdk/go/core"
 
 	vs "github.com/voxgig-sdk/the-rosary-sdk/go/utility/struct"
@@ -49,6 +52,26 @@ func NewTodayEntity(client *core.TheRosarySDK, entopts map[string]any) *TodayEnt
 }
 
 func (e *TodayEntity) GetName() string { return e.name }
+
+// An entity prints and serialises as its data, as ts's toString and toJSON
+// do: the match state can carry a query credential, and the client holds
+// the options.
+func (e *TodayEntity) String() string {
+	return "Today " + vs.Jsonify(e.data, map[string]any{"indent": 0})
+}
+
+func (e *TodayEntity) GoString() string {
+	return e.String()
+}
+
+func (e *TodayEntity) MarshalJSON() ([]byte, error) {
+	out := map[string]any{}
+	for k, v := range e.data {
+		out[k] = v
+	}
+	out["voxgig$entity"] = "Today"
+	return json.Marshal(out)
+}
 
 func (e *TodayEntity) MarkDeleted() {
 	e.deleted = true
@@ -173,6 +196,15 @@ func (e *TodayEntity) Stream(action string, args map[string]any, callopts map[st
 	go func() {
 		defer close(out)
 
+		// With no error channel, a panicking hook or stream function ends the
+		// stream as runOp's error would. A goroutine the stream function
+		// starts is out of reach of this recover.
+		defer func() {
+			if r := recover(); r != nil {
+				e.recovered(ctx, r)
+			}
+		}()
+
 		utility.FeatureHook(ctx, "PrePoint")
 		point, err := utility.MakePoint(ctx)
 		ctx.Out["point"] = point
@@ -213,6 +245,8 @@ func (e *TodayEntity) Stream(action string, args map[string]any, callopts map[st
 		// Inbound: prefer the streaming feature's incremental iterator; else
 		// fall back to the materialised items so Stream always yields.
 		if ctx.Result != nil && ctx.Result.Stream != nil {
+			// Done does not run on this path, so its record is cleaned here.
+			utility.CleanExplain(ctx)
 			for item := range ctx.Result.Stream() {
 				if !send(item) {
 					return
@@ -295,8 +329,14 @@ func (e *TodayEntity) Remove(_ map[string]any, _ map[string]any) (any, error) {
 }
 
 
-func (e *TodayEntity) runOp(ctx *core.Context, postDone func()) (any, error) {
+func (e *TodayEntity) runOp(ctx *core.Context, postDone func()) (out any, err error) {
 	utility := e.utility
+
+	defer func() {
+		if r := recover(); r != nil {
+			out, err = e.recovered(ctx, r)
+		}
+	}()
 
 	utility.FeatureHook(ctx, "PrePoint")
 	point, err := utility.MakePoint(ctx)
@@ -336,9 +376,9 @@ func (e *TodayEntity) runOp(ctx *core.Context, postDone func()) (any, error) {
 	utility.FeatureHook(ctx, "PreDone")
 	postDone()
 
-	out, doneErr := utility.Done(ctx)
-	if doneErr != nil {
-		return out, doneErr
+	out, err = utility.Done(ctx)
+	if err != nil {
+		return out, err
 	}
 
 	opname := ""
@@ -354,4 +394,14 @@ func (e *TodayEntity) runOp(ctx *core.Context, postDone func()) (any, error) {
 	}
 
 	return out, nil
+}
+
+// A hook, fetcher or parser that panics never reached MakeError, and its
+// message can quote the request.
+func (e *TodayEntity) recovered(ctx *core.Context, r any) (any, error) {
+	perr, ok := r.(error)
+	if !ok {
+		perr = fmt.Errorf("%v", r)
+	}
+	return e.utility.MakeError(ctx, perr)
 }

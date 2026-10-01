@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 TheRosaryUtility.registrar = ->(u) {
   u.clean = TheRosaryUtilities::Clean
+  u.clean_add = TheRosaryUtilities::CleanAdd
+  u.clean_explain = TheRosaryUtilities::CleanExplain
   u.done = TheRosaryUtilities::Done
   u.make_error = TheRosaryUtilities::MakeError
   u.feature_add = TheRosaryUtilities::FeatureAdd
