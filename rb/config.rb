@@ -79,6 +79,7 @@ module TheRosaryConfig
           },
           "optspec" => {
             "clearTimer" => "`$FUNCTION`",
+            "now" => "`$FUNCTION`",
             "setTimer" => "`$FUNCTION`",
           },
           "strict" => false,
@@ -140,6 +141,10 @@ module TheRosaryConfig
                   },
                   "args" => {},
                   "select" => {},
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
+                  },
                 },
               ],
             },
@@ -212,6 +217,10 @@ module TheRosaryConfig
                     "exist" => [
                       "day",
                     ],
+                  },
+                  "response" => {
+                    "kind" => "json",
+                    "media" => "application/json",
                   },
                 },
               ],

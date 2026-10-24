@@ -3,5 +3,18 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Description or meditation for the prayer",
+      "List of prayers in the rosary",
+      "Production server",
+      "Provides various endpoints to access rosary prayers for different days and occasions in JSON format. No authentication required for usage.",
+      "Successful response with rosary prayers for the specified day",
+      "Successful response with today&#39;s rosary prayers",
+      "The day of the week or occasion",
+      "The title of the prayer or mystery",
+      "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)"
+    ]
+  }
 }

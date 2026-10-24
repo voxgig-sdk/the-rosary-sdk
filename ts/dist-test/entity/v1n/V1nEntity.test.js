@@ -54,26 +54,36 @@ const utility_1 = require("../../utility");
         const ent = testsdk.V1n();
         (0, node_assert_1.default)(null != ent);
     });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.TheRosarySDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.V1n().load({ "day": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.THE_ROSARY_TEST_LIVE;
-        for (const op of ['load']) {
+        for (const op of []) {
             if (!live && (0, utility_1.maybeSkipControl)(t, 'entityOp', 'v1n.' + op, live))
                 return;
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "day": { "a": true, "h": "Day", "n": "day", "r": false, "sh": "The day of the week or occasion", "t": "`$STRING`", "key$": "day", "index$": 0 }, "mystery": { "a": true, "h": "Mystery", "n": "mystery", "r": false, "sh": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)", "t": "`$STRING`", "key$": "mystery", "index$": 1 }, "prayers": { "a": true, "h": "Prayers", "n": "prayers", "r": false, "sh": "List of prayers in the rosary", "t": "`$ARRAY`", "key$": "prayers", "index$": 2 } }, "name": "v1n", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /v1/{day}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "monday", "k": "param", "n": "day", "or": "day", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/v1/{day}", "q": { "exist": ["day"] }, "r": {}, "s": [{ "lit": "v1" }, { "var": "day" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "v1n", "name__orig": "v1n", "Name": "V1n", "name_": "v1n", "name-": "v1n", "NAME": "V1N", "index$": 1 }, { "active": true, "entity": "v1n", "key$": "BasicV1nFlow", "kind": "basic", "name": "BasicV1nFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": { "ref": "v1n_ref01", "srcdatavar": "v1n_ref01_data", "suffix": "_dt0" }, "m": { "id": "v1n01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-v1n_ref01" } }], "index$": 0 }] }, 'V1n', { "GET /v1/{day}": { "protocol": "http", "parameters": [{ "name": "day", "in": "path", "required": true, "description": "Day of the week (monday, tuesday, wednesday, thursday, friday, saturday, sunday) or mystery type (joyful, sorrowful, glorious, luminous)", "schema": { "type": "string", "enum": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "joyful", "sorrowful", "glorious", "luminous"] }, "example": "monday", "index$": 0 }] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "day": { "a": true, "h": "Day", "n": "day", "r": false, "sh": "The day of the week or occasion", "t": "`$STRING`", "key$": "day", "index$": 0 }, "mystery": { "a": true, "h": "Mystery", "n": "mystery", "r": false, "sh": "The type of mystery (Joyful, Sorrowful, Glorious, or Luminous)", "t": "`$STRING`", "key$": "mystery", "index$": 1 }, "prayers": { "a": true, "h": "Prayers", "n": "prayers", "r": false, "sh": "List of prayers in the rosary", "t": "`$ARRAY`", "key$": "prayers", "index$": 2 } }, "name": "v1n", "op": { "load": { "input": "data", "name": "load", "points": [{ "a": true, "co": { "id": "GET /v1/{day}", "source": "openapi3", "version": 2 }, "g": { "params": [{ "a": true, "ex": "monday", "k": "param", "n": "day", "or": "day", "r": true, "t": "`$STRING`", "index$": 0 }] }, "k": "http", "m": "GET", "o": "/v1/{day}", "q": { "exist": ["day"] }, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "v1" }, { "var": "day" }], "t": { "req": "`reqdata`", "res": "`body`" }, "index$": 0 }], "key$": "load" } }, "relations": { "ancestors": [] }, "key$": "v1n", "name__orig": "v1n", "Name": "V1n", "name_": "v1n", "name-": "v1n", "NAME": "V1N", "index$": 1 }, { "active": true, "entity": "v1n", "key$": "BasicV1nFlow", "kind": "basic", "name": "BasicV1nFlow", "param": {}, "step": [{ "a": false, "d": {}, "i": { "ref": "v1n_ref01", "srcdatavar": "v1n_ref01_data", "suffix": "_dt0" }, "m": { "id": "v1n01" }, "o": "load", "s": [], "v": [{ "apply": "TextFieldMark", "def": { "mark": "Mark01-v1n_ref01" } }], "unreachable": true }] }, 'V1n', { "GET /v1/{day}": { "protocol": "http", "parameters": [{ "name": "day", "in": "path", "required": true, "description": "Day of the week (monday, tuesday, wednesday, thursday, friday, saturday, sunday) or mystery type (joyful, sorrowful, glorious, luminous)", "schema": { "type": "string", "enum": ["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday", "joyful", "sorrowful", "glorious", "luminous"] }, "example": "monday", "index$": 0 }] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
         const isempty = struct.isempty;
         const select = struct.select;
         let v1n_ref01_data = Object.values(setup.data.existing.v1n)[0];
-        // LOAD: skipped — no entity id field and load requires path params.
-        // Entity-var is declared here so later flow steps still compile.
-        const v1n_ref01_ent = client.V1n();
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

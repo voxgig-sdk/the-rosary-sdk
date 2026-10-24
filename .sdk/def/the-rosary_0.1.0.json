@@ -5,7 +5,7 @@
     "description": "Provides various endpoints to access rosary prayers for different days and occasions in JSON format. No authentication required for usage.",
     "version": "1.0.0",
     "contact": {
-      "url": "https://therosaryapi.cf/"
+      "url": "https://the-rosary-api.catholicdevotion.org/"
     }
   },
   "servers": [

@@ -58,6 +58,10 @@ main: kit: entity: v1n: {
               "day"
             ]
           }
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "v1"

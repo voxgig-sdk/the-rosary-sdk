@@ -12,6 +12,8 @@ type TheRosaryError struct {
 	Ctx    *Context `json:"-"`
 	Result any
 	Spec   any
+	// The HTTP status, -1 when there was no response.
+	Status int
 }
 
 func NewTheRosaryError(code string, msg string, ctx *Context) *TheRosaryError {
@@ -21,7 +23,12 @@ func NewTheRosaryError(code string, msg string, ctx *Context) *TheRosaryError {
 		Code:               code,
 		Msg:                msg,
 		Ctx:                ctx,
+		Status:             -1,
 	}
+}
+
+func (e *TheRosaryError) NotFound() bool {
+	return 404 == e.Status
 }
 
 func (e *TheRosaryError) Error() string {
@@ -35,6 +42,7 @@ func (e *TheRosaryError) Record() map[string]any {
 		"sdk":     e.Sdk,
 		"code":    e.Code,
 		"message": e.Msg,
+		"status":  e.Status,
 		"result":  e.Result,
 		"spec":    e.Spec,
 	}

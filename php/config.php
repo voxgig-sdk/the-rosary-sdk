@@ -93,6 +93,7 @@ class TheRosaryConfig
           ],
           'optspec' => [
             'clearTimer' => '`$FUNCTION`',
+            'now' => '`$FUNCTION`',
             'setTimer' => '`$FUNCTION`',
           ],
           'strict' => false,
@@ -154,6 +155,10 @@ class TheRosaryConfig
                   ],
                   'args' => [],
                   'select' => [],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
+                  ],
                 ],
               ],
             ],
@@ -226,6 +231,10 @@ class TheRosaryConfig
                     'exist' => [
                       'day',
                     ],
+                  ],
+                  'response' => [
+                    'kind' => 'json',
+                    'media' => 'application/json',
                   ],
                 ],
               ],

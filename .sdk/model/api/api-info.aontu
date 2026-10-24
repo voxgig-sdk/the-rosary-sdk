@@ -6,7 +6,7 @@ main: {
     info: {
       auth: false
       contact: {
-        url: "https://therosaryapi.cf/"
+        url: "https://the-rosary-api.catholicdevotion.org/"
       }
       description: "Provides various endpoints to access rosary prayers for different days and occasions in JSON format. No authentication required for usage."
       servers: [

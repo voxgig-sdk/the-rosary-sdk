@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { TheRosarySDK, BaseFeature, stdutil } from '../../..'
+import { TheRosarySDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('TodayEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('today hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of TheRosarySDK.test(offline).Today().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of TheRosarySDK.test(offline).Today()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = TheRosarySDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Today().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of TheRosarySDK.test().Today().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new TheRosarySDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Today().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Today().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = TheRosarySDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Today().list({"description":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.THE_ROSARY_TEST_LIVE
@@ -51,7 +109,7 @@ describe('TodayEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Description or meditation for the prayer","t":"`$STRING`","key$":"description","index$":0},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"The title of the prayer or mystery","t":"`$STRING`","key$":"title","index$":1}},"name":"today","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /v1/today","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/v1/today","q":{},"r":{},"s":[{"lit":"v1"},{"lit":"today"}],"t":{"req":"`reqdata`","res":"`body.prayers`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"today","name__orig":"today","Name":"Today","name_":"today","name-":"today","NAME":"TODAY","index$":0}, {"active":true,"entity":"today","key$":"BasicTodayFlow","kind":"basic","name":"BasicTodayFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"today_ref01"}}],"index$":0}]}, 'Today', {"GET /v1/today":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"description":{"a":true,"h":"Description","n":"description","r":false,"sh":"Description or meditation for the prayer","t":"`$STRING`","key$":"description","index$":0},"title":{"a":true,"h":"Title","n":"title","r":false,"sh":"The title of the prayer or mystery","t":"`$STRING`","key$":"title","index$":1}},"name":"today","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /v1/today","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/v1/today","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"v1"},{"lit":"today"}],"t":{"req":"`reqdata`","res":"`body.prayers`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"today","name__orig":"today","Name":"Today","name_":"today","name-":"today","NAME":"TODAY","index$":0}, {"active":true,"entity":"today","key$":"BasicTodayFlow","kind":"basic","name":"BasicTodayFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"today_ref01"}}],"index$":0}]}, 'Today', {"GET /v1/today":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('TodayEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options
